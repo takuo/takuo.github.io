@@ -1,0 +1,3 @@
+[submodule ".themes/octpress-bootstrap"]
+	path = .themes/octpress-bootstrap
+	url = https://github.com/barmstrong/octopress-bootstrap
