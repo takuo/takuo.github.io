@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
+  <title><![CDATA[The weight]]></title>
   <link href="http://northeye.github.com/atom.xml" rel="self"/>
   <link href="http://northeye.github.com/"/>
-  <updated>2012-04-11T13:21:45+09:00</updated>
+  <updated>2012-04-11T13:45:45+09:00</updated>
   <id>http://northeye.github.com/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Takuo Kitame]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
