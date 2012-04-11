@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[The weight]]></title>
-  <link href="http://northeye.github.com/atom.xml" rel="self"/>
+  <title><![CDATA[Category: blog | The weight]]></title>
+  <link href="http://northeye.github.com/blog/categories/blog/atom.xml" rel="self"/>
   <link href="http://northeye.github.com/"/>
   <updated>2012-04-11T14:52:53+09:00</updated>
   <id>http://northeye.github.com/</id>
@@ -30,10 +30,12 @@
 
 <p>というわけでテスト。</p>
 
+<p></p>
+
 <iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=4873113679" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
 
 
-
+<p></p>
 ]]></content>
   </entry>
   
