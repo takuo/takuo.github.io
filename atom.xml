@@ -4,7 +4,7 @@
   <title><![CDATA[The Weight]]></title>
   <link href="http://takuo.northeye.org//atom.xml" rel="self"/>
   <link href="http://takuo.northeye.org//"/>
-  <updated>2012-04-12T13:44:48+09:00</updated>
+  <updated>2012-04-12T19:24:44+09:00</updated>
   <id>http://takuo.northeye.org//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -12,6 +12,18 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[おじいちゃん携帯 for Android 2.0]]></title>
+    <link href="http://takuo.northeye.org//blog/2012/04/12/ojiichan-keitai2-dot-0/"/>
+    <updated>2012-04-12T19:15:00+09:00</updated>
+    <id>http://takuo.northeye.org//blog/2012/04/12/ojiichan-keitai2-dot-0</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/koyachi">koyachi</a>さんがオリジナルであるiOS版を忠実に移植してくださったのをpull requestいただいたので commitしてpublishいたしました。<br/>
+ありがとうございます。</p>
+
+<p><a href="https://play.google.com/store/apps/details?id=jp.takuo.android.ojiichan" title="おじいちゃん携帯 for Android">マーケットリンク</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[octopress]]></title>
