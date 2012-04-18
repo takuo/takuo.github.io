@@ -1,27 +1,31 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://takuo.northeye.org//blog/2012/04/11/switching-to-octopress/</loc>
+        <loc>http://note.ga.vg//blog/2012/04/11/switching-to-octopress/</loc>
         <lastmod>2012-04-18T12:08:04+09:00</lastmod>
     </url>
     <url>
-        <loc>http://takuo.northeye.org//blog/2012/04/12/ojiichan-keitai2-dot-0/</loc>
+        <loc>http://note.ga.vg//blog/2012/04/12/ojiichan-keitai2-dot-0/</loc>
         <lastmod>2012-04-18T12:08:04+09:00</lastmod>
     </url>
     <url>
-        <loc>http://takuo.northeye.org//blog/2012/04/18/setting-proxy-for-chrome-on-xfce/</loc>
+        <loc>http://note.ga.vg//blog/2012/04/18/setting-proxy-for-chrome-on-xfce/</loc>
         <lastmod>2012-04-18T12:08:04+09:00</lastmod>
     </url>
     <url>
-        <loc>http://takuo.northeye.org//404.html</loc>
+        <loc>http://note.ga.vg//blog/2012/04/18/cm9-support-for-emoji-on-mms/</loc>
+        <lastmod>2012-04-18T15:17:37+09:00</lastmod>
+    </url>
+    <url>
+        <loc>http://note.ga.vg//404.html</loc>
         <lastmod>2012-04-18T12:08:04+09:00</lastmod>
     </url>
     <url>
-        <loc>http://takuo.northeye.org//</loc>
-        <lastmod>2012-04-18T12:08:04+09:00</lastmod>
+        <loc>http://note.ga.vg//</loc>
+        <lastmod>2012-04-18T15:17:37+09:00</lastmod>
     </url>
     <url>
-        <loc>http://takuo.northeye.org//blog/archives/</loc>
-        <lastmod>2012-04-18T12:08:04+09:00</lastmod>
+        <loc>http://note.ga.vg//blog/archives/</loc>
+        <lastmod>2012-04-18T15:17:37+09:00</lastmod>
     </url>
 </urlset>

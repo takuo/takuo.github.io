@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: misc | The Weight @northeye]]></title>
-  <link href="http://takuo.northeye.org//blog/categories/misc/atom.xml" rel="self"/>
-  <link href="http://takuo.northeye.org//"/>
-  <updated>2012-04-18T12:08:07+09:00</updated>
-  <id>http://takuo.northeye.org//</id>
+  <link href="http://note.ga.vg//blog/categories/misc/atom.xml" rel="self"/>
+  <link href="http://note.ga.vg//"/>
+  <updated>2012-04-18T15:17:47+09:00</updated>
+  <id>http://note.ga.vg//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Xfce(など)でChromeのプロキシ設定をする]]></title>
-    <link href="http://takuo.northeye.org//blog/2012/04/18/setting-proxy-for-chrome-on-xfce/"/>
+    <link href="http://note.ga.vg//blog/2012/04/18/setting-proxy-for-chrome-on-xfce/"/>
     <updated>2012-04-18T11:12:00+09:00</updated>
-    <id>http://takuo.northeye.org//blog/2012/04/18/setting-proxy-for-chrome-on-xfce</id>
+    <id>http://note.ga.vg//blog/2012/04/18/setting-proxy-for-chrome-on-xfce</id>
     <content type="html"><![CDATA[<p>Xfceなど、システムのプロキシ設定ができない環境だとChromeはプロキシの設定が利用できず、次のように表示されてしまいます。<br/>
 <img src="http://ga.vg/g/0238.png"></p>
 
