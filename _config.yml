@@ -2,8 +2,8 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://takuo.northeye.org/
-title: The Weight
+url: http://note.ga.vg/
+title: The Weight @northeye
 subtitle: take a load for free.
 author: Takuo Kitame
 simple_search: http://google.com/search
@@ -89,8 +89,8 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name:
-disqus_show_comment_count: false
+disqus_short_name: northeyeblog
+disqus_show_comment_count: true
 
 # Google Analytics
 google_analytics_tracking_id: UA-281334-1
