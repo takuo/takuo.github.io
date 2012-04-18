@@ -115,7 +115,7 @@
 <!-- more -->
 
 
-<p>まず proxy.pac ファイルを書きます。
+<p>まず <em>proxy.pac</em> ファイルを書きます。
 書き方についてはぐぐればいくらでも出てきますが、例えばこんな感じに。</p>
 
 <figure class='code'><figcaption><span>/home/user/proxy.pac</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -146,7 +146,7 @@
 
 
 <p>次に、デスクトップやメニュー、パネルのランチャー設定をかえます。<br/>
-/usr/share/applications/google-chrome.desktop の</p>
+<em>/usr/share/applications/google-chrome.desktop</em> の</p>
 
 <pre><code>Exec=/opt/google/chrome/google-chrome %U
 </code></pre>
@@ -156,8 +156,8 @@
 <pre><code>Exec=/opt/google/chrome/google-chrome --proxy-pac-url=file:///home/user/proxy.pac %U
 </code></pre>
 
-<p>にして、~/.local/share/applications/google-chrome.desktop にコピー。<br/>
-以上で、プロキシの設定として /home/user/proxy.pac が使われるようになりました。</p>
+<p>にして、<em>~/.local/share/applications/google-chrome.desktop</em> にコピー。<br/>
+以上で、プロキシの設定として <em>/home/user/proxy.pac</em> が使われるようになりました。</p>
 
 <p>気をつけることは、chromeが立ち上がってない状態で別のアプリケーションからの起動の際、これだけではカバーできないことです。<br/>
 そういう場合はラッパースクリプトでも用意しておきましょう。</p>
