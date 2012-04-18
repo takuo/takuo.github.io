@@ -4,7 +4,7 @@
   <title><![CDATA[Category: misc | The Weight @northeye]]></title>
   <link href="http://note.ga.vg//blog/categories/misc/atom.xml" rel="self"/>
   <link href="http://note.ga.vg//"/>
-  <updated>2012-04-18T17:02:23+09:00</updated>
+  <updated>2012-04-18T17:08:11+09:00</updated>
   <id>http://note.ga.vg//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -37,7 +37,7 @@ function FindProxyForURL(url,host)
 <pre><code>  isInNet(host,"192.168.0.0","255.255.0.0") ||
   isInNet(host, "127.0.0.0" , "255.0.0.0") ||
   shExpMatch( host, "*.example.jp") ||
-  host = "localhost"
+  host == "localhost"
  )
  return "DIRECT";
 </code></pre>
