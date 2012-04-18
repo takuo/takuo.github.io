@@ -23,7 +23,7 @@ function FindProxyForURL(url,host)
       isInNet(host,"192.168.0.0","255.255.0.0") ||
       isInNet(host, "127.0.0.0" , "255.0.0.0") ||
       shExpMatch( host, "*.example.jp") ||
-      host = "localhost"
+      host == "localhost"
      )
      return "DIRECT";
    else
