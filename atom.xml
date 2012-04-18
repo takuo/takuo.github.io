@@ -4,7 +4,7 @@
   <title><![CDATA[The Weight]]></title>
   <link href="http://takuo.northeye.org//atom.xml" rel="self"/>
   <link href="http://takuo.northeye.org//"/>
-  <updated>2012-04-12T20:12:54+09:00</updated>
+  <updated>2012-04-18T11:34:01+09:00</updated>
   <id>http://takuo.northeye.org//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -12,6 +12,79 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Xfce(など)でChromeのプロキシ設定をする]]></title>
+    <link href="http://takuo.northeye.org//blog/2012/04/18/setting-proxy-for-chrome-on-xfce/"/>
+    <updated>2012-04-18T11:12:00+09:00</updated>
+    <id>http://takuo.northeye.org//blog/2012/04/18/setting-proxy-for-chrome-on-xfce</id>
+    <content type="html"><![CDATA[<p>Xfceなど、システムのプロキシ設定ができない環境だとChromeはプロキシの設定が利用できず、次のように表示されてしまいます。<br/>
+<img src="http://ga.vg/g/0238.png"></p>
+
+<p>コマンドラインからは設定できるとあるので、やってみます。</p>
+
+<!-- more -->
+
+
+<p>まず proxy.pac ファイルを書きます。
+書き方についてはぐぐればいくらでも出てきますが、例えばこんな感じに。</p>
+
+<figure class='code'><figcaption><span>/home/user/proxy.pac</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">FindProxyForURL</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="nx">host</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>   <span class="k">if</span><span class="p">(</span><span class="nx">isPlainHostName</span><span class="p">(</span><span class="nx">host</span><span class="p">)</span><span class="o">||</span>
+</span><span class='line'>      <span class="nx">isInNet</span><span class="p">(</span><span class="nx">host</span><span class="p">,</span><span class="s2">&quot;192.168.0.0&quot;</span><span class="p">,</span><span class="s2">&quot;255.255.0.0&quot;</span><span class="p">)</span> <span class="o">||</span>
+</span><span class='line'>      <span class="nx">isInNet</span><span class="p">(</span><span class="nx">host</span><span class="p">,</span> <span class="s2">&quot;127.0.0.0&quot;</span> <span class="p">,</span> <span class="s2">&quot;255.0.0.0&quot;</span><span class="p">)</span> <span class="o">||</span>
+</span><span class='line'>      <span class="nx">shExpMatch</span><span class="p">(</span> <span class="nx">host</span><span class="p">,</span> <span class="s2">&quot;*.example.jp&quot;</span><span class="p">)</span> <span class="o">||</span>
+</span><span class='line'>      <span class="nx">host</span> <span class="o">=</span> <span class="s2">&quot;localhost&quot;</span>
+</span><span class='line'>     <span class="p">)</span>
+</span><span class='line'>     <span class="k">return</span> <span class="s2">&quot;DIRECT&quot;</span><span class="p">;</span>
+</span><span class='line'>   <span class="k">else</span>
+</span><span class='line'>     <span class="k">return</span> <span class="s2">&quot;PROXY 192.168.0.1:3128&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>次に、デスクトップやメニュー、パネルのランチャー設定をかえます。<br/>
+/usr/share/applications/google-chrome.desktop の</p>
+
+<pre><code>Exec=/opt/google/chrome/google-chrome %U
+</code></pre>
+
+<p>のようになっている部分を</p>
+
+<pre><code>Exec=/opt/google/chrome/google-chrome --proxy-pac-url=file:///home/user/proxy.pac %U
+</code></pre>
+
+<p>にして、~/.local/share/applications/google-chrome.desktop にコピー。<br/>
+以上で、プロキシの設定として /home/user/proxy.pac が使われるようになりました。</p>
+
+<p>気をつけることは、chromeが立ち上がってない状態で別のアプリケーションからの起動の際、これだけではカバーできないことです。<br/>
+そういう場合はラッパースクリプトでも用意しておきましょう。</p>
+
+<figure class='code'><figcaption><span>/opt/google/chrome/google-chrome</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/sh</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">exec</span> /opt/google/chrome/google-chrome.real <span class="se">\</span>
+</span><span class='line'>  --proxy-pac-url<span class="o">=</span>file:///home/user/proxy.pac <span class="nv">$*</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[おじいちゃん携帯 for Android 2.0]]></title>
