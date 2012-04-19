@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: adwords | The Weight @northeye]]></title>
+  <link href="http://note.ga.vg//blog/categories/adwords/atom.xml" rel="self"/>
+  <link href="http://note.ga.vg//"/>
+  <updated>2012-04-19T17:22:37+09:00</updated>
+  <id>http://note.ga.vg//</id>
+  <author>
+    <name><![CDATA[Takuo Kitame]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Google Adwordsに広告を出してdropboxの容量を増やした]]></title>
+    <link href="http://note.ga.vg//blog/2012/04/19/dropbox-google-adwords-campaign/"/>
+    <updated>2012-04-19T16:55:00+09:00</updated>
+    <id>http://note.ga.vg//blog/2012/04/19/dropbox-google-adwords-campaign</id>
+    <content type="html"><![CDATA[<p><img class="right" src="https://www.dropbox.com/static/images/logo210.png" title="Dropbox" >
+dropboxはお友達を紹介すると一人に付き0.5G,合計16GB(32人紹介)のボーナス領域をもらえるのですが、
+紹介リンクをGoogle Adwordsで宣伝して獲得しようというやーつです。</p>
+
+<p>わりと前に話題になっていてそのうちやろうと思っていたんですが、先日7500円の無料券がきたのでやってみました。</p>
+
+<!-- more -->
+
+
+<p>方法そのものについては<a href="https://www.google.co.jp/search?q=dropbox+adwords">ぐぐれ</a>ばでてくるの割愛するとして、実際どの程度効果あったのかだけ。</p>
+
+<p>32人の紹介が完了するまでだいたい1週間かかりました。クリック数はもちろん、dropboxアカウント作成まではわりとすぐに32を超えますが、アプリケーションのインストールまでが紹介プロセスになっているのでインストールまでやってくれない方もままおり、思ったより時間がかかりました。
+
+<a href="https://picasaweb.google.com/lh/photo/_3UcnSUifWztMUjrlCBTQfShcrc0A2PLHIWmf1KZ17Q?feat=embedwebsite"><img src="https://lh5.googleusercontent.com/-6jgIav3KkjI/T4_HBC8pBbI/AAAAAAAAHfw/bYKznoqUzQg/s400/dropbox-invite-status.png" height="266" width="400" /></a>
+</p>
+
+<p>Adwordsのレポートはこんな感じになっていて、総額3148円と、無料クーポンの半分で済みました。
+
+<a href="https://picasaweb.google.com/lh/photo/dgb33o2mwExVW_JMG64sbfShcrc0A2PLHIWmf1KZ17Q?feat=embedwebsite"><img src="https://lh5.googleusercontent.com/-nIOsHmq_Yi8/T4_HDB4Fo4I/AAAAAAAAHf4/q2SDsbeq0Qk/s400/adwords-report.png" height="245" width="400" /></a>
+</p>
+
+<p></p>
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=4774150428" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=4881667971" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<p></p>
+
+<p>まぁ、実際32人のお友達に紹介するのは大変だし、無料クーポンで済みますからやっといて損はないかと思います。</p>
+]]></content>
+  </entry>
+  
+</feed>
