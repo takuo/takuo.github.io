@@ -5,7 +5,7 @@ date: 2012-04-19 16:55
 comments: true
 categories: [ dropbox, google, adwords ]
 ---
-{% img right https://www.dropbox.com/static/images/logo210.png Dropbox %}
+{% img right https://www.dropbox.com/static/images/logo210.png http://www.dropbox.com/ Dropbox %}
 dropboxはお友達を紹介すると一人に付き0.5G,合計16GB(32人紹介)のボーナス領域をもらえるのですが、
 紹介リンクをGoogle Adwordsで宣伝して獲得しようというやーつです。 
 
