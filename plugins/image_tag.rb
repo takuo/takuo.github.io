@@ -22,9 +22,9 @@ module Jekyll
     @img = nil
 
     def initialize(tag_name, markup, tokens)
-      attributes = ['class', 'src', 'width', 'height', 'title']
+      attributes = ['class', 'src', 'link', 'width', 'height', 'title']
 
-      if markup =~ /(?<class>\S.*\s+)?(?<src>(?:https?:\/\/|\/|\S+\/)\S+)(?:\s+(?<width>\d+))?(?:\s+(?<height>\d+))?(?<title>\s+.+)?/i
+      if markup =~ /(?<class>\S[^\/]*\s+)?(?<src>(?:https?:\/\/|\/|\S+\/)\S+)(?<link>\s+(?:https?:\/\/|\/|\S+\/)\S+)?(?:\s+(?<width>\d+))?(?:\s+(?<height>\d+))?(?<title>\s+.+)?/i
         @img = attributes.reduce({}) { |img, attr| img[attr] = $~[attr].strip if $~[attr]; img }
         if /(?:"|')(?<title>[^"']+)?(?:"|')\s+(?:"|')(?<alt>[^"']+)?(?:"|')/ =~ @img['title']
           @img['title']  = title
@@ -39,7 +39,13 @@ module Jekyll
 
     def render(context)
       if @img
-        "<img #{@img.collect {|k,v| "#{k}=\"#{v}\"" if v}.join(" ")}>"
+        link = @img.delete('link')
+        re = "<img #{@img.collect {|k,v| "#{k}=\"#{v}\"" if v}.join(" ")}>"
+        if link
+          "<a href=\"#{link}\" target=\"_blank\">#{re}</a>"
+        else
+          re
+        end
       else
         "Error processing input, expected syntax: {% img [class name(s)] [http[s]:/]/path/to/image [width [height]] [title text | \"title text\" [\"alt text\"]] %}"
       end
