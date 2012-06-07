@@ -1,0 +1,30 @@
+---
+layout: post
+title: "PENTAX Q 買った"
+date: 2012-06-07 13:59
+comments: true
+categories: [ Camera, IYH ]
+---
+PENTAX Qを買ってしまいました。  
+デジタル一眼はオリンパス E-620に続き2台目となります。
+
+<!-- mroe -->
+E-620はそれはそれでいいのですが、やはりフォーサーズマウントはでかいので気軽に持ちあるくには厳しく、デートとかでふらふらと写真撮ったりするには向いてないと思っていて、ミラーレスの一眼が欲しいなぁと思っていたのでした。
+
+今年の3月には限定色のシルバーがでており、そろそろ在庫がなくなりつつあるということで、それが後押しとなり購入に踏み切った次第です。
+
+しかしながら、これで月などを撮るには相当工夫して望遠レンズ取り付けたりしないといけないので、そういうのにはやはり向きません。
+あとAF速度も若干遅い、バッテリ消費が大きいなどのデメリットもありますが、それを差し引いても素晴らしいコンパクトさであると思っています。
+E-620にくらべるとやはりバッテリ消費は激しい印象で、1日撮りまくってたら空っぽになるので替えのバッテリは予め用意していたほうが良さそうです。
+
+で、試しどりの写真。マクロ撮影わりとふんわりとれて気持ちいーです。
+
+{% raw %}
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B005APLQMQ" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B0057LA4P8" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B0076RR9KY" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B000VDXESQ" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=4844331248" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=4817942673" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+{% endraw %}
+
