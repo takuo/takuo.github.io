@@ -7,6 +7,7 @@ body > nav {
     bottom: 1px solid $nav-border-bottom; }
   padding-top: .35em;
   padding-bottom: .35em;
+  @include border-top-radius(.4em);
   form {
     @include background-clip(padding-box);
     margin: 0; padding: 0;
