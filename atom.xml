@@ -4,7 +4,7 @@
   <title><![CDATA[The Weight @northeye]]></title>
   <link href="http://note.ga.vg//atom.xml" rel="self"/>
   <link href="http://note.ga.vg//"/>
-  <updated>2012-06-12T20:50:20+09:00</updated>
+  <updated>2012-06-12T20:52:24+09:00</updated>
   <id>http://note.ga.vg//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -26,7 +26,7 @@
 <!-- more -->
 
 
-<p>まず、インスタンスの作成ですが、サービスコンソールから&#8221;Launch Instance&#8221;を選んで、&#8221;Quick Launch Wizard&#8221;、&#8221;Ubuntu Server 11.10 (64bit)&#8221;を選び次へ進みます。<br/>
+<p>まず、インスタンスの作成ですが、管理コンソールから&#8221;Launch Instance&#8221;を選んで、&#8221;Quick Launch Wizard&#8221;、&#8221;Ubuntu Server 11.10 (64bit)&#8221;を選び次へ進みます。<br/>
 ほかのLinuxインスタンスでも出来なくないでしょうが今回はこれで行きます。ちなみに12.04 LTSだとKernelがおかしいらしくProcess#daemonがまともに動かなかったのでやめたほうがいいです。(linux-image-3.2.0-24-virtual)<br/>
 <a href="https://lh5.googleusercontent.com/-ERrv6R2Zzlg/T9chQmozptI/AAAAAAAAIpo/Qn6I95WKHf0/s800/aws-launch-instance.png" target="_blank"><img src="https://lh5.googleusercontent.com/-ERrv6R2Zzlg/T9chQmozptI/AAAAAAAAIpo/Qn6I95WKHf0/s400/aws-launch-instance.png"></a></p>
 
@@ -36,7 +36,7 @@
 <p>起動しました。<br/>
 <a href="https://lh4.googleusercontent.com/-aOuzv5tYklI/T9chWfDzg_I/AAAAAAAAIp0/M_1gq2PojGo/s800/instance-status.png" target="_blank"><img src="https://lh4.googleusercontent.com/-aOuzv5tYklI/T9chWfDzg_I/AAAAAAAAIp0/M_1gq2PojGo/s400/instance-status.png"></a></p>
 
-<p>sshでのログイン方法もコンソールのInstance ActionからConnectを選べば説明がでてくるのでその通りにやればよろしいのですが、rootではログインできないのでubuntuユーザでログインすることになります。<br/>
+<p>sshでのログイン方法も管理コンソールのInstance ActionからConnectを選べば説明がでてくるのでその通りにやればよろしいのですが、rootではログインできないのでubuntuユーザでログインすることになります。<br/>
 <a href="https://lh3.googleusercontent.com/-NfQGIxuBO3A/T9chQnhlknI/AAAAAAAAIpk/R8-bFy7eBsY/s800/connect-to-instance.png" target="_blank"><img src="https://lh3.googleusercontent.com/-NfQGIxuBO3A/T9chQnhlknI/AAAAAAAAIpk/R8-bFy7eBsY/s400/connect-to-instance.png"></a></p>
 
 <p>インスタンスを起動してsshでログインできたら実行環境をセットアップします。</p>
