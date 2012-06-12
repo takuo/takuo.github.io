@@ -1,0 +1,513 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>TwiProwlをAWS EC2で動かす(無料) - The Weight @northeye</title>
+  <meta name="author" content="Takuo Kitame">
+
+  
+  <meta name="description" content="AWSのEC2 Linux マイクロインスタンスは無料範囲をキープしていれば１年間無料で使え、TwiProwlいっこ動かすくらいなら余裕でキープできそうなのでやってみます。 ※ TwiProwlは拙作のTwitter通知ツールですが説明は割愛します。 まず、インスタンスの作成ですが、 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://note.ga.vg//blog/2012/06/12/twiprowl-on-aws-micro-instance">
+  <link href="/favicon.ico" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="The Weight @northeye" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<!-- <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
+<!-- <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
+<link href='http://fonts.googleapis.com/css?family=Actor' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Patua+One' rel='stylesheet' type='text/css'>
+<link href="http://fonts.googleapis.com/css?family=Karla:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-281334-7']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">The Weight @northeye</a></h1>
+  
+    <h2>take a load for free<a style="text-decoration: none" href="http://www.amazon.co.jp/dp/B005EYRY7Y/takuojp02-22/">.</a></h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:note.ga.vg/" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="https://plus.google.com/112945362352143687431/about">About</a></li>
+  <li><a href="/">Blog</a></li>
+  <li><a href="http://blog.takuo.jp/">Old Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h2 class="entry-title">TwiProwlをAWS EC2で動かす(無料)</h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-12T19:37:00+09:00" pubdate data-updated="true">Jun 12<span>th</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://aws.amazon.com/jp/" target="_blank"><img class="right" src="https://lh5.googleusercontent.com/-uzJ0rqEN72U/T9cintiTKvI/AAAAAAAAIqI/W8owjZxM-QE/s800/aws-logo.png"></a>
+<a href="http://aws.amazon.com/jp/">AWS</a>のEC2 Linux マイクロインスタンスは無料範囲をキープしていれば１年間<a href="http://aws.amazon.com/jp/free/">無料</a>で使え、<a href="http://github.com/takuo/TwiProwl">TwiProwl</a>いっこ動かすくらいなら余裕でキープできそうなのでやってみます。</p>
+
+<p>※ TwiProwlは拙作のTwitter通知ツールですが説明は割愛します。</p>
+
+<!-- more -->
+
+
+<p>まず、インスタンスの作成ですが、サービスコンソールから&#8221;Launch Instance&#8221;を選んで、&#8221;Quick Launch Wizard&#8221;、&#8221;Ubuntu Server 11.10 (64bit)&#8221;を選び次へ進みます。<br/>
+ほかのLinuxインスタンスでも出来なくないでしょうが今回はこれで行きます。ちなみに12.04 LTSだとKernelがおかしいらしくProcess#daemonがまともに動かなかったのでやめたほうがいいです。(linux-image-3.2.0-24-virtual)<br/>
+<a href="https://lh5.googleusercontent.com/-ERrv6R2Zzlg/T9chQmozptI/AAAAAAAAIpo/Qn6I95WKHf0/s800/aws-launch-instance.png" target="_blank"><img src="https://lh5.googleusercontent.com/-ERrv6R2Zzlg/T9chQmozptI/AAAAAAAAIpo/Qn6I95WKHf0/s400/aws-launch-instance.png"></a></p>
+
+<p>詳細設定はデフォルトのまま。<br/>
+<a href="https://lh3.googleusercontent.com/-b3UKWibIm_w/T9chQrjhOEI/AAAAAAAAIpc/ijO-B4uFCag/s800/create-new-instance.png" target="_blank"><img src="https://lh3.googleusercontent.com/-b3UKWibIm_w/T9chQrjhOEI/AAAAAAAAIpc/ijO-B4uFCag/s400/create-new-instance.png"></a></p>
+
+<p>起動しました。<br/>
+<a href="https://lh4.googleusercontent.com/-aOuzv5tYklI/T9chWfDzg_I/AAAAAAAAIp0/M_1gq2PojGo/s800/instance-status.png" target="_blank"><img src="https://lh4.googleusercontent.com/-aOuzv5tYklI/T9chWfDzg_I/AAAAAAAAIp0/M_1gq2PojGo/s400/instance-status.png"></a></p>
+
+<p>sshでのログイン方法もコンソールのInstance ActionからConnectを選べば説明がでてくるのでその通りにやればよろしいのですが、rootではログインできないのでubuntuユーザでログインすることになります。<br/>
+<a href="https://lh3.googleusercontent.com/-NfQGIxuBO3A/T9chQnhlknI/AAAAAAAAIpk/R8-bFy7eBsY/s800/connect-to-instance.png" target="_blank"><img src="https://lh3.googleusercontent.com/-NfQGIxuBO3A/T9chQnhlknI/AAAAAAAAIpk/R8-bFy7eBsY/s400/connect-to-instance.png"></a></p>
+
+<p>インスタンスを起動してsshでログインできたら実行環境をセットアップします。</p>
+
+<pre><code>$ sudo -s
+# apt-get update &amp;&amp; apt-get upgrade
+# apt-get install ruby1.9.1 git
+# gem install oauth ruby-hmac
+# exit
+$ git clone http://github.com/takuo/TwiProwl.git
+</code></pre>
+
+<p>設定ファイルを適当に書きます。(~/.twiprowl.conf として保存)</p>
+
+<figure class='code'><figcaption><span>/home/ubuntu/.twiprowl.conf</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">LogDir</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/home/ubuntu/var/log</span>
+</span><span class='line'><span class="l-Scalar-Plain">Debug</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+</span><span class='line'><span class="l-Scalar-Plain">Daemon</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">Prowl</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">APIKey</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ProwlのAPIキーを書く</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">NMA</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">APIKey</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">NMAを使う場合、NMAのAPIキーを書く</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">Accounts</span><span class="p-Indicator">:</span>
+</span><span class='line'> <span class="p-Indicator">-</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">Application</span><span class="p-Indicator">:</span> <span class="s">&quot;Twitter&quot;</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">User</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">screen_name</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">Enable</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">NotifyMethods</span><span class="p-Indicator">:</span>
+</span><span class='line'>   <span class="p-Indicator">-</span> <span class="s">&quot;prowl&quot;</span>               <span class="c1"># Prowl for iPhone</span>
+</span><span class='line'>   <span class="p-Indicator">-</span> <span class="s">&quot;nma&quot;</span>                 <span class="c1"># Notify My Android for Android</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">RateLimitThreshold</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">20</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">Mentions</span><span class="p-Indicator">:</span>                <span class="c1"># Event on Mentions</span>
+</span><span class='line'>   <span class="l-Scalar-Plain">Priority</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">1</span>
+</span><span class='line'>   <span class="l-Scalar-Plain">IgnoreSelf</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>       <span class="c1"># Ignore mention by myself</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">Direct</span><span class="p-Indicator">:</span>                  <span class="c1"># Event on Direct Messages</span>
+</span><span class='line'>   <span class="l-Scalar-Plain">Priority</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">1</span>
+</span><span class='line'>   <span class="l-Scalar-Plain">IgnoreSelf</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>       <span class="c1"># Ignore DM event from myself</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">Retweets</span><span class="p-Indicator">:</span>                <span class="c1"># Event on Retweets</span>
+</span><span class='line'>   <span class="l-Scalar-Plain">Priority</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">0</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">Membership</span><span class="p-Indicator">:</span>              <span class="c1"># Event on List Membership</span>
+</span><span class='line'>   <span class="l-Scalar-Plain">Priority</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">0</span>
+</span><span class='line'>   <span class="l-Scalar-Plain">IgnoreSelf</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>       <span class="c1"># Ignore event by myself</span>
+</span><span class='line'>   <span class="l-Scalar-Plain">IgnoreNegative</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>   <span class="c1"># Ignore remove event</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">Favorite</span><span class="p-Indicator">:</span>                <span class="c1"># Event on Favorite/Unfavorite</span>
+</span><span class='line'>   <span class="l-Scalar-Plain">Priority</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">0</span>
+</span><span class='line'>   <span class="l-Scalar-Plain">IgnoreSelf</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>       <span class="c1"># Ignore event by myself</span>
+</span><span class='line'>   <span class="l-Scalar-Plain">IgnoreNegative</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>   <span class="c1"># Ignore Unfavorite event</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">Unfollowed</span><span class="p-Indicator">:</span>              <span class="c1"># Event on Unfollowed, requiresi API rate</span>
+</span><span class='line'>   <span class="l-Scalar-Plain">Priority</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">0</span>
+</span><span class='line'>   <span class="l-Scalar-Plain">Interval</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">60</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>適当です。これ以上のことは自分で調べて好きなようにしたらいいと思います。
+動かす。</p>
+
+<pre><code>$ mkdir -p ~/var/log
+$ cd ~/TwiProwl
+$ ./twiprowl
+oauthなんたらかんたら(認証)
+</code></pre>
+
+<p>おわり。<br/>
+余計なもの(ruby1.8とか)を入れた場合の不都合は知りません。<br/>
+無料範囲に収まらず課金が発生しても責任は負いません。<br/>
+今の所1年間ということらしいので1年後は気を付けましょう。</p>
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=4844329804" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+
+</div>
+<div class="ads" style="margin-top: 1em; margin-left: 1em;">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5477557446616946";
+/* northeye.org footer */
+google_ad_slot = "5957786890";
+google_ad_width = 468;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Takuo Kitame</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-12T19:37:00+09:00" pubdate data-updated="true">Jun 12<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/aws/'>AWS</a>, <a class='category' href='/blog/categories/twiprowl/'>TwiProwl</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://note.ga.vg//blog/2012/06/12/twiprowl-on-aws-micro-instance/" data-via="northeye" data-counturl="http://note.ga.vg//blog/2012/06/12/twiprowl-on-aws-micro-instance/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+  <div class="g-plus" data-action="share"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/06/07/pentax-q/" title="Previous Post: PENTAX Q 買った">&laquo; PENTAX Q 買った</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h2>Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <!-- Google Public Location Badge -->
+<iframe src="http://www.google.com/latitude/apps/badge/api?user=5457512157928704395&type=iframe&maptype=roadmap&z=10&hl=ja" width="180" height="300" frameborder="0"></iframe>
+<!-- To disable location sharing, you *must* visit http://www.google.com/latitude/apps/badge and disable the Google Public Location badge. Removing this code snippet is not enough! -->
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/12/twiprowl-on-aws-micro-instance/">TwiProwlをAWS EC2で動かす(無料)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/07/pentax-q/">PENTAX Q 買った</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/07/make-cheese-cake/">チーズケーキ</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/19/dropbox-google-adwords-campaign/">Google Adwordsに広告を出してdropboxの容量を増やした</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/18/cm9-support-for-emoji-on-mms/">CM9 support for emoji on Mms</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("northeye", 5, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/northeye" class="twitter-follow-button" data-show-count="false">Follow @northeye</a>
+  
+  
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/112945362352143687431?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+<script type="text/javascript"><!--
+amazon_ad_tag = "takuojp02-22"; amazon_ad_width = "160"; amazon_ad_height = "600"; amazon_ad_logo = "hide"; amazon_ad_link_target = "new"; amazon_ad_discount = "remove"; amazon_color_border = "B7B7B7"; amazon_color_link = "CC6600"; amazon_color_logo = "000000";//--></script>
+<script src="http://www.assoc-amazon.jp/s/ads.js" type="text/javascript"></script>
+
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/takuo">@takuo</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'takuo',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo">
+<div class="ads">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5477557446616946";
+/* northeye.org footer */
+google_ad_slot = "7163726185";
+google_ad_width = 728;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script> 
+</div>
+
+<p>
+  Copyright &copy; 2012 - Takuo Kitame -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'northeyeblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://note.ga.vg//blog/2012/06/12/twiprowl-on-aws-micro-instance/';
+        var disqus_url = 'http://note.ga.vg//blog/2012/06/12/twiprowl-on-aws-micro-instance/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ja', parsetags: 'onload'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
