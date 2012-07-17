@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: vps | The Weight @northeye]]></title>
+  <link href="http://note.ga.vg//blog/categories/vps/atom.xml" rel="self"/>
+  <link href="http://note.ga.vg//"/>
+  <updated>2012-07-17T19:33:19+09:00</updated>
+  <id>http://note.ga.vg//</id>
+  <author>
+    <name><![CDATA[Takuo Kitame]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[さくらのVPSでLXC(Linux Container)を動かす]]></title>
+    <link href="http://note.ga.vg//blog/2012/07/17/lxc-on-sakura-vps/"/>
+    <updated>2012-07-17T19:32:00+09:00</updated>
+    <id>http://note.ga.vg//blog/2012/07/17/lxc-on-sakura-vps</id>
+    <content type="html"><![CDATA[<p>yaegashiセムパイが"<a href="http://blog.keshi.org/hogememo/2012/04/05/openvz-on-sakura-vps">さくらのVPSでOpenVZを動かす</a>"というエントリを書かれていて、自分もやろうと思ったのですが、OpenVZはカーネルに手を入れる必要があり、Debian wheezy環境では面倒だったので代わりに<a href="http://lxc.sf.net/">LXC</a>という仮想環境を導入することにしました。</p>
+
+<!-- more -->
+
+
+<p>OpenVZもそうですが、LXCはコンテナ型の仮想環境であり、KVMなどのハードウェア仮想化とは違って仮想化によるオーバーヘッドはほぼありません。<br/>
+雑に言えばchrootなだけなので、VT-xのような仮想化支援付きのCPUすら不要で、KVMやVMware,VirtualBoxといった仮想環境と併用できます。</p>
+
+<h3>VPSで仮想環境を構築する理由</h3>
+
+<p><a href="http://vps.sakura.ad.jp/">さくらのVPS</a>はKVM上に構築されているとのことですが、こういった仮想環境で更に仮想環境を動かす意味はなんなのか。</p>
+
+<p>僕は今のVPS(2Gプラン)に至るまで、3回ほど環境の移行をしてきました。<br/>
+1回目は自宅サーバからさくらVPS(512)、2回目は1Gプランへ移行、3回目は現在の2Gプランといった具合です。</p>
+
+<p>そのたび行う移行作業に大変苦労しており、その間ロストされている何かが必ずあって今現在、最初の自宅サーバと全く同一の環境にはなっていないと思います。</p>
+
+<p>その点仮想環境であれば、いくつかの設定ファイルとrootfsを固めたもを新しい環境で展開し起動するだけで楽かつ完全な移行ができるという事になります。<br/>
+また、LXCはLinux kernel標準の機能(cgroupとkernel namespaceを使用)であり、いまどきのLinux環境ならどこでも動かせるOSレベルの仮想化技術です。(OpenVZはpatchがいるのでそうはいきません)</p>
+
+<p>そんなわけで、今後さくらVPSを離れるか、別のプランに移行するかはわかりませんが、将来に備えVPS上での仮想環境を構築しました。</p>
+
+<h3>導入</h3>
+
+<p>当方の環境はDebian wheezy(amd64)ですので、それ前提で書きます。</p>
+
+<p>lxcvm00 という名前のコンテナをdebianテンプレートで作成します。
+ネットワークはブリッジで、ブリッジインタフェースはlxcbr0を使います。</p>
+
+<pre><code>host # apt-get install lxc debootstrap
+host # cat &lt;&lt;EOL &gt;&gt; /etc/network/interfaces
+auto lxcbr0
+iface lxcbr0 inet static
+        address 10.0.0.1
+        netmask 255.255.255.0
+        bridge_ports none
+        bridge_stp off
+EOL
+host # ifup lxcbr0
+host # echo "cgroup /sys/fs/cgroup  cgroup  defaults 0 0" &gt;&gt; /etc/fstab
+host # mount cgroup
+host # lxc-create -t debian -n lxcvm00
+</code></pre>
+
+<p>いくつかdebconfベースで設定を促されるので適当に設定します。
+lxc-createが終わったら設定ファイルを修正します。</p>
+
+<p>lxc.devttydir(設定しないと/dev/tty*が作られなかった(なぜ?)), lxc.tty(ttyの数), lxc.cap.drop からsys_adminを除くといったあたりの修正です。</p>
+
+<p>``` text "/var/lib/lxc/lxcvm00/config"</p>
+
+<h1>/var/lib/lxc/lxcvm00/config</h1>
+
+<h2>Container</h2>
+
+<p>lxc.utsname                             = lxcvm00
+lxc.rootfs                              = /var/lib/lxc/lxcvm00/rootfs
+lxc.arch                                = x86_64</p>
+
+<h1>lxc.console                            = /var/log/lxc/lxcvm00.console</h1>
+
+<p>lxc.devttydir                           = lxc
+lxc.tty                                 = 4
+lxc.pts                                 = 1024</p>
+
+<h2>Capabilities</h2>
+
+<p>lxc.cap.drop                            = mac_admin
+lxc.cap.drop                            = mac_override</p>
+
+<h1>lxc.cap.drop                            = sys_admin</h1>
+
+<p>lxc.cap.drop                            = sys_module</p>
+
+<h2>Devices</h2>
+
+<h1>Allow all devices</h1>
+
+<h1>lxc.cgroup.devices.allow               = a</h1>
+
+<h1>Deny all devices</h1>
+
+<p>lxc.cgroup.devices.deny                 = a</p>
+
+<h1>Allow to mknod all devices (but not using them)</h1>
+
+<p>lxc.cgroup.devices.allow                = c <em>:</em> m
+lxc.cgroup.devices.allow                = b <em>:</em> m</p>
+
+<h1>/dev/console</h1>
+
+<p>lxc.cgroup.devices.allow                = c 5:1 rwm</p>
+
+<h1>/dev/fuse</h1>
+
+<p>lxc.cgroup.devices.allow                = c 10:229 rwm</p>
+
+<h1>/dev/null</h1>
+
+<p>lxc.cgroup.devices.allow                = c 1:3 rwm</p>
+
+<h1>/dev/ptmx</h1>
+
+<p>lxc.cgroup.devices.allow                = c 5:2 rwm</p>
+
+<h1>/dev/pts/*</h1>
+
+<p>lxc.cgroup.devices.allow                = c 136:* rwm</p>
+
+<h1>/dev/random</h1>
+
+<p>lxc.cgroup.devices.allow                = c 1:8 rwm</p>
+
+<h1>/dev/rtc</h1>
+
+<p>lxc.cgroup.devices.allow                = c 254:0 rwm</p>
+
+<h1>/dev/tty</h1>
+
+<p>lxc.cgroup.devices.allow                = c 5:0 rwm</p>
+
+<h1>/dev/urandom</h1>
+
+<p>lxc.cgroup.devices.allow                = c 1:9 rwm</p>
+
+<h1>/dev/zero</h1>
+
+<p>lxc.cgroup.devices.allow                = c 1:5 rwm</p>
+
+<h2>Limits</h2>
+
+<h1>lxc.cgroup.cpu.shares                  = 1024</h1>
+
+<h1>lxc.cgroup.cpuset.cpus                 = 0</h1>
+
+<h1>lxc.cgroup.memory.limit_in_bytes       = 256M</h1>
+
+<h1>lxc.cgroup.memory.memsw.limit_in_bytes = 1G</h1>
+
+<h2>Filesystem</h2>
+
+<p>lxc.mount.entry                         = proc /var/lib/lxc/lxcvm00/rootfs/proc proc nodev,noexec,nosuid 0 0
+lxc.mount.entry                         = sysfs /var/lib/lxc/lxcvm00/rootfs/sys sysfs defaults,ro 0 0</p>
+
+<h1>lxc.mount.entry                        = /srv/lxcvm00 /var/lib/lxc/lxcvm00/rootfs/srv/lxcvm00 none defaults,bind 0 0</h1>
+
+<h2>Network</h2>
+
+<p>lxc.network.type                        = veth
+lxc.network.flags                       = up
+lxc.network.hwaddr                      = 00:FF:00:00:00:01
+lxc.network.link                        = lxcbr0
+lxc.network.veth.pair                   = lxcvm00eth0
+```</p>
+
+<p>コンテナ側の/etc/inittabと/etc/securettyを修正します
+consoleにgettyを待機させておくと lxc-start でログインプロンプトが出せます(が、lxc-startは -d でバックグラウンドに移したほうがいいと思います。)</p>
+
+<p>``` text "/etc/inittab 抜粋"</p>
+
+<p>c0:2345:respawn:/sbin/getty 38400 console
+1:2345:respawn:/sbin/getty 38400 tty1 linux
+2:23:respawn:/sbin/getty 38400 tty2 linux
+3:23:respawn:/sbin/getty 38400 tty3 linux</p>
+
+<p>```</p>
+
+<p>securettyにはrootでログイン可能なttyにlxc/*を追加してます。
+``` text "/etc/securetty 抜粋"</p>
+
+<p>lxc/console
+lxc/tty1
+lxc/tty2
+lxc/tty3</p>
+
+<p>```</p>
+
+<p>ここまでで、最低限起動するまでの準備ができました。</p>
+
+<h3>起動</h3>
+
+<p>lxc-startでコンテナを起動し、lxc-console でconsoleを開きます。</p>
+
+<pre><code>host # lxc-start -n lxcvm00 -d
+host # lxc-console -n lxcvm00
+Type &lt;Ctrl+a q&gt; to exit the console, &lt;Ctrl+a Ctrl+a&gt; to enter Ctrl+a itself
+
+Debian GNU/Linux wheezy/sid lxcvm00 tty1
+
+lxcvm00 login: 
+</code></pre>
+
+<p>コンソールは Ctrl+a q で抜けられます。
+あとはコンテナ内は好きにいじることができます。
+/etc/network/interfacesあたりも確認しておきましょう。</p>
+
+<p>``` text "/etc/network/interfaces"</p>
+
+<h1>interfaces(5) file used by ifup(8) and ifdown(8)</h1>
+
+<p>auto lo
+iface lo inet loopback</p>
+
+<p>auto eth0
+iface eth0 inet static</p>
+
+<pre><code>    address 10.0.0.4
+    broadcast 10.0.0.255
+    netmask 255.255.255.0
+    gateway 10.0.0.1
+</code></pre>
+
+<p>```</p>
+
+<h3>外からアクセスするための設定</h3>
+
+<p>ホストとコンテナ間の通信はブリッジにより行なっていますが、VPSの外、つまりインターネットからのアクセスやインターネットへのアクセスをするためにNATの設定をします。<br/>
+外へはeth0にマスカレードし、80と443はコンテナにDNATすることにします。<br/>
+sshは不正アクセスが多いので22ではなく適当なポート番号で受け、コンテナの22に渡すことにします。</p>
+
+<pre><code>host # sysctl -w net/ipv4/ip_forward=1
+host # iptables -t nat -I POSTROUTING -o eth0 -j MASQUERADE
+host # iptables -t nat -I PREROUTING -i eth0 -p tcp -m tcp -m multiport --dports 80,443 -j DNAT --to-destination 10.0.0.4
+host # iptables -t nat -I PREROUTING -i eth0 -p tcp -m tcp --dport 43276 -j DNAT --to-destination 10.0.0.4:22
+</code></pre>
+
+<p>これで、コンテナ内でHTTPサービスを動かせば外からのHTTP/HTTPSアクセスはコンテナ内で捌くようになります。<br/>
+sshはVPSの43276番でコンテナの22にフォワードしてます。</p>
+
+<h3>まとめ</h3>
+
+<p>以上、LXCはとくに苦労もなく導入することができるのでオススメです。<br/>
+また運用するサービスごとにコンテナを分けておけば、将来httpだけ別の環境に移したいなどといった欲求にも容易に対応できるでしょう。</p>
+
+<p>次回はリソース制限や動的な変更などを書いてみたいと思います。</p>
+
+<p></p>
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=4798118168" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=4798121401" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<p></p>
+]]></content>
+  </entry>
+  
+</feed>
