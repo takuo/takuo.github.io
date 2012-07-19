@@ -4,7 +4,7 @@
   <title><![CDATA[The Weight @northeye]]></title>
   <link href="http://note.ga.vg//atom.xml" rel="self"/>
   <link href="http://note.ga.vg//"/>
-  <updated>2012-07-19T23:24:52+09:00</updated>
+  <updated>2012-07-19T23:25:59+09:00</updated>
   <id>http://note.ga.vg//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[nasne のファイルシステムを舐めてみた]]></title>
+    <title type="html"><![CDATA[nasne のファイルシステムを見てみる]]></title>
     <link href="http://note.ga.vg//blog/2012/07/19/filesystem-of-nasne/"/>
     <updated>2012-07-19T22:52:00+09:00</updated>
     <id>http://note.ga.vg//blog/2012/07/19/filesystem-of-nasne</id>
