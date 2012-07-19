@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | The Weight @northeye]]></title>
   <link href="http://note.ga.vg//blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://note.ga.vg//"/>
-  <updated>2012-07-19T23:25:59+09:00</updated>
+  <updated>2012-07-19T23:27:39+09:00</updated>
   <id>http://note.ga.vg//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -40,7 +40,7 @@ Number  Start   End     Size    Type     File system  Flags
 </code></pre>
 
 <p>ほうほう。Linuxっぽい。xfsはきっと録画した実データ置き場ですね。<br/>
-mount して見てます。</p>
+mount してみます。</p>
 
 <pre><code># mount -o ro /dev/sdd1 /mnt/nasne/1
 # mount -o ro /dev/sdd2 /mnt/nasne/2
@@ -121,7 +121,8 @@ route add -net 127.0.0.0 netmask 255.0.0.0 dev lo
 </code></pre>
 
 <p>なるほど。ここでinetdとかtelnetdを起動するように変更すれば稼働中のnasneにログインできるかもしれません。<br/>
-というわけで、別のHDDに換装するにはまるごとddしてコピーし、partedでxfsのパーティションを適当に大きくしたりすればよさそうです。</p>
+というわけで、別のHDDに換装するにはまるごとddしてコピーし、partedでxfsのパーティションを適当に大きくしたりすればよさそうです。<br/>
+肝心のカーネルイメージが何処にあるのかわかりませんでした。</p>
 
 <p>今日はこのへんにしときます。
 </p>
