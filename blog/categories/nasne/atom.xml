@@ -4,7 +4,7 @@
   <title><![CDATA[Category: nasne | The Weight @northeye]]></title>
   <link href="http://note.ga.vg//blog/categories/nasne/atom.xml" rel="self"/>
   <link href="http://note.ga.vg//"/>
-  <updated>2012-07-19T23:27:39+09:00</updated>
+  <updated>2012-07-20T00:08:52+09:00</updated>
   <id>http://note.ga.vg//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -57,7 +57,7 @@ mount してみます。</p>
 telnetd とか samba とか興味深いですね。samba は3.0.37でした。<br/>
 最初のパーティションにboot関連のものが入っており、おそらくハードウェア個体にひもづけられてこのnasneでしか起動できないようになってます。<br/>
 ファイルの中身は暗号化されており、わかりません。<br/>
-この時点ですでに1番組録画してあるのですが、録画データはちゃんと暗号化されております。</p>
+この時点ですでに1番組録画してあるのですが、録画データはちゃんと暗号化(きっとハード固有の鍵により)されております。</p>
 
 <p>アーキテクチャを調べてみます。</p>
 
