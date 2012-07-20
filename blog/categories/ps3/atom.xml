@@ -4,7 +4,7 @@
   <title><![CDATA[Category: PS3 | The Weight @northeye]]></title>
   <link href="http://note.ga.vg//blog/categories/ps3/atom.xml" rel="self"/>
   <link href="http://note.ga.vg//"/>
-  <updated>2012-07-20T14:09:07+09:00</updated>
+  <updated>2012-07-20T16:45:12+09:00</updated>
   <id>http://note.ga.vg//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -57,9 +57,12 @@ mount してみます。</p>
 
 <p><a href="http://note.ga.vg/assets/nasne.fs.txt">nasne.fs.txt</a><br/>
 telnetd とか samba とか興味深いですね。samba は3.0.37でした。<br/>
-最初のパーティションにboot関連のものが入っており、おそらくハードウェア個体にひもづけられてこのnasneでしか起動できないようになってます。<br/>
-ファイルの中身は暗号化されており、わかりません。<br/>
-この時点ですでに1番組録画してあるのですが、録画データはちゃんと暗号化(きっとハード固有の鍵により)されております。</p>
+sbin,binなどにあるプログラムの実体はほぼ全てbusyboxです。</p>
+
+<p>最初のパーティション(1)にboot関連(多分)のものが入っており、おそらくハードウェア個体に紐付けられてこのnasneでしか起動できないようになってます。<br/>
+ファイルの中身は暗号化されており、わかりません。</p>
+
+<p>この時点ですでに1番組録画してあるのですが、パーティション(3)にある録画データはちゃんと暗号化(きっとハード固有の鍵により)されております。</p>
 
 <p>アーキテクチャを調べてみます。</p>
 
