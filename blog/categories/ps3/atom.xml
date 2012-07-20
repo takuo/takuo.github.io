@@ -4,7 +4,7 @@
   <title><![CDATA[Category: PS3 | The Weight @northeye]]></title>
   <link href="http://note.ga.vg//blog/categories/ps3/atom.xml" rel="self"/>
   <link href="http://note.ga.vg//"/>
-  <updated>2012-07-20T16:45:12+09:00</updated>
+  <updated>2012-07-20T16:47:50+09:00</updated>
   <id>http://note.ga.vg//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -72,7 +72,7 @@ libc-2.9.so: ELF 32-bit LSB shared object, MIPS, MIPS32 rel2 version 1 (SYSV), d
 
 <p>MIPSだそうです。</p>
 
-<pre><code># cat /etc/issue
+<pre><code># cat 2/etc/issue
 ********************************************************************************
 *              Welcome to Viper MIPS Linux :-)                                 *
 ********************************************************************************
@@ -80,7 +80,7 @@ libc-2.9.so: ELF 32-bit LSB shared object, MIPS, MIPS32 rel2 version 1 (SYSV), d
 
 <p>ほうほう</p>
 
-<pre><code># cat /etc/passwd
+<pre><code># cat 2/etc/passwd
 root::0:0:root:/root:/bin/sh
 www:x:80:80:root:/www:/bin/sh
 nobody:x:99:99:Nobody:/:/sbin/nologin
@@ -90,7 +90,7 @@ daemon:x:2:2:daemon:/sbin:/sbin/nologin
 
 <p>ははあ。rootのパスワードはないんですね。</p>
 
-<pre><code># cat /etc/init.d/rcS
+<pre><code># cat 2/etc/init.d/rcS
 #!/bin/sh
 trap "" SIGHUP
 #echo "Mounting proc"
