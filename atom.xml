@@ -4,7 +4,7 @@
   <title><![CDATA[The Weight @northeye]]></title>
   <link href="http://note.ga.vg//atom.xml" rel="self"/>
   <link href="http://note.ga.vg//"/>
-  <updated>2012-07-21T02:31:38+09:00</updated>
+  <updated>2012-07-21T02:33:20+09:00</updated>
   <id>http://note.ga.vg//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -26,8 +26,8 @@ Linuxでの作業になるので多少のLinuxの知識が必要になります�
 
 
 <p>前提として作業はLinux上で行い、使うツールは dd, parted, fdisk, xfsprogs などです。<br/>
-まず nasne から HDD を取り外し、PCに付けます。(USB HDDケースがあると便利)<br/>
-nasne の HDD は2.5インチの7mm厚ですが、構造的に9.5mm厚でも問題ありません。</p>
+nasne の HDD は2.5インチの7mm厚ですが、構造的に換装するHDDは9.5mm厚でも問題ありません。<br/>
+まず nasne から HDD を取り外し、PCに付けます。(USB HDDケースがあると便利)</p>
 
 <p>※  注意 : <strong>nasneのHDDにはハードウェア固有の情報が書き込まれており、別の個体では利用できません。</strong></p>
 
