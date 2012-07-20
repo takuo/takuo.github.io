@@ -4,7 +4,7 @@
   <title><![CDATA[The Weight @northeye]]></title>
   <link href="http://note.ga.vg//atom.xml" rel="self"/>
   <link href="http://note.ga.vg//"/>
-  <updated>2012-07-20T00:08:52+09:00</updated>
+  <updated>2012-07-20T14:02:56+09:00</updated>
   <id>http://note.ga.vg//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -124,7 +124,21 @@ route add -net 127.0.0.0 netmask 255.0.0.0 dev lo
 というわけで、別のHDDに換装するにはまるごとddしてコピーし、partedでxfsのパーティションを適当に大きくしたりすればよさそうです。<br/>
 肝心のカーネルイメージが何処にあるのかわかりませんでした。</p>
 
-<p>今日はこのへんにしときます。</p>
+<p><strong>(2012-07-20追記)</strong><br/>
+実際に /usr/sbin/inetd を起動するように書いてみたのですが、どうやらinitramfsかそのへんの処理で / をどこかに存在するイメージの展開で再作成しているようで、元に戻ってしまします。</p>
+
+<p>試しに dumpe2fs で / の状態を確認すると、</p>
+
+<pre><code>Filesystem created:       Wed May 16 17:52:14 2012
+Last mount time:          Thu Jan  1 09:00:05 1970
+Last write time:          Thu Jan  1 09:00:05 1970
+</code></pre>
+
+<p>となっており、mkfsはされてない(初期化ではない)が、システムの起動直後にマウントされ、再作成されてるように思えます。<br/>
+そこで、<strong>chattr +i {rootfs}/etc/init.d/rcS</strong> で書き込み禁止属性をつけ、rcSが書き戻されないようにしてから起動して見ましたが… 起動せず。<br/>
+どうやら展開中のエラーで起動処理が止まってるのだと思われます。(<strong>chattr -i</strong> しなおしたらなおりました)</p>
+
+<p>そんなわけで、簡単に好きなプログラムを走らせるようにはできておらず、もうひと工夫が必要そうです。(あるいはexploitを見つけるか)</p>
 
 <iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B007V9T9ZK" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
 
