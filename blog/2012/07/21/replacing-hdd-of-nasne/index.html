@@ -5,12 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Xfce(など)でChromeのプロキシ設定をする - The Weight @northeye</title>
+  <title>nasne のHDDを時間かけずに換装する - The Weight @northeye</title>
   <meta name="author" content="Takuo Kitame">
 
   
-  <meta name="description" content="Xfceなど、システムのプロキシ設定ができない環境だとChromeはプロキシの設定が利用できず、次のように表示されてしまいます。 コマンドラインからは設定できるとあるので、やってみます。 まず proxy.pac ファイルを書きます。
-書き方についてはぐぐればいくらでも出てきますが、 &hellip;">
+  <meta name="description" content="比較的時間のかからないHDD換装手順です。
+特別な機材は必要ありませんが、USBのHDDがケースがあると便利だと思います。
+Linuxでの作業になるので多少のLinuxの知識が必要になります。 HDDをまるごとバックアップして書き戻す作業は大変時間がかかるので、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://note.ga.vg//blog/2012/04/18/setting-proxy-for-chrome-on-xfce">
+  <link rel="canonical" href="http://note.ga.vg//blog/2012/07/21/replacing-hdd-of-nasne">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -85,7 +86,7 @@
   
   <header>
     
-      <h2 class="entry-title">Xfce(など)でChromeのプロキシ設定をする</h2>
+      <h2 class="entry-title">Nasne のHDDを時間かけずに換装する</h2>
     
     
       <p class="meta">
@@ -101,7 +102,7 @@
   
 
 
-<time datetime="2012-04-18T11:12:00+09:00" pubdate data-updated="true">Apr 18<span>th</span>, 2012</time>
+<time datetime="2012-07-21T02:00:00+09:00" pubdate data-updated="true">Jul 21<span>st</span>, 2012</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -110,70 +111,162 @@
   </header>
 
 
-<div class="entry-content"><p>Xfceなど、システムのプロキシ設定ができない環境だとChromeはプロキシの設定が利用できず、次のように表示されてしまいます。<br/>
-<img src="http://ga.vg/g/0238.png"></p>
-
-<p>コマンドラインからは設定できるとあるので、やってみます。</p>
+<div class="entry-content"><p>比較的時間のかからないHDD換装手順です。<br/>
+特別な機材は必要ありませんが、USBのHDDがケースがあると便利だと思います。<br/>
+Linuxでの作業になるので多少のLinuxの知識が必要になります。</p>
 
 <!-- more -->
 
 
-<p>まず <em>proxy.pac</em> ファイルを書きます。
-書き方については<a href="https://www.google.co.jp/search?q=proxy.pac">ぐぐれ</a>ばいくらでも出てきますが、例えばこんな感じに。</p>
+<p>HDDをまるごとバックアップして書き戻す作業は大変時間がかかるので、必要な分だけイメージを取得するようにして待ち時間を短縮します。</p>
 
-<figure class='code'><figcaption><span>/home/user/proxy.pac</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">FindProxyForURL</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="nx">host</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>   <span class="k">if</span><span class="p">(</span><span class="nx">isPlainHostName</span><span class="p">(</span><span class="nx">host</span><span class="p">)</span><span class="o">||</span>
-</span><span class='line'>      <span class="nx">isInNet</span><span class="p">(</span><span class="nx">host</span><span class="p">,</span><span class="s2">&quot;192.168.0.0&quot;</span><span class="p">,</span><span class="s2">&quot;255.255.0.0&quot;</span><span class="p">)</span> <span class="o">||</span>
-</span><span class='line'>      <span class="nx">isInNet</span><span class="p">(</span><span class="nx">host</span><span class="p">,</span> <span class="s2">&quot;127.0.0.0&quot;</span> <span class="p">,</span> <span class="s2">&quot;255.0.0.0&quot;</span><span class="p">)</span> <span class="o">||</span>
-</span><span class='line'>      <span class="nx">shExpMatch</span><span class="p">(</span> <span class="nx">host</span><span class="p">,</span> <span class="s2">&quot;*.example.jp&quot;</span><span class="p">)</span> <span class="o">||</span>
-</span><span class='line'>      <span class="nx">host</span> <span class="o">==</span> <span class="s2">&quot;localhost&quot;</span>
-</span><span class='line'>     <span class="p">)</span>
-</span><span class='line'>     <span class="k">return</span> <span class="s2">&quot;DIRECT&quot;</span><span class="p">;</span>
-</span><span class='line'>   <span class="k">else</span>
-</span><span class='line'>     <span class="k">return</span> <span class="s2">&quot;PROXY 192.168.0.1:3128&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>前提として作業はLinux上で行い、使うツールは dd, parted, fdisk, xfsprogs などです。<br/>
+まず nasne から HDD を取り外し、PCに付けます。(USB HDDケースがあると便利)<br/>
+nasne の HDD は2.5インチの7mm厚ですが、構造的に9.5mm厚でも問題ありません。</p>
 
+<p>nasne の HDD を <strong>/dev/sdd</strong> として認識したとして書きます。<br/>
+xfs の領域である <strong>/dev/sdd3</strong> をtarでバックアップします。</p>
 
-<p>次に、デスクトップやメニュー、パネルのランチャー設定をかえます。<br/>
-<em>/usr/share/applications/google-chrome.desktop</em> の</p>
-
-<pre><code>Exec=/opt/google/chrome/google-chrome %U
+<pre><code># mount -o ro /dev/sdd3 /mnt
+# cd /mnt
+# tar -cpzf /backup/xfs.tgz .
+# cd / &amp;&amp; umount /dev/sdd3
 </code></pre>
 
-<p>のようになっている部分を</p>
+<p>パーティション番号2までのサイズ(単位はセクタにする)をメモします。</p>
 
-<pre><code>Exec=/opt/google/chrome/google-chrome --proxy-pac-url=file:///home/user/proxy.pac %U
+<pre><code># parted /dev/sdd
+GNU Parted 2.3
+Using /dev/sdd
+Welcome to GNU Parted! Type 'help' to view a list of commands.
+(parted) unit s
+(parted) p
+Model: Hitachi HTS545050A7E380 (scsi)
+Disk /dev/sdd: 62500864s
+Sector size (logical/physical): 512B/512B
+Partition Table: msdos
+
+Number  Start     End        Size       Type     File system  Flags
+ 1      2048s     526335s    524288s    primary  ext3         boot
+ 2      526336s   2623487s   2097152s   primary  ext3
+ 3      2623488s  62500863s  59877376s  primary  xfs
+
+(parted) quit
 </code></pre>
 
-<p>にして、<em>~/.local/share/applications/google-chrome.desktop</em> にコピー。<br/>
-以上で、プロキシの設定として <em>/home/user/proxy.pac</em> が使われるようになりました。</p>
+<p>セクタサイズは512Bで、 <strong>/dev/sdd2</strong> のEndが <strong>2623487</strong> であることがわかります。<br/>
+dd で先頭から <strong>/dev/sdd2</strong> の終わりまでのイメージを取得します。<br/>
+※ セクタ番号は0から始まるのでcountは1増やす。</p>
 
-<p>気をつけることは、chromeが立ち上がってない状態で別のアプリケーションからの起動の際、これだけではカバーできないことです。<br/>
-そういう場合はラッパースクリプトでも用意しておきましょう。</p>
+<pre><code># cd / &amp;&amp; umount /mnt
+# dd if=/dev/sdd of=/backup/hdd.img bs=512 count=2623488
+</code></pre>
 
-<figure class='code'><figcaption><span>/opt/google/chrome/google-chrome</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/sh</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">exec</span> /opt/google/chrome/google-chrome.real <span class="se">\</span>
-</span><span class='line'>  --proxy-pac-url<span class="o">=</span>file:///home/user/proxy.pac <span class="nv">$*</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>換装用の新しいディスクを接続します。 <strong>/dev/sde</strong> とします。 (今回は敢えて小さい120GBのHDDを使用してます) <br/>
+ディスクイメージを書き込みます。</p>
+
+<pre><code># dd if=/backup/hdd.img of=/dev/sde
+</code></pre>
+
+<p>/dev/sde3 を消して作り直します。</p>
+
+<pre><code># fdisk /dev/sde
+
+Command (m for help): p
+
+Disk /dev/sde: 120.0 GB, 120034123776 bytes
+255 heads, 63 sectors/track, 14593 cylinders, total 234441648 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x000d7605
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sde1   *        2048      526335      262144   83  Linux
+/dev/sde2          526336     2623487     1048576   83  Linux
+/dev/sde3         2623488    62500863    29938688   83  Linux
+
+Command (m for help): d
+Partition number (1-4): 3
+
+Command (m for help): p
+
+Disk /dev/sde: 120.0 GB, 120034123776 bytes
+255 heads, 63 sectors/track, 14593 cylinders, total 234441648 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x000d7605
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sde1   *        2048      526335      262144   83  Linux
+/dev/sde2          526336     2623487     1048576   83  Linux
+
+Command (m for help): n
+Partition type:
+   p   primary (2 primary, 0 extended, 2 free)
+   e   extended
+Select (default p): p
+Partition number (1-4, default 3):
+Using default value 3
+First sector (2623488-234441647, default 2623488):
+Using default value 2623488
+Last sector, +sectors or +size{K,M,G} (2623488-234441647, default 234441647):
+Using default value 234441647
+
+Command (m for help): w
+The partition table has been altered!
+
+Calling ioctl() to re-read partition table.
+Syncing disks.
+</code></pre>
+
+<p>xfsファイルシステムを作り直します。</p>
+
+<pre><code># mkfs.xfs -f /dev/sde3
+meta-data=/dev/sde3              isize=256    agcount=4, agsize=7244318 blks
+         =                       sectsz=512   attr=2, projid32bit=0
+data     =                       bsize=4096   blocks=28977270, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0
+log      =internal log           bsize=4096   blocks=14149, version=2
+         =                       sectsz=512   sunit=0 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+</code></pre>
+
+<p><strong>/dev/sde3</strong> をマウントしてtarでバックアップしたxfs領域を展開します。</p>
+
+<pre><code># mount /dev/sde3 /mnt
+# cd /mnt
+# tar -xzpf /backup/xfs.tgz
+# cd / &amp;&amp; umount /mnt
+</code></pre>
+
+<p>ディスクを nasne に取り付けて起動します。
+<img src="/assets/screenshot/nasne-hdd-replace.png"></p>
+
+<p>よくわかりませんが、電源LEDとREC LEDが両方赤点灯でフリーズすることがありました。<br/>
+なんどか同じ手順を繰り返していたら起動したりしなかったりしました。<br/>
+サンプルにつかったHDD(HTS541612J9SA00)が古過ぎて調子が悪いのかもしれませんが、原因は定かではありません。</p>
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B007NTJWB4" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B007XCCTEI" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B004QZAPMS" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B0053VPYHK" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B007V9T9ZK" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B0035V5EA2" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
 
 </div>
 <div class="ads" style="margin-top: 1em; margin-left: 1em;">
@@ -211,21 +304,15 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
   
 
 
-<time datetime="2012-04-18T11:12:00+09:00" pubdate data-updated="true">Apr 18<span>th</span>, 2012</time>
+<time datetime="2012-07-21T02:00:00+09:00" pubdate data-updated="true">Jul 21<span>st</span>, 2012</time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/misc/'>misc</a>
-  
-</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://note.ga.vg//blog/2012/04/18/setting-proxy-for-chrome-on-xfce/" data-via="northeye" data-counturl="http://note.ga.vg//blog/2012/04/18/setting-proxy-for-chrome-on-xfce/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://note.ga.vg//blog/2012/07/21/replacing-hdd-of-nasne/" data-via="northeye" data-counturl="http://note.ga.vg//blog/2012/07/21/replacing-hdd-of-nasne/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -241,10 +328,8 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/04/12/ojiichan-keitai2-dot-0/" title="Previous Post: おじいちゃん携帯 for Android 2.0">&laquo; おじいちゃん携帯 for Android 2.0</a>
+        <a class="basic-alignment left" href="/blog/2012/07/19/filesystem-of-nasne/" title="Previous Post: nasne のファイルシステムを見てみる">&laquo; nasne のファイルシステムを見てみる</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2012/04/18/cm9-support-for-emoji-on-mms/" title="Next Post: CM9 support for emoji on Mms">CM9 support for emoji on Mms &raquo;</a>
       
     </p>
   </footer>
@@ -388,8 +473,8 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://note.ga.vg//blog/2012/04/18/setting-proxy-for-chrome-on-xfce/';
-        var disqus_url = 'http://note.ga.vg//blog/2012/04/18/setting-proxy-for-chrome-on-xfce/';
+        var disqus_identifier = 'http://note.ga.vg//blog/2012/07/21/replacing-hdd-of-nasne/';
+        var disqus_url = 'http://note.ga.vg//blog/2012/07/21/replacing-hdd-of-nasne/';
         var disqus_script = 'embed.js';
       
     (function () {
