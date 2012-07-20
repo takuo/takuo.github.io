@@ -4,7 +4,7 @@
   <title><![CDATA[Category: trone | The Weight @northeye]]></title>
   <link href="http://note.ga.vg//blog/categories/trone/atom.xml" rel="self"/>
   <link href="http://note.ga.vg//"/>
-  <updated>2012-07-20T14:08:01+09:00</updated>
+  <updated>2012-07-20T14:09:07+09:00</updated>
   <id>http://note.ga.vg//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -55,7 +55,7 @@ mount してみます。</p>
 # find &gt; /tmp/nasne.fs.txt
 </code></pre>
 
-<p><a href="http://takuo.jp/junk/nasne.fs.txt">nasne.fs.txt</a><br/>
+<p><a href="http://note.ga.vg/assets/nasne.fs.txt">nasne.fs.txt</a><br/>
 telnetd とか samba とか興味深いですね。samba は3.0.37でした。<br/>
 最初のパーティションにboot関連のものが入っており、おそらくハードウェア個体にひもづけられてこのnasneでしか起動できないようになってます。<br/>
 ファイルの中身は暗号化されており、わかりません。<br/>
