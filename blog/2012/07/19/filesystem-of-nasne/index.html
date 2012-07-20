@@ -9,10 +9,10 @@
   <meta name="author" content="Takuo Kitame">
 
   
-  <meta name="description" content="物理的な分解記事とかよりも面白いと思ったのでちょっとだけnasneの中身をみてました。 # parted /dev/sdd
+  <meta name="description" content="物理的な分解記事とかよりも面白いと思ったのでちょっとだけnasneの中身をみてました。 まずはパーティションの確認から。 # parted /dev/sdd
 GNU Parted 2.3
 Using /dev/sdd
-Welcome to GNU Parted! Type 'help' to view a list of &hellip;">
+Welcome to GNU Parted! Type 'help' to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -117,6 +117,8 @@ Welcome to GNU Parted! Type 'help' to view a list of &hellip;">
 <!-- more -->
 
 
+<p>まずはパーティションの確認から。</p>
+
 <pre><code># parted /dev/sdd
 GNU Parted 2.3
 Using /dev/sdd
@@ -177,7 +179,7 @@ bin:x:1:1:bin:/bin:/sbin/nologin
 daemon:x:2:2:daemon:/sbin:/sbin/nologin
 </code></pre>
 
-<p>ははあ</p>
+<p>ははあ。rootのパスワードはないんですね。</p>
 
 <pre><code># cat /etc/init.d/rcS
 #!/bin/sh
@@ -214,12 +216,15 @@ route add -net 127.0.0.0 netmask 255.0.0.0 dev lo
 /opt/dtvtuner/etc/startdtvtuner
 </code></pre>
 
-<p>なるほど。ここでinetdとかtelnetdを起動するように変更すれば稼働中のnasneにログインできるかもしれません。<br/>
-というわけで、別のHDDに換装するにはまるごとddしてコピーし、partedでxfsのパーティションを適当に大きくしたりすればよさそうです。<br/>
+<p>なるほど。<br/>
+ここでinetdとかtelnetdを起動するように変更すれば稼働中のnasneにログインできるかもしれません。</p>
+
+<p>というわけで、別のHDDに換装するにはまるごとddしてコピーし、partedでxfsのパーティションを適当に大きくしたりすればよさそうです。<br/>
 肝心のカーネルイメージが何処にあるのかわかりませんでした。</p>
 
-<p><strong>(2012-07-20追記)</strong><br/>
-実際に /usr/sbin/inetd を起動するように書いてみたのですが、どうやらinitramfsかそのへんの処理で / をどこかに存在するイメージの展開で再作成しているようで、元に戻ってしまします。</p>
+<p><strong>(2012-07-20追記)</strong></p>
+
+<p>実際に /usr/sbin/inetd を起動するように書いてみたのですが、どうやらinitramfsかそのへんの処理で / をどこかに存在するイメージの展開で再作成しているようで、元に戻ってしまします。</p>
 
 <p>試しに dumpe2fs で / の状態を確認すると、</p>
 
