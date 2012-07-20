@@ -120,12 +120,11 @@ Linuxでの作業になるので多少のLinuxの知識が必要になります�
 
 <p>前提として作業はLinux上で行い、使うツールは dd, parted, fdisk, xfsprogs などです。<br/>
 nasne の HDD は2.5インチの7mm厚ですが、構造的に換装するHDDは9.5mm厚でも問題ありません。<br/>
-まず nasne から HDD を取り外し、PCに付けます。(USB HDDケースがあると便利)</p>
+※  注意 : <strong>nasneのHDDにはハードウェア固有の情報が書き込まれており、別の個体では利用できません。</strong></p>
 
-<p>※  注意 : <strong>nasneのHDDにはハードウェア固有の情報が書き込まれており、別の個体では利用できません。</strong></p>
-
-<p>nasne の HDD を <strong>/dev/sdd</strong> として認識したとして書きます。<br/>
-xfs の領域である <strong>/dev/sdd3</strong> をtarでバックアップします。</p>
+<p>まず nasne から HDD を取り外し、Linux PCに付けます。(USB HDDケースがあると便利)
+nasne の HDD を <strong>/dev/sdd</strong> として認識したとします。<br/>
+xfs の領域である <strong>/dev/sdd3</strong> をtar (rsync -aHxXとかでも可)でバックアップします。</p>
 
 <pre><code># mount -o ro /dev/sdd3 /mnt
 # cd /mnt
@@ -237,12 +236,12 @@ log      =internal log           bsize=4096   blocks=14149, version=2
 realtime =none                   extsz=4096   blocks=0, rtextents=0
 </code></pre>
 
-<p><strong>/dev/sde3</strong> をマウントしてtarでバックアップしたxfs領域を展開します。</p>
+<p><strong>/dev/sde3</strong> をマウントしてtarでバックアップしたxfs領域を展開します。<br/>
+(これやらなくても動きましたがやったほうがいい気がします)</p>
 
 <pre><code># mount /dev/sde3 /mnt
-# cd /mnt
-# tar -xzpf /backup/xfs.tgz
-# cd / &amp;&amp; umount /mnt
+# tar -xzpf /backup/xfs.tgz -C /mnt
+# umount /mnt
 </code></pre>
 
 <p>ディスクを nasne に取り付けて起動します。
@@ -312,7 +311,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/nasne/'>nasne</a>
+    <a class='category' href='/blog/categories/ps3/'>PS3</a>, <a class='category' href='/blog/categories/nasne/'>nasne</a>
   
 </span>
 
