@@ -4,7 +4,7 @@
   <title><![CDATA[Category: nasne | The Weight @northeye]]></title>
   <link href="http://note.ga.vg//blog/categories/nasne/atom.xml" rel="self"/>
   <link href="http://note.ga.vg//"/>
-  <updated>2012-07-22T14:59:41+09:00</updated>
+  <updated>2012-07-26T15:54:46+09:00</updated>
   <id>http://note.ga.vg//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -12,6 +12,76 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[nasne の HDDを1TBに換装]]></title>
+    <link href="http://note.ga.vg//blog/2012/07/25/replacing-nasne-hdd-with-1tb/"/>
+    <updated>2012-07-25T17:22:00+09:00</updated>
+    <id>http://note.ga.vg//blog/2012/07/25/replacing-nasne-hdd-with-1tb</id>
+    <content type="html"><![CDATA[<p><a href="/blog/2012/07/21/replacing-hdd-of-nasne/">先日の記事</a>では詳細な換装方法を書きましたが、サンプルに古くて容量の小さいHDDを利用して実験したまででした。
+今回、実際に新しい1TBのHDDを買ってきて実践しましたのでリポートです。</p>
+
+<!-- more -->
+
+
+<p>買ってきたのは東芝の2.5インチ1TB HDD(<a href="http://www.amazon.co.jp/dp/B007XCCTEI/ref=as_li_ss_til?tag=takuojp02-22&amp;camp=1027&amp;creative=7407&amp;linkCode=as4&amp;creativeASIN=B007XCCTEI&amp;adid=1K2S5CSEZ6C3GDTCVFP8&amp;&amp;ref-refURL=http%3A%2F%2Flocalhost%3A4000%2Fblog%2F2012%2F07%2F25%2Freplacing-nasne-hdd-with-1tb%2F">MQ01ABD100</a> 9.5mm厚)で7,489円でした。
+USB接続のHDDケースは玄人志向の2.5インチ USB3.0接続(<a href="http://www.amazon.co.jp/dp/B007SQJ7LC/ref=as_li_ss_til?tag=takuojp02-22&amp;camp=1027&amp;creative=7407&amp;linkCode=as4&amp;creativeASIN=B007SQJ7LC&amp;adid=0KWAZQJ2F6T10GB9JCQ6&amp;&amp;ref-refURL=http%3A%2F%2Flocalhost%3A4000%2Fblog%2F2012%2F07%2F25%2Freplacing-nasne-hdd-with-1tb%2F">GW2.5TL-U3</a>)で980円と大変安いものです。ACアダプタがないものですが一時的にコピーするくらいにしか使わないので平気でしょう。</p>
+
+<p>手順としては<a href="/blog/2012/07/21/replacing-hdd-of-nasne/">先日の記事</a>どおりで、</p>
+
+<p><strong>1. nasne から HDDをはずし、PCに接続して dd を使いイメージを取り出す (数分)</strong></p>
+
+<pre><code># dd if=/dev/sdd of=nasne.img bs=512 count=2623488
+</code></pre>
+
+<p><strong>2. xfs 領域をマウントし、PCの適当なところに rsync -vaxXH でコピーする (一瞬)</strong></p>
+
+<pre><code># mount -o ro /dev/sdd3 /mnt
+# rsync -vaxXH /mnt/ /var/tmp/nasne-xfs
+... (略)
+# umount /mnt
+</code></pre>
+
+<p><strong>3. アンマウントしてUSBを外し、新しいHDDに入れ替え、イメージを書き込む (数分)</strong></p>
+
+<pre><code># dd if=nasne.img of=/dev/sdd
+</code></pre>
+
+<p><strong>4. パーティションを編集(sdd3を作り直し)し、退避したxfs領域を rsync でコピーする (一瞬)</strong></p>
+
+<pre><code># fdisk /dev/sdd
+... (略)   
+# mkfs.xfs -f /dev/sdd3
+# mount /dev/sdd3 /mnt
+# rsync -vaxXH /var/tmp/nasne-xfs/ /mnt/
+... (略)
+# umount /mnt
+</code></pre>
+
+<p><strong>5. HDDをPCから外し、nasne に装着して起動確認して組み立てる (数分)</strong></p>
+
+<p>以上の工程すべてで15分ほどで終わりました。(起動も問題なく一発で行けました。前回はやはりHDDが古過ぎたのかもしれません、超遅いし。)<br/>
+xfsを操作するのでどうしてもLinuxが必要になってしまいますが、HDDをまるごとコピーするやりかただと2時間から3時間ほどかかるようなので大幅な短縮と言えます。</p>
+
+<p>蛇足ですが、nasne に外付けのUSB HDDを装着すると、録画データは先に外付けのHDDに保存されていくようです。<br/>
+また、torneから参照するとnasneの空き容量は内蔵と外付けの合計値になっており、区別して保存先を指定するようなことはできないみたいです。</p>
+
+<p>取り出したnasneのHDDが500GBで半端だし使い道がないなーと思いましたが、こないだ買ったPS3のHDDが160GBなのでこれと交換するのがいいかもしれません。今時160GBはゴミ同然と判断できるし切り捨てるにもよいでしょう…。</p>
+
+<p></p>
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B007V9T9ZK" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B007SQJ7LC" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B007XCCTEI" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<p></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[nasne のHDDを時間かけずに換装する]]></title>

@@ -5,13 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>おじいちゃん携帯 for Android 2.0 - The Weight @northeye</title>
+  <title>nasne の HDDを1TBに換装 - The Weight @northeye</title>
   <meta name="author" content="Takuo Kitame">
 
   
-  <meta name="description" content="koyachiさんがオリジナルであるiOS版を忠実に移植してくださったのをpull requestいただいたので commitしてpublishいたしました。
-ありがとうございます。 マーケットリンク <!--
-google_ad_client = "ca-pub-5477557446616946 &hellip;">
+  <meta name="description" content="先日の記事では詳細な換装方法を書きましたが、サンプルに古くて容量の小さいHDDを利用して実験したまででした。
+今回、実際に新しい1TBのHDDを買ってきて実践しましたのでリポートです。 買ってきたのは東芝の2.5インチ1TB HDD(MQ01ABD100 9.5mm厚)で7,489円でした。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +19,7 @@ google_ad_client = "ca-pub-5477557446616946 &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://note.ga.vg//blog/2012/04/12/ojiichan-keitai2-dot-0">
+  <link rel="canonical" href="http://note.ga.vg//blog/2012/07/25/replacing-nasne-hdd-with-1tb">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -86,7 +85,7 @@ google_ad_client = "ca-pub-5477557446616946 &hellip;">
   
   <header>
     
-      <h2 class="entry-title">おじいちゃん携帯 for Android 2.0</h2>
+      <h2 class="entry-title">Nasne の HDDを1TBに換装</h2>
     
     
       <p class="meta">
@@ -102,7 +101,7 @@ google_ad_client = "ca-pub-5477557446616946 &hellip;">
   
 
 
-<time datetime="2012-04-12T19:15:00+09:00" pubdate data-updated="true">Apr 12<span>th</span>, 2012</time>
+<time datetime="2012-07-25T17:22:00+09:00" pubdate data-updated="true">Jul 25<span>th</span>, 2012</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -111,10 +110,66 @@ google_ad_client = "ca-pub-5477557446616946 &hellip;">
   </header>
 
 
-<div class="entry-content"><p><a href="https://github.com/koyachi">koyachi</a>さんがオリジナルであるiOS版を忠実に移植してくださったのをpull requestいただいたので commitしてpublishいたしました。<br/>
-ありがとうございます。</p>
+<div class="entry-content"><p><a href="/blog/2012/07/21/replacing-hdd-of-nasne/">先日の記事</a>では詳細な換装方法を書きましたが、サンプルに古くて容量の小さいHDDを利用して実験したまででした。
+今回、実際に新しい1TBのHDDを買ってきて実践しましたのでリポートです。</p>
 
-<p><a href="https://play.google.com/store/apps/details?id=jp.takuo.android.ojiichan" title="おじいちゃん携帯 for Android">マーケットリンク</a></p>
+<!-- more -->
+
+
+<p>買ってきたのは東芝の2.5インチ1TB HDD(<a href="http://www.amazon.co.jp/dp/B007XCCTEI/ref=as_li_ss_til?tag=takuojp02-22&amp;camp=1027&amp;creative=7407&amp;linkCode=as4&amp;creativeASIN=B007XCCTEI&amp;adid=1K2S5CSEZ6C3GDTCVFP8&amp;&amp;ref-refURL=http%3A%2F%2Flocalhost%3A4000%2Fblog%2F2012%2F07%2F25%2Freplacing-nasne-hdd-with-1tb%2F">MQ01ABD100</a> 9.5mm厚)で7,489円でした。
+USB接続のHDDケースは玄人志向の2.5インチ USB3.0接続(<a href="http://www.amazon.co.jp/dp/B007SQJ7LC/ref=as_li_ss_til?tag=takuojp02-22&amp;camp=1027&amp;creative=7407&amp;linkCode=as4&amp;creativeASIN=B007SQJ7LC&amp;adid=0KWAZQJ2F6T10GB9JCQ6&amp;&amp;ref-refURL=http%3A%2F%2Flocalhost%3A4000%2Fblog%2F2012%2F07%2F25%2Freplacing-nasne-hdd-with-1tb%2F">GW2.5TL-U3</a>)で980円と大変安いものです。ACアダプタがないものですが一時的にコピーするくらいにしか使わないので平気でしょう。</p>
+
+<p>手順としては<a href="/blog/2012/07/21/replacing-hdd-of-nasne/">先日の記事</a>どおりで、</p>
+
+<p><strong>1. nasne から HDDをはずし、PCに接続して dd を使いイメージを取り出す (数分)</strong></p>
+
+<pre><code># dd if=/dev/sdd of=nasne.img bs=512 count=2623488
+</code></pre>
+
+<p><strong>2. xfs 領域をマウントし、PCの適当なところに rsync -vaxXH でコピーする (一瞬)</strong></p>
+
+<pre><code># mount -o ro /dev/sdd3 /mnt
+# rsync -vaxXH /mnt/ /var/tmp/nasne-xfs
+... (略)
+# umount /mnt
+</code></pre>
+
+<p><strong>3. アンマウントしてUSBを外し、新しいHDDに入れ替え、イメージを書き込む (数分)</strong></p>
+
+<pre><code># dd if=nasne.img of=/dev/sdd
+</code></pre>
+
+<p><strong>4. パーティションを編集(sdd3を作り直し)し、退避したxfs領域を rsync でコピーする (一瞬)</strong></p>
+
+<pre><code># fdisk /dev/sdd
+... (略)   
+# mkfs.xfs -f /dev/sdd3
+# mount /dev/sdd3 /mnt
+# rsync -vaxXH /var/tmp/nasne-xfs/ /mnt/
+... (略)
+# umount /mnt
+</code></pre>
+
+<p><strong>5. HDDをPCから外し、nasne に装着して起動確認して組み立てる (数分)</strong></p>
+
+<p>以上の工程すべてで15分ほどで終わりました。(起動も問題なく一発で行けました。前回はやはりHDDが古過ぎたのかもしれません、超遅いし。)<br/>
+xfsを操作するのでどうしてもLinuxが必要になってしまいますが、HDDをまるごとコピーするやりかただと2時間から3時間ほどかかるようなので大幅な短縮と言えます。</p>
+
+<p>蛇足ですが、nasne に外付けのUSB HDDを装着すると、録画データは先に外付けのHDDに保存されていくようです。<br/>
+また、torneから参照するとnasneの空き容量は内蔵と外付けの合計値になっており、区別して保存先を指定するようなことはできないみたいです。</p>
+
+<p>取り出したnasneのHDDが500GBで半端だし使い道がないなーと思いましたが、こないだ買ったPS3のHDDが160GBなのでこれと交換するのがいいかもしれません。今時160GBはゴミ同然と判断できるし切り捨てるにもよいでしょう…。</p>
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B007V9T9ZK" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B007SQJ7LC" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B007XCCTEI" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+
 </div>
 <div class="ads" style="margin-top: 1em; margin-left: 1em;">
 <script type="text/javascript"><!--
@@ -151,12 +206,12 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
   
 
 
-<time datetime="2012-04-12T19:15:00+09:00" pubdate data-updated="true">Apr 12<span>th</span>, 2012</time>
+<time datetime="2012-07-25T17:22:00+09:00" pubdate data-updated="true">Jul 25<span>th</span>, 2012</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/android/'>Android</a>
+    <a class='category' href='/blog/categories/ps3/'>PS3</a>, <a class='category' href='/blog/categories/nasne/'>nasne</a>
   
 </span>
 
@@ -165,7 +220,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://note.ga.vg//blog/2012/04/12/ojiichan-keitai2-dot-0/" data-via="northeye" data-counturl="http://note.ga.vg//blog/2012/04/12/ojiichan-keitai2-dot-0/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://note.ga.vg//blog/2012/07/25/replacing-nasne-hdd-with-1tb/" data-via="northeye" data-counturl="http://note.ga.vg//blog/2012/07/25/replacing-nasne-hdd-with-1tb/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -181,10 +236,8 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/04/11/switching-to-octopress/" title="Previous Post: octopress">&laquo; octopress</a>
+        <a class="basic-alignment left" href="/blog/2012/07/21/replacing-hdd-of-nasne/" title="Previous Post: nasne のHDDを時間かけずに換装する">&laquo; nasne のHDDを時間かけずに換装する</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2012/04/18/setting-proxy-for-chrome-on-xfce/" title="Next Post: Xfce(など)でChromeのプロキシ設定をする">Xfce(など)でChromeのプロキシ設定をする &raquo;</a>
       
     </p>
   </footer>
@@ -328,8 +381,8 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://note.ga.vg//blog/2012/04/12/ojiichan-keitai2-dot-0/';
-        var disqus_url = 'http://note.ga.vg//blog/2012/04/12/ojiichan-keitai2-dot-0/';
+        var disqus_identifier = 'http://note.ga.vg//blog/2012/07/25/replacing-nasne-hdd-with-1tb/';
+        var disqus_url = 'http://note.ga.vg//blog/2012/07/25/replacing-nasne-hdd-with-1tb/';
         var disqus_script = 'embed.js';
       
     (function () {
