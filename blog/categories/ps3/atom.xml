@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: PS3 | The Weight @northeye]]></title>
+  <link href="http://note.ga.vg//blog/categories/ps3/atom.xml" rel="self"/>
+  <link href="http://note.ga.vg//"/>
+  <updated>2012-08-05T05:13:24+09:00</updated>
+  <id>http://note.ga.vg//</id>
+  <author>
+    <name><![CDATA[Takuo Kitame]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[nasne の HDDを1TBに換装]]></title>
+    <link href="http://note.ga.vg//blog/2012/07/25/replacing-nasne-hdd-with-1tb/"/>
+    <updated>2012-07-25T17:22:00+09:00</updated>
+    <id>http://note.ga.vg//blog/2012/07/25/replacing-nasne-hdd-with-1tb</id>
+    <content type="html"><![CDATA[<p><a href="/blog/2012/07/21/replacing-hdd-of-nasne/">先日の記事</a>では詳細な換装方法を書きましたが、サンプルに古くて容量の小さいHDDを利用して実験したまででした。
+今回、実際に新しい1TBのHDDを買ってきて実践しましたのでリポートです。</p>
+
+<!-- more -->
+
+
+<p>買ってきたのは東芝の2.5インチ1TB HDD(<a href="http://www.amazon.co.jp/dp/B007XCCTEI/ref=as_li_ss_til?tag=takuojp02-22&amp;camp=1027&amp;creative=7407&amp;linkCode=as4&amp;creativeASIN=B007XCCTEI&amp;adid=1K2S5CSEZ6C3GDTCVFP8&amp;&amp;ref-refURL=http%3A%2F%2Flocalhost%3A4000%2Fblog%2F2012%2F07%2F25%2Freplacing-nasne-hdd-with-1tb%2F">MQ01ABD100</a> 9.5mm厚)で7,489円でした。
+USB接続のHDDケースは玄人志向の2.5インチ USB3.0接続(<a href="http://www.amazon.co.jp/dp/B007SQJ7LC/ref=as_li_ss_til?tag=takuojp02-22&amp;camp=1027&amp;creative=7407&amp;linkCode=as4&amp;creativeASIN=B007SQJ7LC&amp;adid=0KWAZQJ2F6T10GB9JCQ6&amp;&amp;ref-refURL=http%3A%2F%2Flocalhost%3A4000%2Fblog%2F2012%2F07%2F25%2Freplacing-nasne-hdd-with-1tb%2F">GW2.5TL-U3</a>)で980円と大変安いものです。ACアダプタがないものですが一時的にコピーするくらいにしか使わないので平気でしょう。</p>
+
+<p>手順としては<a href="/blog/2012/07/21/replacing-hdd-of-nasne/">先日の記事</a>どおりで、</p>
+
+<p><strong>1. nasne から HDDをはずし、PCに接続して dd を使いイメージを取り出す (数分)</strong></p>
+
+<pre><code># dd if=/dev/sdd of=nasne.img bs=512 count=2623488
+</code></pre>
+
+<p><strong>2. xfs 領域をマウントし、PCの適当なところに rsync -vaxXH でコピーする (一瞬)</strong></p>
+
+<pre><code># mount -o ro /dev/sdd3 /mnt
+# rsync -vaxXH /mnt/ /var/tmp/nasne-xfs
+... (略)
+# umount /mnt
+</code></pre>
+
+<p><strong>3. アンマウントしてUSBを外し、新しいHDDに入れ替え、イメージを書き込む (数分)</strong></p>
+
+<pre><code># dd if=nasne.img of=/dev/sdd
+</code></pre>
+
+<p><strong>4. パーティションを編集(sdd3を作り直し)し、退避したxfs領域を rsync でコピーする (一瞬)</strong></p>
+
+<pre><code># fdisk /dev/sdd
+... (略)   
+# mkfs.xfs -f /dev/sdd3
+# mount /dev/sdd3 /mnt
+# rsync -vaxXH /var/tmp/nasne-xfs/ /mnt/
+... (略)
+# umount /mnt
+</code></pre>
+
+<p><strong>5. HDDをPCから外し、nasne に装着して起動確認して組み立てる (数分)</strong></p>
+
+<p>以上の工程すべてで15分ほどで終わりました。(起動も問題なく一発で行けました。前回はやはりHDDが古過ぎたのかもしれません、超遅いし。)<br/>
+xfsを操作するのでどうしてもLinuxが必要になってしまいますが、HDDをまるごとコピーするやりかただと2時間から3時間ほどかかるようなので大幅な短縮と言えます。</p>
+
+<p>蛇足ですが、nasne に外付けのUSB HDDを装着すると、録画データは先に外付けのHDDに保存されていくようです。<br/>
+また、torneから参照するとnasneの空き容量は内蔵と外付けの合計値になっており、区別して保存先を指定するようなことはできないみたいです。</p>
+
+<p>取り出したnasneのHDDが500GBで半端だし使い道がないなーと思いましたが、こないだ買ったPS3のHDDが160GBなのでこれと交換するのがいいかもしれません。今時160GBはゴミ同然と判断できるし切り捨てるにもよいでしょう…。</p>
+
+<p></p>
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B007V9T9ZK" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B007SQJ7LC" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B007XCCTEI" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<p></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[nasne のHDDを時間かけずに換装する]]></title>
+    <link href="http://note.ga.vg//blog/2012/07/21/replacing-hdd-of-nasne/"/>
+    <updated>2012-07-21T02:00:00+09:00</updated>
+    <id>http://note.ga.vg//blog/2012/07/21/replacing-hdd-of-nasne</id>
+    <content type="html"><![CDATA[<p>HDDをまるごとバックアップして書き戻す作業は大変時間がかかるので、必要な分だけイメージを取得するようにして待ち時間を短縮します。<br/>
+特別な機材は必要ありませんが、USBのHDDがケースがあると便利だと思います。<br/>
+Linuxでの作業になるので多少のLinuxの知識が必要になります。</p>
+
+<!-- more -->
+
+
+<p>前提として作業はLinux上で行い、使うツールは dd, parted, fdisk, xfsprogs などです。<br/>
+nasne の HDD は2.5インチの7mm厚ですが、構造的に換装するHDDは9.5mm厚でも問題ありません。<br/>
+※  注意 : <strong>nasneのHDDにはハードウェア固有の情報が書き込まれており、別の個体では利用できません。</strong></p>
+
+<p>まず nasne から HDD を取り外し、Linux PCに付けます。(USB HDDケースがあると便利)
+nasne の HDD を <strong>/dev/sdd</strong> として認識したとします。<br/>
+xfs の領域である <strong>/dev/sdd3</strong> をtar (rsync -aHxXとかでも可)でバックアップします。</p>
+
+<pre><code># mount -o ro /dev/sdd3 /mnt
+# cd /mnt
+# tar -cpzf /backup/xfs.tgz .
+# cd / &amp;&amp; umount /dev/sdd3
+</code></pre>
+
+<p>パーティション番号2までのサイズ(単位はセクタにする)をメモします。</p>
+
+<pre><code># parted /dev/sdd
+GNU Parted 2.3
+Using /dev/sdd
+Welcome to GNU Parted! Type 'help' to view a list of commands.
+(parted) unit s
+(parted) p
+Model: Hitachi HTS545050A7E380 (scsi)
+Disk /dev/sdd: 62500864s
+Sector size (logical/physical): 512B/512B
+Partition Table: msdos
+
+Number  Start     End        Size       Type     File system  Flags
+ 1      2048s     526335s    524288s    primary  ext3         boot
+ 2      526336s   2623487s   2097152s   primary  ext3
+ 3      2623488s  62500863s  59877376s  primary  xfs
+
+(parted) quit
+</code></pre>
+
+<p>セクタサイズは512Bで、 <strong>/dev/sdd2</strong> のEndが <strong>2623487</strong> であることがわかります。<br/>
+dd で先頭から <strong>/dev/sdd2</strong> の終わりまでのイメージを取得します。<br/>
+※ セクタ番号は0から始まるのでcountは1増やす。</p>
+
+<pre><code># cd / &amp;&amp; umount /mnt
+# dd if=/dev/sdd of=/backup/hdd.img bs=512 count=2623488
+</code></pre>
+
+<p>換装用の新しいディスクを接続します。 <strong>/dev/sde</strong> とします。 (今回は敢えて小さい120GBのHDDを使用してます) <br/>
+ディスクイメージを書き込みます。</p>
+
+<pre><code># dd if=/backup/hdd.img of=/dev/sde
+</code></pre>
+
+<p>または直接 /dev/sdd から /dev/sde に dd してもいいと思います。<br/>
+イメージサイズは1GB程度なので大して時間はかかりません。</p>
+
+<p>/dev/sde3 を消して作り直します。</p>
+
+<pre><code># fdisk /dev/sde
+
+Command (m for help): p
+
+Disk /dev/sde: 120.0 GB, 120034123776 bytes
+255 heads, 63 sectors/track, 14593 cylinders, total 234441648 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x000d7605
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sde1   *        2048      526335      262144   83  Linux
+/dev/sde2          526336     2623487     1048576   83  Linux
+/dev/sde3         2623488    62500863    29938688   83  Linux
+
+Command (m for help): d
+Partition number (1-4): 3
+
+Command (m for help): p
+
+Disk /dev/sde: 120.0 GB, 120034123776 bytes
+255 heads, 63 sectors/track, 14593 cylinders, total 234441648 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x000d7605
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sde1   *        2048      526335      262144   83  Linux
+/dev/sde2          526336     2623487     1048576   83  Linux
+
+Command (m for help): n
+Partition type:
+   p   primary (2 primary, 0 extended, 2 free)
+   e   extended
+Select (default p): p
+Partition number (1-4, default 3):
+Using default value 3
+First sector (2623488-234441647, default 2623488):
+Using default value 2623488
+Last sector, +sectors or +size{K,M,G} (2623488-234441647, default 234441647):
+Using default value 234441647
+
+Command (m for help): w
+The partition table has been altered!
+
+Calling ioctl() to re-read partition table.
+Syncing disks.
+</code></pre>
+
+<p>xfsファイルシステムを作り直します。</p>
+
+<pre><code># mkfs.xfs -f /dev/sde3
+meta-data=/dev/sde3              isize=256    agcount=4, agsize=7244318 blks
+         =                       sectsz=512   attr=2, projid32bit=0
+data     =                       bsize=4096   blocks=28977270, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0
+log      =internal log           bsize=4096   blocks=14149, version=2
+         =                       sectsz=512   sunit=0 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+</code></pre>
+
+<p><strong>/dev/sde3</strong> をマウントしてtarでバックアップしたxfs領域を展開します。<br/>
+(これやらなくても動きましたがやったほうがいい気がします)</p>
+
+<pre><code># mount /dev/sde3 /mnt
+# tar -xzpf /backup/xfs.tgz -C /mnt
+# umount /mnt
+</code></pre>
+
+<p>ディスクを nasne に取り付けて起動します。
+<img src="/assets/screenshot/nasne-hdd-replace.png"></p>
+
+<p>よくわかりませんが、起動時に電源LEDとREC LEDが両方赤点灯でフリーズすることがありました。<br/>
+なんどか同じ手順をやり直していたら起動したりしなかったりしました。<br/>
+サンプルにつかったHDD(HTS541612J9SA00)が古過ぎて調子が悪いのかもしれませんが、原因は定かではありません。</p>
+
+<p></p>
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B007NTJWB4" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B007XCCTEI" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B004QZAPMS" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B0053VPYHK" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B007V9T9ZK" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B0035V5EA2" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<p></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[nasne のファイルシステムを見てみる]]></title>
+    <link href="http://note.ga.vg//blog/2012/07/19/filesystem-of-nasne/"/>
+    <updated>2012-07-19T22:52:00+09:00</updated>
+    <id>http://note.ga.vg//blog/2012/07/19/filesystem-of-nasne</id>
+    <content type="html"><![CDATA[<p>物理的な分解記事とかよりも面白いと思ったのでちょっとだけnasneの中身をみてました。</p>
+
+<!-- more -->
+
+
+<p>まずはパーティションの確認から。</p>
+
+<pre><code># parted /dev/sdd
+GNU Parted 2.3
+Using /dev/sdd
+Welcome to GNU Parted! Type 'help' to view a list of commands.
+(parted) print
+Model: Hitachi HTS545050A7E380 (scsi)
+Disk /dev/sdd: 500GB
+Sector size (logical/physical): 512B/512B
+Partition Table: msdos
+
+Number  Start   End     Size    Type     File system  Flags
+ 1      1049kB  269MB   268MB   primary  ext3         boot
+ 2      269MB   1343MB  1074MB  primary  ext3
+ 3      1343MB  500GB   499GB   primary  xfs
+</code></pre>
+
+<p>ほうほう。Linuxっぽい。xfsはきっと録画した実データ置き場ですね。<br/>
+mount してみます。</p>
+
+<pre><code># mount -o ro /dev/sdd1 /mnt/nasne/1
+# mount -o ro /dev/sdd2 /mnt/nasne/2
+# mount -o ro /dev/sdd3 /mnt/nasne/3
+</code></pre>
+
+<p>間違えて壊したくないので read-only でマウントしてます。</p>
+
+<pre><code># cd /mnt/nasne
+# find &gt; /tmp/nasne.fs.txt
+</code></pre>
+
+<p><a href="http://note.ga.vg/assets/nasne.fs.txt">nasne.fs.txt</a><br/>
+telnetd とか samba とか興味深いですね。samba は3.0.37でした。<br/>
+sbin,binなどにあるプログラムの実体はほぼ全てbusyboxです。</p>
+
+<p>最初のパーティション(1)にboot関連(多分)のものが入っており、おそらくハードウェア個体に紐付けられてこのnasneでしか起動できないようになってます。<br/>
+ファイルの中身は暗号化されており、わかりません。</p>
+
+<p>この時点ですでに1番組録画してあるのですが、パーティション(3)にある録画データはちゃんと暗号化(きっとハード固有の鍵により)されております。</p>
+
+<p>アーキテクチャを調べてみます。</p>
+
+<pre><code># file 2/lib/libc-2.9.so
+libc-2.9.so: ELF 32-bit LSB shared object, MIPS, MIPS32 rel2 version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.16, with unknown capability 0xf41 = 0x756e6700, with unknown capability 0x70100 = 0x1040000, not stripped
+</code></pre>
+
+<p>MIPSだそうです。</p>
+
+<pre><code># cat 2/etc/issue
+********************************************************************************
+*              Welcome to Viper MIPS Linux :-)                                 *
+********************************************************************************
+</code></pre>
+
+<p>ほうほう</p>
+
+<pre><code># cat 2/etc/passwd
+root::0:0:root:/root:/bin/sh
+www:x:80:80:root:/www:/bin/sh
+nobody:x:99:99:Nobody:/:/sbin/nologin
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+</code></pre>
+
+<p>ははあ。rootのパスワードはないんですね。</p>
+
+<pre><code># cat 2/etc/init.d/rcS
+#!/bin/sh
+trap "" SIGHUP
+#echo "Mounting proc"
+mount -t proc none /proc
+#echo "Mounting usbfs"
+mount -t usbfs none /proc/bus/usb
+#echo "Mounting sysfs"
+mount -t sysfs none /sys
+
+#echo "Starting uevent daemon"
+/usr/bin/uevent_daemon
+
+#echo "Starting Udev"
+start_udev
+
+#echo "Mounting devpts"
+mount -t devpts none /dev/pts
+
+sysctl -p
+
+#export HOSTNAME="nasne"
+#echo "Setting hostname $HOSTNAME"
+#hostname $HOSTNAME
+
+#echo "Bringing up loopback device"
+ifconfig lo 127.0.0.1 netmask 255.0.0.0 up
+route add -net 127.0.0.0 netmask 255.0.0.0 dev lo
+
+#echo "Bringing up Eth0"
+
+# ---- for DTVTuner ----
+/opt/dtvtuner/etc/startdtvtuner
+</code></pre>
+
+<p>なるほど。<br/>
+ここでinetdとかtelnetdを起動するように変更すれば稼働中のnasneにログインできるかもしれません。</p>
+
+<p>というわけで、別のHDDに換装するにはまるごとddしてコピーし、partedでxfsのパーティションを適当に大きくしたりすればよさそうです。<br/>
+肝心のカーネルイメージが何処にあるのかわかりませんでした。</p>
+
+<p><strong>(2012-07-20追記)</strong></p>
+
+<p>実際に /usr/sbin/inetd を起動するように書いてみたのですが、どうやらinitramfsかそのへんの処理でどこかに存在するイメージの展開で / を再作成しているようで、編集前の状態に戻ってしまいます。</p>
+
+<p>試しに dumpe2fs で / の状態を確認すると、</p>
+
+<pre><code>Filesystem created:       Wed May 16 17:52:14 2012
+Last mount time:          Thu Jan  1 09:00:05 1970
+Last write time:          Thu Jan  1 09:00:05 1970
+</code></pre>
+
+<p>となっており、mkfsはされてない(初期化ではない)が、システムの起動直後にマウントされ、再作成されてるように思えます。<br/>
+そこで、<strong>chattr +i {rootfs}/etc/init.d/rcS</strong> で書き込み禁止属性をつけ、rcSが書き戻されないようにしてから起動して見ましたが… 起動せず。<br/>
+どうやら展開中のエラーで起動処理が止まってるのだと思われます。(<strong>chattr -i</strong> しなおしたらなおりました)</p>
+
+<p>そんなわけで、簡単に好きなプログラムを走らせるようにはできておらず、もうひと工夫が必要そうです。(あるいはexploitを見つけるか)</p>
+
+<p></p>
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B007V9T9ZK" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B0034KZXBO" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B0035V5EA2" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<p></p>
+]]></content>
+  </entry>
+  
+</feed>
