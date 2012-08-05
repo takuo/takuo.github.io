@@ -34,7 +34,7 @@ MW600で不満とされていた、ホールド機能はついています。
 
 その他の機能はほぼMW600と同等なので特筆すべき点はありません。  
 強いて言えば、ペアリングボタンと充電用のUSBコネクタはカバーで覆われており、それらを使用する場合はカバーをはずさねばなりません。  
-{% img https://lh5.googleusercontent.com/-jphnt6VGU0g/UB1j71ts61I/AAAAAAAAKe0/h8khwAfk7JE/s288/DSC_0194.jpg https://lh5.googleusercontent.com/-jphnt6VGU0g/UB1j71ts61I/AAAAAAAAKe0/h8khwAfk7JE/s800/DSC_0194.jpg %}  
+{% img https://lh5.googleusercontent.com/-HFhOkbEVlZ4/UB3vVhGRmlI/AAAAAAAAKf4/C-Xgx2c0JmA/s288/DSC_0194.jpg https://lh5.googleusercontent.com/-HFhOkbEVlZ4/UB3vVhGRmlI/AAAAAAAAKf4/C-Xgx2c0JmA/s800/DSC_0194.jpg %}  
 
 アンプ機能はそれこそ個人で受ける印象は違うでしょう。自分の場合はAndroidのイコライザで十分なので不要かもしれません。  
 
