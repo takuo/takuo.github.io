@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | The Weight @northeye]]></title>
   <link href="http://note.ga.vg//blog/categories/android/atom.xml" rel="self"/>
   <link href="http://note.ga.vg//"/>
-  <updated>2012-08-07T02:11:00+09:00</updated>
+  <updated>2012-08-07T02:22:33+09:00</updated>
   <id>http://note.ga.vg//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -14,11 +14,11 @@
 
   
   <entry>
-    <title type="html"><![CDATA[IS12Sでスワップを有効にする]]></title>
+    <title type="html"><![CDATA[au IS12Sでスワップを有効にする]]></title>
     <link href="http://note.ga.vg//blog/2012/08/07/is12s-enable-swap/"/>
     <updated>2012-08-07T00:14:00+09:00</updated>
     <id>http://note.ga.vg//blog/2012/08/07/is12s-enable-swap</id>
-    <content type="html"><![CDATA[<p>IS12S をICSにアップデートしてからというもの、メモリが足りなくていささか不便になってきました。<br/>
+    <content type="html"><![CDATA[<p>IS12S をICS にアップデートしてからというもの、メモリが足りなくていささか不便になってきました。<br/>
 そこでスワップを導入してみることにします。 ※ 要root</p>
 
 <!-- more -->
@@ -241,6 +241,9 @@ SwapFree:         233728 kB
 </code></pre>
 
 <p>効果のほどですが、OOMでバックグラウンド処理が途中で殺されることがなくなった気がします。</p>
+
+<p><a href="https://lh3.googleusercontent.com/-CfWIVT_CFTY/UB_8w-H4_9I/AAAAAAAAKg4/he2aOplKlB4/s800/2012-08-07%252002.18.31.png" target="_blank"><img src="https://lh3.googleusercontent.com/-CfWIVT_CFTY/UB_8w-H4_9I/AAAAAAAAKg4/he2aOplKlB4/s288/2012-08-07%252002.18.31.png" title="System Tuner" ></a>
+結構使ってますが空きメモリにそこそこ余裕が見られます。</p>
 
 <p></p>
 
