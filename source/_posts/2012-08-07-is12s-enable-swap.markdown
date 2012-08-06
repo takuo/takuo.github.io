@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "IS12Sでスワップを有効にする"
+title: "au IS12Sでスワップを有効にする"
 date: 2012-08-07 00:14
 comments: true
 categories: [ IS12S, Android ]
 ---
-IS12S をICSにアップデートしてからというもの、メモリが足りなくていささか不便になってきました。  
+IS12S をICS にアップデートしてからというもの、メモリが足りなくていささか不便になってきました。  
 そこでスワップを導入してみることにします。 ※ 要root  
 
 <!-- more -->
@@ -216,3 +216,12 @@ sysctl -w vm.swappiness=40
 
 
 効果のほどですが、OOMでバックグラウンド処理が途中で殺されることがなくなった気がします。
+
+{% img https://lh3.googleusercontent.com/-CfWIVT_CFTY/UB_8w-H4_9I/AAAAAAAAKg4/he2aOplKlB4/s288/2012-08-07%252002.18.31.png https://lh3.googleusercontent.com/-CfWIVT_CFTY/UB_8w-H4_9I/AAAAAAAAKg4/he2aOplKlB4/s800/2012-08-07%252002.18.31.png System Tuner %}  
+結構使ってますが空きメモリにそこそこ余裕が見られます。
+
+{% raw %}
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B0065SI5SK" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B007WTAJTO" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+{% endraw %}
+
