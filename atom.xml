@@ -4,7 +4,7 @@
   <title><![CDATA[The Weight @northeye]]></title>
   <link href="http://note.ga.vg//atom.xml" rel="self"/>
   <link href="http://note.ga.vg//"/>
-  <updated>2012-08-07T02:32:15+09:00</updated>
+  <updated>2012-08-07T02:38:09+09:00</updated>
   <id>http://note.ga.vg//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -180,8 +180,8 @@ Setting up swapspace version 1, size = 272494592 bytes
 
 <h3>起動時に有効にするために</h3>
 
-<p>IS12Sはinit.d的なものがなくユーザー追加のスクリプトを起動時に実行することはできませんが、起動時に/system/etc/install-recovery.sh というスクリプトを実行している箇所があるので、これを利用します。<br/>
-/system/etc/install-recovery.sh そのものは標準では存在しないので新規に作ることになります。
+<p>IS12S は init.d 的なものがなくユーザー追加のスクリプトを起動時に実行することはできませんが、起動時に <strong>/system/etc/install-recovery.sh</strong> というスクリプトを実行している箇所があるので、これを利用します。<br/>
+<strong>/system/etc/install-recovery.sh</strong> そのものは標準では存在しないので新規に作ることになります。
 スワップファイルの場合、このスクリプトの実行時には /sdcard がマウントされていないので、/sdcard/ にファイルを作った場合は注意です。</p>
 
 <figure class='code'><figcaption><span>/system/etc/install-recovery.sh</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -201,7 +201,7 @@ Setting up swapspace version 1, size = 272494592 bytes
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>こんな感じで install-recovery.sh を /sdcard/ に作り、下記のコマンドでコピーします。</p>
+<p>こんな感じで <strong>install-recovery.sh</strong> を /sdcard/ に作り、下記のコマンドでコピーします。</p>
 
 <pre><code>$ su
 # cd /system/etc
