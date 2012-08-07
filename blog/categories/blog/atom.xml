@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: blog | The Weight @northeye]]></title>
-  <link href="http://note.ga.vg//blog/categories/blog/atom.xml" rel="self"/>
-  <link href="http://note.ga.vg//"/>
-  <updated>2012-08-07T02:38:09+09:00</updated>
-  <id>http://note.ga.vg//</id>
+  <link href="http://note.ga.vg/blog/categories/blog/atom.xml" rel="self"/>
+  <link href="http://note.ga.vg/"/>
+  <updated>2012-08-07T14:05:40+09:00</updated>
+  <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[octopress]]></title>
-    <link href="http://note.ga.vg//blog/2012/04/11/switching-to-octopress/"/>
+    <link href="http://note.ga.vg/blog/2012/04/11/switching-to-octopress/"/>
     <updated>2012-04-11T14:32:00+09:00</updated>
-    <id>http://note.ga.vg//blog/2012/04/11/switching-to-octopress</id>
+    <id>http://note.ga.vg/blog/2012/04/11/switching-to-octopress</id>
     <content type="html"><![CDATA[<p>エンジニアらしくgithubでブログを書こうと思い立ってOctopressに変更してみたものの、<br/>
 テーマがろくに揃ってないのでなかなか厳しい情況。<br/>
 まぁデフォルトのテーマから徐々にいじっていけばいいと思いつつ、コレを書いている次第であります。</p>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[The Weight @northeye]]></title>
-  <link href="http://note.ga.vg//atom.xml" rel="self"/>
-  <link href="http://note.ga.vg//"/>
-  <updated>2012-08-07T02:38:09+09:00</updated>
-  <id>http://note.ga.vg//</id>
+  <link href="http://note.ga.vg/atom.xml" rel="self"/>
+  <link href="http://note.ga.vg/"/>
+  <updated>2012-08-07T14:05:40+09:00</updated>
+  <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[au IS12Sでスワップを有効にする]]></title>
-    <link href="http://note.ga.vg//blog/2012/08/07/is12s-enable-swap/"/>
+    <link href="http://note.ga.vg/blog/2012/08/07/is12s-enable-swap/"/>
     <updated>2012-08-07T00:14:00+09:00</updated>
-    <id>http://note.ga.vg//blog/2012/08/07/is12s-enable-swap</id>
+    <id>http://note.ga.vg/blog/2012/08/07/is12s-enable-swap</id>
     <content type="html"><![CDATA[<p>IS12S をICS にアップデートしてからというもの、メモリが足りなくていささか不便になってきました。<br/>
 そこでスワップを導入してみることにします。 ※ 要root</p>
 
@@ -258,9 +258,9 @@ SwapFree:         233728 kB
   
   <entry>
     <title type="html"><![CDATA[オーディオテクニカ AT-PHA05BTを買った]]></title>
-    <link href="http://note.ga.vg//blog/2012/08/05/review-at-pha05bt/"/>
+    <link href="http://note.ga.vg/blog/2012/08/05/review-at-pha05bt/"/>
     <updated>2012-08-05T02:47:00+09:00</updated>
-    <id>http://note.ga.vg//blog/2012/08/05/review-at-pha05bt</id>
+    <id>http://note.ga.vg/blog/2012/08/05/review-at-pha05bt</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/dp/B0087BQJUO/takuojp02-22/ref=nosim/" target="_blank"><img class="right" src="https://lh3.googleusercontent.com/-TJH6xcQYckw/UB1nCKMhbfI/AAAAAAAAKfI/KqD5AG8TbPE/s144/AT-BT05.jpeg"></a>
 ソニエリのMW600を落っことして壊してしまったので、代替として<a href="http://www.audio-technica.co.jp/atj/show_model.php?modelId=1536">オーディオテクニカのAT-PHA05BT</a>を買ってみましたのでレビューです。<br/>
 (買ったのはヘッドフォン付きのAT-BT05ですが)</p>
@@ -316,10 +316,10 @@ SwapFree:         233728 kB
   
   <entry>
     <title type="html"><![CDATA[nasne の HDDを1TBに換装]]></title>
-    <link href="http://note.ga.vg//blog/2012/07/25/replacing-nasne-hdd-with-1tb/"/>
+    <link href="http://note.ga.vg/blog/2012/07/25/replacing-nasne-hdd-with-1tb/"/>
     <updated>2012-07-25T17:22:00+09:00</updated>
-    <id>http://note.ga.vg//blog/2012/07/25/replacing-nasne-hdd-with-1tb</id>
-    <content type="html"><![CDATA[<p><a href="http://note.ga.vg//blog/2012/07/21/replacing-hdd-of-nasne/">先日の記事</a>では詳細な換装方法を書きましたが、サンプルに古くて容量の小さいHDDを利用して実験したまででした。
+    <id>http://note.ga.vg/blog/2012/07/25/replacing-nasne-hdd-with-1tb</id>
+    <content type="html"><![CDATA[<p><a href="http://note.ga.vg/blog/2012/07/21/replacing-hdd-of-nasne/">先日の記事</a>では詳細な換装方法を書きましたが、サンプルに古くて容量の小さいHDDを利用して実験したまででした。
 今回、実際に新しい1TBのHDDを買ってきて実践しましたのでリポートです。</p>
 
 <!-- more -->
@@ -328,7 +328,7 @@ SwapFree:         233728 kB
 <p>買ってきたのは東芝の2.5インチ1TB HDD(<a href="http://www.amazon.co.jp/dp/B007XCCTEI/ref=as_li_ss_til?tag=takuojp02-22&amp;camp=1027&amp;creative=7407&amp;linkCode=as4&amp;creativeASIN=B007XCCTEI&amp;adid=1K2S5CSEZ6C3GDTCVFP8&amp;&amp;ref-refURL=http%3A%2F%2Flocalhost%3A4000%2Fblog%2F2012%2F07%2F25%2Freplacing-nasne-hdd-with-1tb%2F">MQ01ABD100</a> 9.5mm厚)で7,489円でした。
 USB接続のHDDケースは玄人志向の2.5インチ USB3.0接続(<a href="http://www.amazon.co.jp/dp/B007SQJ7LC/ref=as_li_ss_til?tag=takuojp02-22&amp;camp=1027&amp;creative=7407&amp;linkCode=as4&amp;creativeASIN=B007SQJ7LC&amp;adid=0KWAZQJ2F6T10GB9JCQ6&amp;&amp;ref-refURL=http%3A%2F%2Flocalhost%3A4000%2Fblog%2F2012%2F07%2F25%2Freplacing-nasne-hdd-with-1tb%2F">GW2.5TL-U3</a>)で980円と大変安いものです。ACアダプタがないものですが一時的にコピーするくらいにしか使わないので平気でしょう。</p>
 
-<p>手順としては<a href="http://note.ga.vg//blog/2012/07/21/replacing-hdd-of-nasne/">先日の記事</a>どおりで、</p>
+<p>手順としては<a href="http://note.ga.vg/blog/2012/07/21/replacing-hdd-of-nasne/">先日の記事</a>どおりで、</p>
 
 <p><strong>1. nasne から HDDをはずし、PCに接続して dd を使いイメージを取り出す (数分)</strong></p>
 
@@ -384,9 +384,9 @@ xfsを操作するのでどうしてもLinuxが必要になってしまいます
   
   <entry>
     <title type="html"><![CDATA[nasne のHDDを時間かけずに換装する]]></title>
-    <link href="http://note.ga.vg//blog/2012/07/21/replacing-hdd-of-nasne/"/>
+    <link href="http://note.ga.vg/blog/2012/07/21/replacing-hdd-of-nasne/"/>
     <updated>2012-07-21T02:00:00+09:00</updated>
-    <id>http://note.ga.vg//blog/2012/07/21/replacing-hdd-of-nasne</id>
+    <id>http://note.ga.vg/blog/2012/07/21/replacing-hdd-of-nasne</id>
     <content type="html"><![CDATA[<p>HDDをまるごとバックアップして書き戻す作業は大変時間がかかるので、必要な分だけイメージを取得するようにして待ち時間を短縮します。<br/>
 特別な機材は必要ありませんが、USBのHDDがケースがあると便利だと思います。<br/>
 Linuxでの作業になるので多少のLinuxの知識が必要になります。</p>
@@ -521,7 +521,7 @@ realtime =none                   extsz=4096   blocks=0, rtextents=0
 </code></pre>
 
 <p>ディスクを nasne に取り付けて起動します。
-<img src="http://note.ga.vg//assets/screenshot/nasne-hdd-replace.png"></p>
+<img src="http://note.ga.vg/assets/screenshot/nasne-hdd-replace.png"></p>
 
 <p>よくわかりませんが、起動時に電源LEDとREC LEDが両方赤点灯でフリーズすることがありました。<br/>
 なんどか同じ手順をやり直していたら起動したりしなかったりしました。<br/>
@@ -551,9 +551,9 @@ realtime =none                   extsz=4096   blocks=0, rtextents=0
   
   <entry>
     <title type="html"><![CDATA[nasne のファイルシステムを見てみる]]></title>
-    <link href="http://note.ga.vg//blog/2012/07/19/filesystem-of-nasne/"/>
+    <link href="http://note.ga.vg/blog/2012/07/19/filesystem-of-nasne/"/>
     <updated>2012-07-19T22:52:00+09:00</updated>
-    <id>http://note.ga.vg//blog/2012/07/19/filesystem-of-nasne</id>
+    <id>http://note.ga.vg/blog/2012/07/19/filesystem-of-nasne</id>
     <content type="html"><![CDATA[<p>物理的な分解記事とかよりも面白いと思ったのでちょっとだけnasneの中身をみてました。</p>
 
 <!-- more -->
@@ -699,9 +699,9 @@ Last write time:          Thu Jan  1 09:00:05 1970
   
   <entry>
     <title type="html"><![CDATA[さくらのVPSでLXC(Linux Container)を動かす]]></title>
-    <link href="http://note.ga.vg//blog/2012/07/17/lxc-on-sakura-vps/"/>
+    <link href="http://note.ga.vg/blog/2012/07/17/lxc-on-sakura-vps/"/>
     <updated>2012-07-17T19:32:00+09:00</updated>
-    <id>http://note.ga.vg//blog/2012/07/17/lxc-on-sakura-vps</id>
+    <id>http://note.ga.vg/blog/2012/07/17/lxc-on-sakura-vps</id>
     <content type="html"><![CDATA[<p>yaegashiセムパイが&#8221;<a href="http://blog.keshi.org/hogememo/2012/04/05/openvz-on-sakura-vps">さくらのVPSでOpenVZを動かす</a>&#8220;というエントリを書かれていて、自分もやろうと思ったのですが、OpenVZはカーネルに手を入れる必要があり、Debian wheezy環境では面倒だったので代わりに<a href="http://lxc.sf.net/">LXC</a>という仮想環境を導入することにしました。</p>
 
 <!-- more -->
@@ -983,9 +983,9 @@ sshはVPSの43276番でコンテナの22にフォワードしてます。</p>
   
   <entry>
     <title type="html"><![CDATA[TwiProwlをAWS EC2で動かす(無料)]]></title>
-    <link href="http://note.ga.vg//blog/2012/06/12/twiprowl-on-aws-micro-instance/"/>
+    <link href="http://note.ga.vg/blog/2012/06/12/twiprowl-on-aws-micro-instance/"/>
     <updated>2012-06-12T19:37:00+09:00</updated>
-    <id>http://note.ga.vg//blog/2012/06/12/twiprowl-on-aws-micro-instance</id>
+    <id>http://note.ga.vg/blog/2012/06/12/twiprowl-on-aws-micro-instance</id>
     <content type="html"><![CDATA[<p><a href="http://aws.amazon.com/jp/" target="_blank"><img class="right" src="https://lh5.googleusercontent.com/-uzJ0rqEN72U/T9cintiTKvI/AAAAAAAAIqI/W8owjZxM-QE/s800/aws-logo.png"></a>
 <a href="http://aws.amazon.com/jp/">AWS</a>のEC2 Linux マイクロインスタンスは無料範囲をキープしていれば１年間<a href="http://aws.amazon.com/jp/free/">無料</a>で使え、<a href="http://github.com/takuo/TwiProwl">TwiProwl</a>いっこ動かすくらいなら余裕でキープできそうなのでやってみます。</p>
 
@@ -1121,9 +1121,9 @@ oauthなんたらかんたら(認証)
   
   <entry>
     <title type="html"><![CDATA[PENTAX Q 買った]]></title>
-    <link href="http://note.ga.vg//blog/2012/06/07/pentax-q/"/>
+    <link href="http://note.ga.vg/blog/2012/06/07/pentax-q/"/>
     <updated>2012-06-07T20:59:00+09:00</updated>
-    <id>http://note.ga.vg//blog/2012/06/07/pentax-q</id>
+    <id>http://note.ga.vg/blog/2012/06/07/pentax-q</id>
     <content type="html"><![CDATA[<p><a href="https://lh6.googleusercontent.com/-a87f8iF6010/T9BG4CXhr7I/AAAAAAAAIY4/j-3yW4iLiOQ/s800/DSC_0148.jpg" target="_blank"><img class="right" src="https://lh6.googleusercontent.com/-a87f8iF6010/T9BG4CXhr7I/AAAAAAAAIY4/j-3yW4iLiOQ/s288/DSC_0148.jpg" title="PENTAX Q" ></a>
 PENTAX Qを買ってしまいました。<br/>
 デジタル一眼はオリンパス E-620に続き2台目となります。</p>
@@ -1178,9 +1178,9 @@ PENTAX Qを買ってしまいました。<br/>
   
   <entry>
     <title type="html"><![CDATA[チーズケーキ]]></title>
-    <link href="http://note.ga.vg//blog/2012/05/07/make-cheese-cake/"/>
+    <link href="http://note.ga.vg/blog/2012/05/07/make-cheese-cake/"/>
     <updated>2012-05-07T15:22:00+09:00</updated>
-    <id>http://note.ga.vg//blog/2012/05/07/make-cheese-cake</id>
+    <id>http://note.ga.vg/blog/2012/05/07/make-cheese-cake</id>
     <content type="html"><![CDATA[<p><img class="right" src="https://lh4.googleusercontent.com/-K6PyIzpMjSk/T6ZtJA_JgyI/AAAAAAAAHqs/SZO5-6T9-QQ/s288/DSC_0096.jpg"></p>
 
 <p>わりと上手くできたので自分用のメモ。</p>
@@ -1229,9 +1229,9 @@ PENTAX Qを買ってしまいました。<br/>
   
   <entry>
     <title type="html"><![CDATA[Google Adwordsに広告を出してdropboxの容量を増やした]]></title>
-    <link href="http://note.ga.vg//blog/2012/04/19/dropbox-google-adwords-campaign/"/>
+    <link href="http://note.ga.vg/blog/2012/04/19/dropbox-google-adwords-campaign/"/>
     <updated>2012-04-19T16:55:00+09:00</updated>
-    <id>http://note.ga.vg//blog/2012/04/19/dropbox-google-adwords-campaign</id>
+    <id>http://note.ga.vg/blog/2012/04/19/dropbox-google-adwords-campaign</id>
     <content type="html"><![CDATA[<p><a href="http://www.dropbox.com/" target="_blank"><img class="right" src="https://www.dropbox.com/static/images/logo210.png" title="Dropbox" ></a>
 dropboxはお友達を紹介すると一人に付き0.5G,合計16GB(32人紹介)のボーナス領域をもらえるのですが、
 紹介リンクをGoogle Adwordsで宣伝して獲得しようというやーつです。</p>
@@ -1271,9 +1271,9 @@ dropboxはお友達を紹介すると一人に付き0.5G,合計16GB(32人紹介)
   
   <entry>
     <title type="html"><![CDATA[CM9 support for emoji on Mms]]></title>
-    <link href="http://note.ga.vg//blog/2012/04/18/cm9-support-for-emoji-on-mms/"/>
+    <link href="http://note.ga.vg/blog/2012/04/18/cm9-support-for-emoji-on-mms/"/>
     <updated>2012-04-18T15:06:00+09:00</updated>
-    <id>http://note.ga.vg//blog/2012/04/18/cm9-support-for-emoji-on-mms</id>
+    <id>http://note.ga.vg/blog/2012/04/18/cm9-support-for-emoji-on-mms</id>
     <content type="html"><![CDATA[<p>CyanogenMod 9のMmsに絵文字サポートが入っていた。</p>
 
 <!-- more -->
@@ -1301,9 +1301,9 @@ dropboxはお友達を紹介すると一人に付き0.5G,合計16GB(32人紹介)
   
   <entry>
     <title type="html"><![CDATA[Xfce(など)でChromeのプロキシ設定をする]]></title>
-    <link href="http://note.ga.vg//blog/2012/04/18/setting-proxy-for-chrome-on-xfce/"/>
+    <link href="http://note.ga.vg/blog/2012/04/18/setting-proxy-for-chrome-on-xfce/"/>
     <updated>2012-04-18T11:12:00+09:00</updated>
-    <id>http://note.ga.vg//blog/2012/04/18/setting-proxy-for-chrome-on-xfce</id>
+    <id>http://note.ga.vg/blog/2012/04/18/setting-proxy-for-chrome-on-xfce</id>
     <content type="html"><![CDATA[<p>Xfceなど、システムのプロキシ設定ができない環境だとChromeはプロキシの設定が利用できず、次のように表示されてしまいます。<br/>
 <img src="http://ga.vg/g/0238.png"></p>
 
@@ -1374,9 +1374,9 @@ dropboxはお友達を紹介すると一人に付き0.5G,合計16GB(32人紹介)
   
   <entry>
     <title type="html"><![CDATA[おじいちゃん携帯 for Android 2.0]]></title>
-    <link href="http://note.ga.vg//blog/2012/04/12/ojiichan-keitai2-dot-0/"/>
+    <link href="http://note.ga.vg/blog/2012/04/12/ojiichan-keitai2-dot-0/"/>
     <updated>2012-04-12T19:15:00+09:00</updated>
-    <id>http://note.ga.vg//blog/2012/04/12/ojiichan-keitai2-dot-0</id>
+    <id>http://note.ga.vg/blog/2012/04/12/ojiichan-keitai2-dot-0</id>
     <content type="html"><![CDATA[<p><a href="https://github.com/koyachi">koyachi</a>さんがオリジナルであるiOS版を忠実に移植してくださったのをpull requestいただいたので commitしてpublishいたしました。<br/>
 ありがとうございます。</p>
 
@@ -1386,9 +1386,9 @@ dropboxはお友達を紹介すると一人に付き0.5G,合計16GB(32人紹介)
   
   <entry>
     <title type="html"><![CDATA[octopress]]></title>
-    <link href="http://note.ga.vg//blog/2012/04/11/switching-to-octopress/"/>
+    <link href="http://note.ga.vg/blog/2012/04/11/switching-to-octopress/"/>
     <updated>2012-04-11T14:32:00+09:00</updated>
-    <id>http://note.ga.vg//blog/2012/04/11/switching-to-octopress</id>
+    <id>http://note.ga.vg/blog/2012/04/11/switching-to-octopress</id>
     <content type="html"><![CDATA[<p>エンジニアらしくgithubでブログを書こうと思い立ってOctopressに変更してみたものの、<br/>
 テーマがろくに揃ってないのでなかなか厳しい情況。<br/>
 まぁデフォルトのテーマから徐々にいじっていけばいいと思いつつ、コレを書いている次第であります。</p>

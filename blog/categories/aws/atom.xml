@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: AWS | The Weight @northeye]]></title>
-  <link href="http://note.ga.vg//blog/categories/aws/atom.xml" rel="self"/>
-  <link href="http://note.ga.vg//"/>
-  <updated>2012-08-07T02:38:09+09:00</updated>
-  <id>http://note.ga.vg//</id>
+  <link href="http://note.ga.vg/blog/categories/aws/atom.xml" rel="self"/>
+  <link href="http://note.ga.vg/"/>
+  <updated>2012-08-07T14:05:40+09:00</updated>
+  <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[TwiProwlをAWS EC2で動かす(無料)]]></title>
-    <link href="http://note.ga.vg//blog/2012/06/12/twiprowl-on-aws-micro-instance/"/>
+    <link href="http://note.ga.vg/blog/2012/06/12/twiprowl-on-aws-micro-instance/"/>
     <updated>2012-06-12T19:37:00+09:00</updated>
-    <id>http://note.ga.vg//blog/2012/06/12/twiprowl-on-aws-micro-instance</id>
+    <id>http://note.ga.vg/blog/2012/06/12/twiprowl-on-aws-micro-instance</id>
     <content type="html"><![CDATA[<p><a href="http://aws.amazon.com/jp/" target="_blank"><img class="right" src="https://lh5.googleusercontent.com/-uzJ0rqEN72U/T9cintiTKvI/AAAAAAAAIqI/W8owjZxM-QE/s800/aws-logo.png"></a>
 <a href="http://aws.amazon.com/jp/">AWS</a>のEC2 Linux マイクロインスタンスは無料範囲をキープしていれば１年間<a href="http://aws.amazon.com/jp/free/">無料</a>で使え、<a href="http://github.com/takuo/TwiProwl">TwiProwl</a>いっこ動かすくらいなら余裕でキープできそうなのでやってみます。</p>
 

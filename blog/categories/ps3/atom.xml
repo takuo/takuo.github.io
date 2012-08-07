@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: PS3 | The Weight @northeye]]></title>
-  <link href="http://note.ga.vg//blog/categories/ps3/atom.xml" rel="self"/>
-  <link href="http://note.ga.vg//"/>
-  <updated>2012-08-07T02:38:09+09:00</updated>
-  <id>http://note.ga.vg//</id>
+  <link href="http://note.ga.vg/blog/categories/ps3/atom.xml" rel="self"/>
+  <link href="http://note.ga.vg/"/>
+  <updated>2012-08-07T14:05:40+09:00</updated>
+  <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[nasne の HDDを1TBに換装]]></title>
-    <link href="http://note.ga.vg//blog/2012/07/25/replacing-nasne-hdd-with-1tb/"/>
+    <link href="http://note.ga.vg/blog/2012/07/25/replacing-nasne-hdd-with-1tb/"/>
     <updated>2012-07-25T17:22:00+09:00</updated>
-    <id>http://note.ga.vg//blog/2012/07/25/replacing-nasne-hdd-with-1tb</id>
+    <id>http://note.ga.vg/blog/2012/07/25/replacing-nasne-hdd-with-1tb</id>
     <content type="html"><![CDATA[<p><a href="/blog/2012/07/21/replacing-hdd-of-nasne/">先日の記事</a>では詳細な換装方法を書きましたが、サンプルに古くて容量の小さいHDDを利用して実験したまででした。
 今回、実際に新しい1TBのHDDを買ってきて実践しましたのでリポートです。</p>
 
@@ -85,9 +85,9 @@ xfsを操作するのでどうしてもLinuxが必要になってしまいます
   
   <entry>
     <title type="html"><![CDATA[nasne のHDDを時間かけずに換装する]]></title>
-    <link href="http://note.ga.vg//blog/2012/07/21/replacing-hdd-of-nasne/"/>
+    <link href="http://note.ga.vg/blog/2012/07/21/replacing-hdd-of-nasne/"/>
     <updated>2012-07-21T02:00:00+09:00</updated>
-    <id>http://note.ga.vg//blog/2012/07/21/replacing-hdd-of-nasne</id>
+    <id>http://note.ga.vg/blog/2012/07/21/replacing-hdd-of-nasne</id>
     <content type="html"><![CDATA[<p>HDDをまるごとバックアップして書き戻す作業は大変時間がかかるので、必要な分だけイメージを取得するようにして待ち時間を短縮します。<br/>
 特別な機材は必要ありませんが、USBのHDDがケースがあると便利だと思います。<br/>
 Linuxでの作業になるので多少のLinuxの知識が必要になります。</p>
@@ -254,9 +254,9 @@ realtime =none                   extsz=4096   blocks=0, rtextents=0
   
   <entry>
     <title type="html"><![CDATA[nasne のファイルシステムを見てみる]]></title>
-    <link href="http://note.ga.vg//blog/2012/07/19/filesystem-of-nasne/"/>
+    <link href="http://note.ga.vg/blog/2012/07/19/filesystem-of-nasne/"/>
     <updated>2012-07-19T22:52:00+09:00</updated>
-    <id>http://note.ga.vg//blog/2012/07/19/filesystem-of-nasne</id>
+    <id>http://note.ga.vg/blog/2012/07/19/filesystem-of-nasne</id>
     <content type="html"><![CDATA[<p>物理的な分解記事とかよりも面白いと思ったのでちょっとだけnasneの中身をみてました。</p>
 
 <!-- more -->
