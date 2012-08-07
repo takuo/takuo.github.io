@@ -5,7 +5,7 @@ date: 2012-05-07 15:22
 comments: true
 categories: [memo]
 ---
-{% img right https://lh4.googleusercontent.com/-K6PyIzpMjSk/T6ZtJA_JgyI/AAAAAAAAHqs/SZO5-6T9-QQ/s288/DSC_0096.jpg %}
+{% img right http://farm9.staticflickr.com/8281/7731045244_074e3a3faf_m.jpg %}
 
 わりと上手くできたので自分用のメモ。  
 

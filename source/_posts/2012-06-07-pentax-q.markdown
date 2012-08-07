@@ -5,7 +5,7 @@ date: 2012-06-07 20:59
 comments: true
 categories: [ Camera, IYH ]
 ---
-{% img right https://lh6.googleusercontent.com/-a87f8iF6010/T9BG4CXhr7I/AAAAAAAAIY4/j-3yW4iLiOQ/s288/DSC_0148.jpg https://lh6.googleusercontent.com/-a87f8iF6010/T9BG4CXhr7I/AAAAAAAAIY4/j-3yW4iLiOQ/s800/DSC_0148.jpg PENTAX Q %}
+{% img right https://lh5.googleusercontent.com/--sDOVgrNL3g/UBpCFd0hkCI/AAAAAAAAKW8/iwv56X1-ppo/s288/DSC_0148.jpg https://lh5.googleusercontent.com/--sDOVgrNL3g/UBpCFd0hkCI/AAAAAAAAKW8/iwv56X1-ppo/s800/DSC_0148.jpg PENTAX Q %}
 PENTAX Qを買ってしまいました。  
 デジタル一眼はオリンパス E-620に続き2台目となります。
 

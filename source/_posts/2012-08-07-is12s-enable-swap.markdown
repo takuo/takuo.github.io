@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "au IS12Sでスワップを有効にする"
+title: "au IS12Sでスワップを有効にする [要root]"
 date: 2012-08-07 00:14
 comments: true
 categories: [ IS12S, Android ]
 ---
 IS12S をICS にアップデートしてからというもの、メモリが足りなくていささか不便になってきました。  
-そこでスワップを導入してみることにします。 ※ 要root  
+そこでスワップを導入してみることにします。
 
 <!-- more -->
 
