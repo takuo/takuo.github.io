@@ -4,7 +4,7 @@
   <title><![CDATA[Category: IS12S | The Weight @northeye]]></title>
   <link href="http://note.ga.vg/blog/categories/is12s/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2012-08-07T16:03:25+09:00</updated>
+  <updated>2012-09-21T01:04:58+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -12,6 +12,17 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[IS12Sのswap]]></title>
+    <link href="http://note.ga.vg/blog/2012/09/21/is12s-swap/"/>
+    <updated>2012-09-21T01:01:00+09:00</updated>
+    <id>http://note.ga.vg/blog/2012/09/21/is12s-swap</id>
+    <content type="html"><![CDATA[<p>前回のエントリでIS12Sでswapだわーいって嬉々として書いたのだが、vm.swappiness=60だとはっきりいって使いものにならないということをこの1ヶ月ほどで体感してきた。</p>
+
+<p>というわけで、vm.swappiness=20 くらいがよいと思います。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[au IS12Sでスワップを有効にする [要root]]]></title>

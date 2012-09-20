@@ -9,8 +9,8 @@
   <meta name="author" content="Takuo Kitame">
 
   
-  <meta name="description" content="IS12S をICS にアップデートしてからというもの、メモリが足りなくていささか不便になってきました。
-そこでスワップを導入してみることにします。 ">
+  <meta name="description" content="前回のエントリでIS12Sでswapだわーいって嬉々として書いたのだが、vm.swappiness=60だとはっきりいって使いものにならないということをこの1ヶ月ほどで体感してきた。 というわけで、vm.swappiness=20 くらいがよいと思います。
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -82,6 +82,46 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h2 class="entry-title"><a href="/blog/2012/09/21/is12s-swap/">IS12Sのswap</a></h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-21T01:01:00+09:00" pubdate data-updated="true">Sep 21<span>st</span>, 2012</time>
+        
+         | <a href="/blog/2012/09/21/is12s-swap/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>前回のエントリでIS12Sでswapだわーいって嬉々として書いたのだが、vm.swappiness=60だとはっきりいって使いものにならないということをこの1ヶ月ほどで体感してきた。</p>
+
+<p>というわけで、vm.swappiness=20 くらいがよいと思います。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -483,51 +523,6 @@ PENTAX Qを買ってしまいました。<br/>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h2 class="entry-title"><a href="/blog/2012/04/19/dropbox-google-adwords-campaign/">Google Adwordsに広告を出してdropboxの容量を増やした</a></h2>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-19T16:55:00+09:00" pubdate data-updated="true">Apr 19<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/04/19/dropbox-google-adwords-campaign/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.dropbox.com/" target="_blank"><img class="right" src="https://www.dropbox.com/static/images/logo210.png" title="Dropbox" ></a>
-dropboxはお友達を紹介すると一人に付き0.5G,合計16GB(32人紹介)のボーナス領域をもらえるのですが、
-紹介リンクをGoogle Adwordsで宣伝して獲得しようというやーつです。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/04/19/dropbox-google-adwords-campaign/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -547,6 +542,10 @@ dropboxはお友達を紹介すると一人に付き0.5G,合計16GB(32人紹介)
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/09/21/is12s-swap/">IS12Sのswap</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/08/07/is12s-enable-swap/">au IS12Sでスワップを有効にする [要root]</a>
       </li>
     
@@ -560,10 +559,6 @@ dropboxはお友達を紹介すると一人に付き0.5G,合計16GB(32人紹介)
     
       <li class="post">
         <a href="/blog/2012/07/21/replacing-hdd-of-nasne/">nasne のHDDを時間かけずに換装する</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/07/19/filesystem-of-nasne/">nasne のファイルシステムを見てみる</a>
       </li>
     
   </ul>
