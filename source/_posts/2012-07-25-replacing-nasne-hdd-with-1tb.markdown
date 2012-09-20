@@ -3,6 +3,7 @@ layout: post
 title: nasne の HDDを1TBに換装
 date: 2012-07-25 17:22
 comments: true
+keywords: nasne, PS3, HDD, 換装, 1TB
 categories: [ nasne, PS3 ]
 ---
 [先日の記事](/blog/2012/07/21/replacing-hdd-of-nasne/)では詳細な換装方法を書きましたが、サンプルに古くて容量の小さいHDDを利用して実験したまででした。

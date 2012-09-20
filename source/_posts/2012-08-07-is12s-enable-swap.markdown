@@ -3,6 +3,7 @@ layout: post
 title: "au IS12Sでスワップを有効にする [要root]"
 date: 2012-08-07 00:14
 comments: true
+keywords: au, IS12S, swap, ICS, root
 categories: [ IS12S, Android ]
 ---
 IS12S をICS にアップデートしてからというもの、メモリが足りなくていささか不便になってきました。  

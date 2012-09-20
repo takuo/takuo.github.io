@@ -3,7 +3,8 @@ layout: post
 title: nasne のHDDを時間かけずに換装する
 date: 2012-07-21 02:00
 comments: true
-categories: [nasne, PS3]
+keywords: nasne, PS3, HDD, 換装
+categories: [ nasne, PS3 ]
 ---
 HDDをまるごとバックアップして書き戻す作業は大変時間がかかるので、必要な分だけイメージを取得するようにして待ち時間を短縮します。  
 特別な機材は必要ありませんが、USBのHDDがケースがあると便利だと思います。  

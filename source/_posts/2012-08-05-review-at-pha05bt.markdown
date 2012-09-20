@@ -3,7 +3,8 @@ layout: post
 title: "オーディオテクニカ AT-PHA05BTを買った"
 date: 2012-08-05 02:47
 comments: true
-categories: [ "AV", "Bluetooth" ]
+keywords: AT-BT05, AT-PHA05BT, audio-technica, MW600
+categories: [ AV, Bluetooth ]
 ---
 {% img right https://lh3.googleusercontent.com/-TJH6xcQYckw/UB1nCKMhbfI/AAAAAAAAKfI/KqD5AG8TbPE/s144/AT-BT05.jpeg http://www.amazon.co.jp/dp/B0087BQJUO/takuojp02-22/ref=nosim/ %}
 ソニエリのMW600を落っことして壊してしまったので、代替として[オーディオテクニカのAT-PHA05BT](http://www.audio-technica.co.jp/atj/show_model.php?modelId=1536)を買ってみましたのでレビューです。  
