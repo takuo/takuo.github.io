@@ -1,0 +1,11 @@
+---
+layout: post
+title: "IS12Sのswap"
+date: 2012-09-21 01:01
+comments: true
+keywords: au, IS12S, swap, ICS, root
+categories: [ IS12S, Android ]
+---
+前回のエントリでIS12Sでswapだわーいって嬉々として書いたのだが、vm.swappiness=60だとはっきりいって使いものにならないということをこの1ヶ月ほどで体感してきた。
+
+というわけで、vm.swappiness=20 くらいがよいと思います。
