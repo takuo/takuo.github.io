@@ -1,0 +1,37 @@
+---
+layout: post
+title: "iPhone5 購入"
+date: 2012-10-03 02:27
+comments: true
+keywords: iPhone5
+categories: [ iPhone5 ] 
+---
+{% img right https://lh5.googleusercontent.com/-XzUB7CssnKw/UGsmquVL_6I/AAAAAAAAK1U/i4KGsQbY9ik/s288/IMGP0664.JPG %}
+iPhone5に殺された者たちがいる。  
+<!-- more -->
+ライトニングコネクタになり、既存のドック型周辺機器が死滅した。  
+ライトニングコネクタになり、ドックコネクタを使用したストラップ製品も死滅した。  
+イヤフォンジャックが下付きになり、にゃんこ型イヤフォンジャックカバーが死んだ。  
+まぁ僕が持ってるのはドックステーションスピーカーだけですけども。 
+ 
+Androidばっかり買っているのでiPhoneつかわないのかな？って思われがちだけど必要とあらばObj-Cだって書くくらいにはiPhone使います。  
+iOSのエクスペリエンスは素晴らしいです。  
+だけど技術者としての自由度が大変低くて面白くないのも事実(個人の印象です)。  
+ただ、一つの型にハマっているので使いやすい端末なのは間違いないです。  
+要するに良さのベクトルが違うと思うんです。  
+
+そんなわけで iPhone5 買いましたし、LTEだー、わーって感じです。  
+auでもよかったんだけど、すでにau3回線あるしそのうち一個をMNPしてSoftbankにしました。  
+今のところ行動範囲でそこそこLTE使えてるしそこそこ速いし満足してます。
+
+ただ先ほど書いたように、YAMAHAのdockスピーカーTSX-70はごみになったのでどうしようかと思っている。  
+代替の機械はAppleTVを発注したのでAVアンプにつないで音楽や動画流せればいいやなんだけど。  
+
+まぁともかく今後持ち歩くのはモバイルSuica載ってるIS12SとiPhone5とNexus 7とイーモバイルのGP02ということになりそうです。  
+
+{% raw %}
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B006KJCNXM" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B009A3MDWQ" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B008GDNFSW" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B008F45ECC" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+{% endraw %}
