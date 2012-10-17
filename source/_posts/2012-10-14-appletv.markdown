@@ -1,0 +1,27 @@
+---
+layout: post
+title: "AppleTV買った"
+date: 2012-10-14 15:13
+comments: true
+keywords: [ AppleTV, iOS ]
+categories: [ AppleTV, iOS ]
+---
+AppleTV(っていうかAirPlay)最高！すごい！素晴らしい！みたいなエントリにしようと思ったんですがね。  
+というのも使っていたdockコネクタスピーカーTSX-70がiPhone5にしてから使えなくなったんでね、AppleTV買って満足してたんですよ。  
+
+<!-- more -->
+Youtubeが見られるとかHuluが見られるとかわりとどうでもよくて、iTunesやiPhoneに貯めこんであるオーディオビジュアル資産をAVアンプで再生できるってことが最高なんですよ。  
+やっぱそれなりのアンプとスピーカーを揃えている身としては是非とも有効活用してまいりたい。  
+そこでこのAppleTVだったわけですね。大変便利だし、今までなんで買わなかったのかわからないし、AVアンプの類もっててAppleTVもってないのは頭おかしいとしか思えない。   
+
+そんで、これはAVアンプの新調機運きてるなーみたいに思ってYAMAHAのサイトみてたら、どうやら最近のAVアンプは単体でAirPlay対応なんですね。  
+AppleTVいらねえじゃん！っていう。  
+ 
+まぁどの程度の対応レベルかは使ってみないとわかりませんが、dockコネクタスピーカー以上のものであることは間違いない。 
+AppleTVもまぁ安いしAirPlayミラーリングとか面白いしホームシェアリングでライブラリ再生できるしリモコンはクソみたいに使いづらいしおもちゃとしていっかぁ…ってなってる。  
+そんなわけで、[YAMAHA AVENTAGE RX-A2020](http://jp.yamaha.com/products/audio-visual/av-amplifiers/rx-a2020_black__j/)の購入を決意して[価格.com](http://kakaku.com/item/K0000399339/)を眺める毎日です。マジ。  
+
+{% raw %}
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B007JQGUW0" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B0094LZ1VE" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+{% endraw %}
