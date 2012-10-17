@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | The Weight @northeye]]></title>
   <link href="http://note.ga.vg/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2012-10-17T15:28:15+09:00</updated>
+  <updated>2012-10-17T19:15:28+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[twicca - Evernote プラグイン 1.7.0 release]]></title>
+    <link href="http://note.ga.vg/blog/2012/10/16/twicca-evernote-plugin-1-7-0-release/"/>
+    <updated>2012-10-16T23:46:00+09:00</updated>
+    <id>http://note.ga.vg/blog/2012/10/16/twicca-evernote-plugin-1-7-0-release</id>
+    <content type="html"><![CDATA[<p><a href="https://play.google.com/store/apps/details?id=jp.takuo.android.twicca.plugin.evernote">twicca - Evernote プラグイン</a> 1.7.0 をリリースしました。<br/>
+2012/11 よりパスワード認証でのサービス提供が終了することに伴い、Evernoteサービスの認証にOAuthを使うようになりました。</p>
+
+<!-- more -->
+
+
+<p>認証手順で若干の不具合があり、ブラウザでOAuth認証した後設定画面に戻るのですが、そこからさらにブラウザが立ち上がってしまいます。
+認証自体は正常に終了していますのでそのままブラウザを終了して問題ありません。</p>
+
+<p>Evernote SDKでのintent処理に問題がある気がしていますが、試行錯誤したものの修正できなかったのでとりあえずこの状態でのリリースになっています。<br/>
+後ほどSDKを使わないでOAuthを処理する方法を試し修正していきたいと思います。</p>
+
+<p>※ SDKサイズが増えAPKのサイズも増大してしまいました。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[IS12Sのswap]]></title>
