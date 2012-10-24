@@ -1,0 +1,16 @@
+---
+layout: post
+title: "iOS6はAVRCP1.3でMW600とかに曲名表示できる"
+date: 2012-10-19 15:47
+comments: true
+categories: [ iOS6, Bluetooth ]
+---
+iPhone5にして気がついたのですが、MW600やAT-PHA05BTでの曲名表示が可能になってました。  
+iOS6からかなと思います。便利。  
+{% img http://farm9.staticflickr.com/8464/8118329335_aa039c13f3_m_d.jpg http://farm9.staticflickr.com/8464/8118329335_aa039c13f3_d.jpg %}
+
+{% raw %}
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B0065V9TXC" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B0087BQCHE" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B003N111Y2" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+{% endraw %}
