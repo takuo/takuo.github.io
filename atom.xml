@@ -4,7 +4,7 @@
   <title><![CDATA[The Weight @northeye]]></title>
   <link href="http://note.ga.vg/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2012-10-24T15:34:21+09:00</updated>
+  <updated>2012-10-24T15:42:27+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -12,6 +12,36 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[猫にマカロンベッドを買ってあげた]]></title>
+    <link href="http://note.ga.vg/blog/2012/10/23/macaron-bed-for-cats/"/>
+    <updated>2012-10-23T23:37:00+09:00</updated>
+    <id>http://note.ga.vg/blog/2012/10/23/macaron-bed-for-cats</id>
+    <content type="html"><![CDATA[<p>そろそろ寒いし、楽天みてたら2012年版とやらが売っていたので買いました。<br/>
+去年はこれ売り切れまくりで全く買えなかったけど買えました。</p>
+
+<!-- more -->
+
+
+<p>けっこう気に入ってる模様！
+<a href="http://farm9.staticflickr.com/8331/8100404536_ee1906bce2_c_d.jpg" target="_blank"><img src="http://farm9.staticflickr.com/8331/8100404536_ee1906bce2_n_d.jpg"></a>
+<a href="http://farm9.staticflickr.com/8334/8100291298_78bd87b96e_c_d.jpg" target="_blank"><img src="http://farm9.staticflickr.com/8334/8100291298_78bd87b96e_n_d.jpg"></a></p>
+
+<p>あ、Amazonにもありますね。売り切れないうちに買いましょう。</p>
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B008ZVMQ4Y" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B008ZVMQ3A" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B008ZVMQ6W" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[iOS6はAVRCP1.3でMW600とかに曲名表示できる]]></title>
@@ -1539,18 +1569,6 @@ dropboxはお友達を紹介すると一人に付き0.5G,合計16GB(32人紹介)
 </span><span class='line'>  --proxy-pac-url<span class="o">=</span>file:///home/user/proxy.pac <span class="nv">$*</span>
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[おじいちゃん携帯 for Android 2.0]]></title>
-    <link href="http://note.ga.vg/blog/2012/04/12/ojiichan-keitai2-dot-0/"/>
-    <updated>2012-04-12T19:15:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/04/12/ojiichan-keitai2-dot-0</id>
-    <content type="html"><![CDATA[<p><a href="https://github.com/koyachi">koyachi</a>さんがオリジナルであるiOS版を忠実に移植してくださったのをpull requestいただいたので commitしてpublishいたしました。<br/>
-ありがとうございます。</p>
-
-<p><a href="https://play.google.com/store/apps/details?id=jp.takuo.android.ojiichan" title="おじいちゃん携帯 for Android">マーケットリンク</a></p>
 ]]></content>
   </entry>
   
