@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: iOS6 | The Weight @northeye]]></title>
+  <link href="http://note.ga.vg/blog/categories/ios6/atom.xml" rel="self"/>
+  <link href="http://note.ga.vg/"/>
+  <updated>2012-10-24T15:34:21+09:00</updated>
+  <id>http://note.ga.vg/</id>
+  <author>
+    <name><![CDATA[Takuo Kitame]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[iOS6はAVRCP1.3でMW600とかに曲名表示できる]]></title>
+    <link href="http://note.ga.vg/blog/2012/10/19/ios6-avrcp-1-3/"/>
+    <updated>2012-10-19T15:47:00+09:00</updated>
+    <id>http://note.ga.vg/blog/2012/10/19/ios6-avrcp-1-3</id>
+    <content type="html"><![CDATA[<p>iPhone5にして気がついたのですが、MW600やAT-PHA05BTでの曲名表示が可能になってました。<br/>
+iOS6からかなと思います。便利。<br/>
+<a href="http://farm9.staticflickr.com/8464/8118329335_aa039c13f3_d.jpg" target="_blank"><img src="http://farm9.staticflickr.com/8464/8118329335_aa039c13f3_m_d.jpg"></a></p>
+
+<p></p>
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B0065V9TXC" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B0087BQCHE" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B003N111Y2" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<p></p>
+]]></content>
+  </entry>
+  
+</feed>

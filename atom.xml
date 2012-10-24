@@ -4,7 +4,7 @@
   <title><![CDATA[The Weight @northeye]]></title>
   <link href="http://note.ga.vg/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2012-10-24T15:22:16+09:00</updated>
+  <updated>2012-10-24T15:34:21+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -12,6 +12,28 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[iOS6はAVRCP1.3でMW600とかに曲名表示できる]]></title>
+    <link href="http://note.ga.vg/blog/2012/10/19/ios6-avrcp-1-3/"/>
+    <updated>2012-10-19T15:47:00+09:00</updated>
+    <id>http://note.ga.vg/blog/2012/10/19/ios6-avrcp-1-3</id>
+    <content type="html"><![CDATA[<p>iPhone5にして気がついたのですが、MW600やAT-PHA05BTでの曲名表示が可能になってました。<br/>
+iOS6からかなと思います。便利。<br/>
+<a href="http://farm9.staticflickr.com/8464/8118329335_aa039c13f3_d.jpg" target="_blank"><img src="http://farm9.staticflickr.com/8464/8118329335_aa039c13f3_m_d.jpg"></a></p>
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B0065V9TXC" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B0087BQCHE" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B003N111Y2" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Amazon BasicのHDMIケーブル安い]]></title>
@@ -1529,30 +1551,6 @@ dropboxはお友達を紹介すると一人に付き0.5G,合計16GB(32人紹介)
 ありがとうございます。</p>
 
 <p><a href="https://play.google.com/store/apps/details?id=jp.takuo.android.ojiichan" title="おじいちゃん携帯 for Android">マーケットリンク</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[octopress]]></title>
-    <link href="http://note.ga.vg/blog/2012/04/11/switching-to-octopress/"/>
-    <updated>2012-04-11T14:32:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/04/11/switching-to-octopress</id>
-    <content type="html"><![CDATA[<p>エンジニアらしくgithubでブログを書こうと思い立ってOctopressに変更してみたものの、<br/>
-テーマがろくに揃ってないのでなかなか厳しい情況。<br/>
-まぁデフォルトのテーマから徐々にいじっていけばいいと思いつつ、コレを書いている次第であります。</p>
-
-<!-- more -->
-
-
-<p>そもそも、Markdownやtextileに慣れていないのでそこからという感じ。<br/>
-ただ、code snippetあたりは便利そうな気がしている。</p>
-
-<p>というわけでテスト。</p>
-
-<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=4873113679" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-
-
-
 ]]></content>
   </entry>
   
