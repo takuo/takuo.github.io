@@ -4,7 +4,7 @@
   <title><![CDATA[The Weight @northeye]]></title>
   <link href="http://note.ga.vg/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2013-02-14T20:06:02+09:00</updated>
+  <updated>2013-02-14T20:06:32+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -76,75 +76,6 @@ HTL21のUSB蓋は取れやすい(が、アロンアルファで接着しなお�
 
 <p>おみやげにXperia缶バッジと<a href="http://pur.store.sony.jp/Qnavi/Product/CP-F1LSVP/">モバイルバッテリー</a>を頂きました。<br/>
 その他全ての写真は<a href="http://www.flickr.com/photos/xnortheye/sets/72157632598441208/">flickr</a>に。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[PQI Air cardとAndroidの同期を完全自動化する]]></title>
-    <link href="http://note.ga.vg/blog/2012/12/27/pqi-air-card-full-auto-sync/"/>
-    <updated>2012-12-27T17:15:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/12/27/pqi-air-card-full-auto-sync</id>
-    <content type="html"><![CDATA[<p>PQI Air cardってーのがいいらしいってんで買いましたが、どうも標準構成だと自動同期が難しいです。<br/>
-というよりできません。<br/>
-Eye-Fi だと完全自動化した上Flickrにもアップロードしてくれて便利だったのですがどうしたものかといった状況、調べていたら Tasker と FolderSync というアプリを使うと完全自動化できそうなのでやってみました。</p>
-
-<!-- more -->
-
-
-<p>ちなみに、PQI Air card はLinuxでうごいており、<a href="http://hitoriblog.com/?p=12627">様々なカスタマイズが可能</a>なのですが、今回はcard自体はまったくいじらずに設定します。</p>
-
-<h2>カード側の準備</h2>
-
-<p>APモードにしておきます。<br/>
-バッテリーを消費しますが、自動有効化しておくと楽です。</p>
-
-<h2>Android側の準備</h2>
-
-<p><a href="https://play.google.com/store/apps/details?id=dk.tacit.android.foldersync.full">FolderSync</a> を購入します。</p>
-
-<p>FTPアカウントを作成します。
-FolderSyncを起動し、アカウント > アカウントの追加と移動します。<br/>
-アカウントの種類はFTPを選択、名前は適当につけます。</p>
-
-<pre><code>サーバアドレス: 192.168.1.1
-開始フォルダ: /
-匿名ログインを使用
-</code></pre>
-
-<p>次にFolderpairsに移動し、FOLDERPAIRを追加します。
-適当に名前をつけて、アカウントには先程作成したFTPアカウントを選択。</p>
-
-<pre><code>リモートフォルダ: /sd/DCIM
-ローカルフォルダ: /storage/ext_sd/aircard
-同期タイプ: ローカルフォルダ
-接続: Wifiを使用
-許可するWifi SSID: PQI Air card
-</code></pre>
-
-<p>などと設定します。
-同期フィルターには &#8220;ファイルの終端&#8221; に &#8220;.DNG&#8221; を含む場合除外するように設定しておくとRAWファイルの同期をしなくなります。<br/>
-ここまで設定したら &#8220;同期ステータス&#8221; 画面の &#8220;今すぐ同期&#8221; でテストしてみます。</p>
-
-<p>次に、Wi-FiがPQI Air cardにつながった際の同期自動化をします。
-<a href="https://play.google.com/store/apps/details?id=net.dinglisch.android.taskerm">Tasker</a> を購入します。</p>
-
-<p>Taskerのプロファイルを作成します。
-名前を適当につけて、First Contextは&#8221;State&#8221;を選び、次に &#8220;Net&#8221;、&#8221;Wifi Connected&#8221; と選択し、SSIDに&#8221;PQI Air card&#8221;を入力します。<br/>
-次に実行するTask作成に移ります。 &#8220;New Task&#8221; を選択、適当に名前をつけます。 Action Category はPluginを選択、&#8221;FolderSync&#8221;があるので選びます。
-ConfigurationのEditボタンで同期するFolderpairを選択できるので前項で作成したフォルダペアを選択します。</p>
-
-<p>以上で完了です。
-カメラが起動してAPが有効になるとAndroidは自動的にそのWi-Fiにつながり、Taskerによりフォルダの同期が開始されます。</p>
-
-<ul>
-<li>Wi-Fiへの自動接続切り替えにはさらに<a href="https://play.google.com/store/apps/details?id=org.connect1ssid">アプリ</a>が必要ですが、Wi-Fiを使ってない場合や、ひと工夫してAri cardをHotSpotモードで使う場合は不要です。</li>
-</ul>
-
-
-<h2>課題</h2>
-
-<p>課題は、撮影中、新しい写真は次に電源を入れなおした時にしか同期されないということですね。<br/>
-まぁそのくらいはFolderSyncの同期ショートカットを作っておいて必要なときにタップするというのでもいいかもしれません。</p>
 ]]></content>
   </entry>
   
@@ -1601,6 +1532,36 @@ dropboxはお友達を紹介すると一人に付き0.5G,合計16GB(32人紹介)
 
 
 
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[CM9 support for emoji on Mms]]></title>
+    <link href="http://note.ga.vg/blog/2012/04/18/cm9-support-for-emoji-on-mms/"/>
+    <updated>2012-04-18T15:06:00+09:00</updated>
+    <id>http://note.ga.vg/blog/2012/04/18/cm9-support-for-emoji-on-mms</id>
+    <content type="html"><![CDATA[<p>CyanogenMod 9のMmsに絵文字サポートが入っていた。</p>
+
+<!-- more -->
+
+
+<p><a href="http://review.cyanogenmod.com/14709">http://review.cyanogenmod.com/14709</a></p>
+
+<p>日本のキャリアでの使用に於いて、どの程度カバーできているのかは知らないけれど、</p>
+
+<pre><code>as used on the iPhone, or even the Gmail website.
+</code></pre>
+
+<p>だとのことで、それなりなのではなかろうか。<br/>
+自分もかつてGingerbread世代までのMms.apkに絵文字サポートを実装したりはしていたけれど、もはやMmsを使っていないため試そうにも環境がない。</p>
+
+<p>絵文字を画像リソースとして保持するのでapkのサイズがでかくなるのだが、やはりそのことについて文句を言う奴もいるわけで。<br/>
+それに対してCyanogenの一言。</p>
+
+<pre><code>I don't think the extra size will be an issue. If it is, someone will make a hack to exclude this :)
+</code></pre>
+
+<p>いい判断。</p>
 ]]></content>
   </entry>
   
