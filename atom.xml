@@ -4,7 +4,7 @@
   <title><![CDATA[The Weight @northeye]]></title>
   <link href="http://note.ga.vg/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2012-10-24T15:42:27+09:00</updated>
+  <updated>2013-02-14T20:06:02+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -12,6 +12,141 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Xperia（TM）ワールド タッチ＆トライ ブロガーミーティングに参加しました(先月)]]></title>
+    <link href="http://note.ga.vg/blog/2013/02/14/xperia-world-touch-try/"/>
+    <updated>2013-02-14T20:23:00+09:00</updated>
+    <id>http://note.ga.vg/blog/2013/02/14/xperia-world-touch-try</id>
+    <content type="html"><![CDATA[<p><img class="right" src="http://farm9.staticflickr.com/8092/8407636657_dd10cb17a9_n_d.jpg">
+明けましておめでとう御座います。<br/>
+もうXperia Zが発売して約一週間が過ぎ、先月のことになってしまいましたがXperia (主にXperia Z)のタッチ＆トライイベントに参加してきましたのでリポートです。</p>
+
+<!-- more -->
+
+
+<p>イベント自体はコジャレた場所で開催され、軽食もあり、試用端末も一人一台ずつ渡してくれて大変好印象でした。<br/>
+肝心のデバイスの方ですが、ぶっちゃけそんなに興味惹かれることはありませんでした。<br/>
+というのも、僕はすでに同グレードにあたる5インチフルHD端末機 HTC J butterfly(HTL21)を所有していて、それとの比較をすると大して抜きん出た部分がなかったからです。<br/>
+それとXperia Tablet Zのほうはそもそもタブレットにあまり興味がなかったのでほぼスルー気味でしたが、筐体の薄さだけは確認してきました。</p>
+
+<p>さて実際の比較ポイントなんですが、中身はAndroid 4.1なんでほぼ同じ、カタログスペックでのハードウェア性能もだいたい同じ、UIがXperiaかHTCかの違い程度くらいしかと思います。大雑把ですが…。<br/>
+どっちを買えばいいかと言われたら「どっちでもいい、見た感じで」と言えるレベル。</p>
+
+<p>たとえば、カメラのモードレスUIとか、動画撮影中にも静止画を撮影可能と自信ありげに説明いただきましたが、HTL21でも同様です。<br/>
+<a href="http://www.flickr.com/photos/xnortheye/8409288889/in/set-72157632598441208" target="_blank"><img src="http://farm9.staticflickr.com/8225/8409288889_bd74d8d0e3_d.jpg"></a></p>
+
+<p>画素数ではXperiaのほうが13Mなのでだいぶ上ですね。<br/>
+カメラの起動の速さではHTL21のほうが速かったですが、初回以降はあまりそこまで変わりませんでした。<br/>
+ちなみに近くにあったオブジェを撮影したものがこちら。<br/>
+<a href="http://www.flickr.com/photos/xnortheye/8409289141/in/set-72157632598441208/" target="_blank"><img src="http://farm9.staticflickr.com/8360/8409289141_3fa539be9c_n_d.jpg"></a></p>
+
+<p>あ、ステータスバーのプルダウンに各種トグルスイッチがあるのはまぁ便利ですね。<br/>
+<a href="http://www.flickr.com/photos/xnortheye/8410384660/in/set-72157632598441208/" target="_blank"><img src="http://farm9.staticflickr.com/8323/8410384660_60f614e20a_d.jpg"></a></p>
+
+<p>POBoxのキーボードはリサイズできるようになったようです。<br/>
+僕はATOKつかってるんですがこちらもリサイズ可能ですがPOBoxのほうが柔軟にリサイズデキルような気がしました。<br/>
+<a href="http://www.flickr.com/photos/xnortheye/8409288943/in/set-72157632598441208/" target="_blank"><img src="http://farm9.staticflickr.com/8091/8409288943_f60d8de72f_n_d.jpg"></a></p>
+
+<p>その他僕がまず気にする部分は /proc/meminfo の情報です。ユーザーが利用できるメモリ量はここで決まります。<br/>
+Xperiaは MemTotal 1.8GB程度、HTL21は1.6GBなので、どっちがいいって言えばそりゃXperiaですが、1.5GBを超えると2.0GBまではまぁ誤差でいいかなとか思ってしまいます。<br/>
+だいたいいつも400MBくらいは空いてるから。<br/>
+<a href="http://www.flickr.com/photos/xnortheye/8409289003/in/set-72157632598441208/" target="_blank"><img src="http://farm9.staticflickr.com/8079/8409289003_cd6bae1c2c_d.jpg"></a></p>
+
+<p>次に気になるのがタッチイベントを何点拾えるか…なんですが今時はだいたいどれも10点いけるので最早どうでもよくなりました。<br/>
+実際XperiaもHTL21も10点いけます。初代Xperiaは1点だったのでひどかったですね。</p>
+
+<p>続いて筐体の大きさ具合。<br/>
+これも誤差レベルの違いしかないかなぁ…と思いますです。<br/>
+Xperiaはイヤホン端子に蓋があるが、HTL21にはありません。<br/>
+HTL21のUSB蓋は取れやすい(が、アロンアルファで接着しなおせば取れない)が、Xperiaのほうはそうそう取れないと思います。(IS12Sでの感想)<br/>
+<a href="http://www.flickr.com/photos/xnortheye/8408732254/in/set-72157632598441208/" target="_blank"><img src="http://farm9.staticflickr.com/8361/8408732254_8b6cb18cf9_n_d.jpg"></a><br/>
+ (左Xperia Z,右HTL21)</p>
+
+<p><a href="http://www.flickr.com/photos/xnortheye/8407630125/in/set-72157632598441208/" target="_blank"><img src="http://farm9.staticflickr.com/8507/8407630125_fa4179ea99_n_d.jpg"></a><br/>
+ HTL21は裏面が湾曲しているので端が浮いてます。最薄部分ではHTL21のほうが薄いかな。</p>
+
+<p>ストラップホールがついているのは日本ではプラスポイントかもしれませんね。<br/>
+<a href="http://www.flickr.com/photos/xnortheye/8407616023/in/set-72157632598441208/" target="_blank"><img src="http://farm9.staticflickr.com/8373/8407616023_2e3d7f8819_n_d.jpg"></a></p>
+
+<p>最後に、Xperia Tablet Zの薄さはまぁ薄かったです。<br/>
+でも解像度、2560x1600のNexus10があることを考えると全く惹かれませんし、どう考えてもNexus10買ったほうがいいですね。<br/>
+<a href="http://www.flickr.com/photos/xnortheye/8407617267/in/set-72157632598441208/" target="_blank"><img src="http://farm9.staticflickr.com/8232/8407617267_a0ea5142e7_n_d.jpg"></a>
+<a href="http://www.flickr.com/photos/xnortheye/8407617961/in/set-72157632598441208/" target="_blank"><img src="http://farm9.staticflickr.com/8473/8407617961_563868cafb_n_d.jpg"></a></p>
+
+<p>おみやげにXperia缶バッジと<a href="http://pur.store.sony.jp/Qnavi/Product/CP-F1LSVP/">モバイルバッテリー</a>を頂きました。<br/>
+その他全ての写真は<a href="http://www.flickr.com/photos/xnortheye/sets/72157632598441208/">flickr</a>に。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[PQI Air cardとAndroidの同期を完全自動化する]]></title>
+    <link href="http://note.ga.vg/blog/2012/12/27/pqi-air-card-full-auto-sync/"/>
+    <updated>2012-12-27T17:15:00+09:00</updated>
+    <id>http://note.ga.vg/blog/2012/12/27/pqi-air-card-full-auto-sync</id>
+    <content type="html"><![CDATA[<p>PQI Air cardってーのがいいらしいってんで買いましたが、どうも標準構成だと自動同期が難しいです。<br/>
+というよりできません。<br/>
+Eye-Fi だと完全自動化した上Flickrにもアップロードしてくれて便利だったのですがどうしたものかといった状況、調べていたら Tasker と FolderSync というアプリを使うと完全自動化できそうなのでやってみました。</p>
+
+<!-- more -->
+
+
+<p>ちなみに、PQI Air card はLinuxでうごいており、<a href="http://hitoriblog.com/?p=12627">様々なカスタマイズが可能</a>なのですが、今回はcard自体はまったくいじらずに設定します。</p>
+
+<h2>カード側の準備</h2>
+
+<p>APモードにしておきます。<br/>
+バッテリーを消費しますが、自動有効化しておくと楽です。</p>
+
+<h2>Android側の準備</h2>
+
+<p><a href="https://play.google.com/store/apps/details?id=dk.tacit.android.foldersync.full">FolderSync</a> を購入します。</p>
+
+<p>FTPアカウントを作成します。
+FolderSyncを起動し、アカウント > アカウントの追加と移動します。<br/>
+アカウントの種類はFTPを選択、名前は適当につけます。</p>
+
+<pre><code>サーバアドレス: 192.168.1.1
+開始フォルダ: /
+匿名ログインを使用
+</code></pre>
+
+<p>次にFolderpairsに移動し、FOLDERPAIRを追加します。
+適当に名前をつけて、アカウントには先程作成したFTPアカウントを選択。</p>
+
+<pre><code>リモートフォルダ: /sd/DCIM
+ローカルフォルダ: /storage/ext_sd/aircard
+同期タイプ: ローカルフォルダ
+接続: Wifiを使用
+許可するWifi SSID: PQI Air card
+</code></pre>
+
+<p>などと設定します。
+同期フィルターには &#8220;ファイルの終端&#8221; に &#8220;.DNG&#8221; を含む場合除外するように設定しておくとRAWファイルの同期をしなくなります。<br/>
+ここまで設定したら &#8220;同期ステータス&#8221; 画面の &#8220;今すぐ同期&#8221; でテストしてみます。</p>
+
+<p>次に、Wi-FiがPQI Air cardにつながった際の同期自動化をします。
+<a href="https://play.google.com/store/apps/details?id=net.dinglisch.android.taskerm">Tasker</a> を購入します。</p>
+
+<p>Taskerのプロファイルを作成します。
+名前を適当につけて、First Contextは&#8221;State&#8221;を選び、次に &#8220;Net&#8221;、&#8221;Wifi Connected&#8221; と選択し、SSIDに&#8221;PQI Air card&#8221;を入力します。<br/>
+次に実行するTask作成に移ります。 &#8220;New Task&#8221; を選択、適当に名前をつけます。 Action Category はPluginを選択、&#8221;FolderSync&#8221;があるので選びます。
+ConfigurationのEditボタンで同期するFolderpairを選択できるので前項で作成したフォルダペアを選択します。</p>
+
+<p>以上で完了です。
+カメラが起動してAPが有効になるとAndroidは自動的にそのWi-Fiにつながり、Taskerによりフォルダの同期が開始されます。</p>
+
+<ul>
+<li>Wi-Fiへの自動接続切り替えにはさらに<a href="https://play.google.com/store/apps/details?id=org.connect1ssid">アプリ</a>が必要ですが、Wi-Fiを使ってない場合や、ひと工夫してAri cardをHotSpotモードで使う場合は不要です。</li>
+</ul>
+
+
+<h2>課題</h2>
+
+<p>課題は、撮影中、新しい写真は次に電源を入れなおした時にしか同期されないということですね。<br/>
+まぁそのくらいはFolderSyncの同期ショートカットを作っておいて必要なときにタップするというのでもいいかもしれません。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[猫にマカロンベッドを買ってあげた]]></title>
@@ -1465,109 +1600,6 @@ dropboxはお友達を紹介すると一人に付き0.5G,合計16GB(32人紹介)
 <iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=4881667971" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
 
 
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[CM9 support for emoji on Mms]]></title>
-    <link href="http://note.ga.vg/blog/2012/04/18/cm9-support-for-emoji-on-mms/"/>
-    <updated>2012-04-18T15:06:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/04/18/cm9-support-for-emoji-on-mms</id>
-    <content type="html"><![CDATA[<p>CyanogenMod 9のMmsに絵文字サポートが入っていた。</p>
-
-<!-- more -->
-
-
-<p><a href="http://review.cyanogenmod.com/14709">http://review.cyanogenmod.com/14709</a></p>
-
-<p>日本のキャリアでの使用に於いて、どの程度カバーできているのかは知らないけれど、</p>
-
-<pre><code>as used on the iPhone, or even the Gmail website.
-</code></pre>
-
-<p>だとのことで、それなりなのではなかろうか。<br/>
-自分もかつてGingerbread世代までのMms.apkに絵文字サポートを実装したりはしていたけれど、もはやMmsを使っていないため試そうにも環境がない。</p>
-
-<p>絵文字を画像リソースとして保持するのでapkのサイズがでかくなるのだが、やはりそのことについて文句を言う奴もいるわけで。<br/>
-それに対してCyanogenの一言。</p>
-
-<pre><code>I don't think the extra size will be an issue. If it is, someone will make a hack to exclude this :)
-</code></pre>
-
-<p>いい判断。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Xfce(など)でChromeのプロキシ設定をする]]></title>
-    <link href="http://note.ga.vg/blog/2012/04/18/setting-proxy-for-chrome-on-xfce/"/>
-    <updated>2012-04-18T11:12:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/04/18/setting-proxy-for-chrome-on-xfce</id>
-    <content type="html"><![CDATA[<p>Xfceなど、システムのプロキシ設定ができない環境だとChromeはプロキシの設定が利用できず、次のように表示されてしまいます。<br/>
-<img src="http://ga.vg/g/0238.png"></p>
-
-<p>コマンドラインからは設定できるとあるので、やってみます。</p>
-
-<!-- more -->
-
-
-<p>まず <em>proxy.pac</em> ファイルを書きます。
-書き方については<a href="https://www.google.co.jp/search?q=proxy.pac">ぐぐれ</a>ばいくらでも出てきますが、例えばこんな感じに。</p>
-
-<figure class='code'><figcaption><span>/home/user/proxy.pac</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">FindProxyForURL</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="nx">host</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>   <span class="k">if</span><span class="p">(</span><span class="nx">isPlainHostName</span><span class="p">(</span><span class="nx">host</span><span class="p">)</span><span class="o">||</span>
-</span><span class='line'>      <span class="nx">isInNet</span><span class="p">(</span><span class="nx">host</span><span class="p">,</span><span class="s2">&quot;192.168.0.0&quot;</span><span class="p">,</span><span class="s2">&quot;255.255.0.0&quot;</span><span class="p">)</span> <span class="o">||</span>
-</span><span class='line'>      <span class="nx">isInNet</span><span class="p">(</span><span class="nx">host</span><span class="p">,</span> <span class="s2">&quot;127.0.0.0&quot;</span> <span class="p">,</span> <span class="s2">&quot;255.0.0.0&quot;</span><span class="p">)</span> <span class="o">||</span>
-</span><span class='line'>      <span class="nx">shExpMatch</span><span class="p">(</span> <span class="nx">host</span><span class="p">,</span> <span class="s2">&quot;*.example.jp&quot;</span><span class="p">)</span> <span class="o">||</span>
-</span><span class='line'>      <span class="nx">host</span> <span class="o">==</span> <span class="s2">&quot;localhost&quot;</span>
-</span><span class='line'>     <span class="p">)</span>
-</span><span class='line'>     <span class="k">return</span> <span class="s2">&quot;DIRECT&quot;</span><span class="p">;</span>
-</span><span class='line'>   <span class="k">else</span>
-</span><span class='line'>     <span class="k">return</span> <span class="s2">&quot;PROXY 192.168.0.1:3128&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>次に、デスクトップやメニュー、パネルのランチャー設定をかえます。<br/>
-<em>/usr/share/applications/google-chrome.desktop</em> の</p>
-
-<pre><code>Exec=/opt/google/chrome/google-chrome %U
-</code></pre>
-
-<p>のようになっている部分を</p>
-
-<pre><code>Exec=/opt/google/chrome/google-chrome --proxy-pac-url=file:///home/user/proxy.pac %U
-</code></pre>
-
-<p>にして、<em>~/.local/share/applications/google-chrome.desktop</em> にコピー。<br/>
-以上で、プロキシの設定として <em>/home/user/proxy.pac</em> が使われるようになりました。</p>
-
-<p>気をつけることは、chromeが立ち上がってない状態で別のアプリケーションからの起動の際、これだけではカバーできないことです。<br/>
-そういう場合はラッパースクリプトでも用意しておきましょう。</p>
-
-<figure class='code'><figcaption><span>/opt/google/chrome/google-chrome</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/sh</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">exec</span> /opt/google/chrome/google-chrome.real <span class="se">\</span>
-</span><span class='line'>  --proxy-pac-url<span class="o">=</span>file:///home/user/proxy.pac <span class="nv">$*</span>
-</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>
