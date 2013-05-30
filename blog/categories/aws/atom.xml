@@ -4,7 +4,7 @@
   <title><![CDATA[Category: AWS | The Weight @northeye]]></title>
   <link href="http://note.ga.vg/blog/categories/aws/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2013-02-14T20:06:32+09:00</updated>
+  <updated>2013-05-30T18:31:16+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -51,13 +51,12 @@ $ git clone http://github.com/takuo/TwiProwl.git
 
 <p>設定ファイルを適当に書きます。(~/.twiprowl.conf として保存)</p>
 
-<p>``` yaml /home/ubuntu/.twiprowl.conf</p>
+<p>``` yaml /home/ubuntu/.twiprowl.conf
+    LogDir: /home/ubuntu/var/log
+    Debug: false
+    Daemon: true</p>
 
-<pre><code>LogDir: /home/ubuntu/var/log
-Debug: false
-Daemon: true
-
-Prowl:
+<pre><code>Prowl:
   APIKey: ProwlのAPIキーを書く
 
 NMA:

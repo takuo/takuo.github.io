@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vps | The Weight @northeye]]></title>
   <link href="http://note.ga.vg/blog/categories/vps/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2013-02-14T20:06:32+09:00</updated>
+  <updated>2013-05-30T18:31:16+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -183,17 +183,15 @@ consoleにgettyを待機させておくと lxc-start でログインプロンプ
 2:23:respawn:/sbin/getty 38400 tty2 linux
 3:23:respawn:/sbin/getty 38400 tty3 linux</p>
 
-<p>```</p>
+<pre><code>
+securettyにはrootでログイン可能なttyにlxc/*を追加してます。
+``` text "/etc/securetty 抜粋"
 
-<p>securettyにはrootでログイン可能なttyにlxc/*を追加してます。
-``` text "/etc/securetty 抜粋"</p>
-
-<p>lxc/console
+lxc/console
 lxc/tty1
 lxc/tty2
-lxc/tty3</p>
-
-<p>```</p>
+lxc/tty3
+</code></pre>
 
 <p>ここまでで、最低限起動するまでの準備ができました。</p>
 
@@ -222,15 +220,12 @@ lxcvm00 login:
 iface lo inet loopback</p>
 
 <p>auto eth0
-iface eth0 inet static</p>
-
-<pre><code>    address 10.0.0.4
-    broadcast 10.0.0.255
-    netmask 255.255.255.0
-    gateway 10.0.0.1
-</code></pre>
-
-<p>```</p>
+iface eth0 inet static
+        address 10.0.0.4
+        broadcast 10.0.0.255
+        netmask 255.255.255.0
+        gateway 10.0.0.1
+```</p>
 
 <h3>外からアクセスするための設定</h3>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: misc | The Weight @northeye]]></title>
   <link href="http://note.ga.vg/blog/categories/misc/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2013-02-14T20:06:32+09:00</updated>
+  <updated>2013-05-30T18:31:16+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -29,26 +29,20 @@
 <p>まず <em>proxy.pac</em> ファイルを書きます。
 書き方については<a href="https://www.google.co.jp/search?q=proxy.pac">ぐぐれ</a>ばいくらでも出てきますが、例えばこんな感じに。</p>
 
-<p>``` javascript /home/user/proxy.pac
+<p><code>javascript /home/user/proxy.pac
 function FindProxyForURL(url,host)
 {
-   if(isPlainHostName(host)||</p>
-
-<pre><code>  isInNet(host,"192.168.0.0","255.255.0.0") ||
-  isInNet(host, "127.0.0.0" , "255.0.0.0") ||
-  shExpMatch( host, "*.example.jp") ||
-  host == "localhost"
- )
- return "DIRECT";
-</code></pre>
-
-<p>   else</p>
-
-<pre><code> return "PROXY 192.168.0.1:3128";
-</code></pre>
-
-<p>}
-```</p>
+   if(isPlainHostName(host)||
+      isInNet(host,"192.168.0.0","255.255.0.0") ||
+      isInNet(host, "127.0.0.0" , "255.0.0.0") ||
+      shExpMatch( host, "*.example.jp") ||
+      host == "localhost"
+     )
+     return "DIRECT";
+   else
+     return "PROXY 192.168.0.1:3128";
+}
+</code></p>
 
 <p>次に、デスクトップやメニュー、パネルのランチャー設定をかえます。<br/>
 <em>/usr/share/applications/google-chrome.desktop</em> の</p>
