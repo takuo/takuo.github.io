@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | The Weight @northeye]]></title>
   <link href="http://note.ga.vg/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2013-05-30T18:31:16+09:00</updated>
+  <updated>2013-05-30T18:49:19+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -23,6 +23,9 @@
 <p>当方、<a href="http://ustream.tv/channel/northeye">Ustreamで猫カメラ</a>を運用しているのだけれど、FlashMediaEncoderを動かしていたWindowsがとても不安定で廃絶してしまったので、どうしようかと思っていました。<br/>
 それと、常時稼動マシンは減らしたい。<br/>
 そんなわけでいつも動いているNASマシンかルーターマシンで動かすことにしました。</p>
+
+<!-- more -->
+
 
 <p>NASやルーターはだいたいLinuxでやってるのでLinuxでやることになります。<br/>
 KVMにWindows環境つくってPCIパススルーでUSBデバイスをスルーして配信することも可能ですが、エンコードというプロセスが存在するため、ある程度のパフォーマンスが必要になり、仮想環境ではなかなか無理がありました。(試したけどやめた)</p>
