@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>ffmepg で ustream 配信したメモ - The Weight @northeye</title>
+  <title>ffmpeg で ustream 配信したメモ - The Weight @northeye</title>
   <meta name="author" content="Takuo Kitame">
 
   
@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://note.ga.vg/blog/2013/05/30/ffmepg-de-ustream">
+  <link rel="canonical" href="http://note.ga.vg/blog/2013/05/30/ffmpeg-de-ustream">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="The Weight @northeye" type="application/atom+xml">
@@ -86,7 +86,7 @@
   
   <header>
     
-      <h2 class="entry-title">ffmepg で ustream 配信したメモ</h2>
+      <h2 class="entry-title">ffmpeg で ustream 配信したメモ</h2>
     
     
       <p class="meta">
@@ -123,7 +123,7 @@
 <p>NASやルーターはだいたいLinuxでやってるのでLinuxでやることになります。<br/>
 KVMにWindows環境つくってPCIパススルーでUSBデバイスをスルーして配信することも可能ですが、エンコードというプロセスが存在するため、ある程度のパフォーマンスが必要になり、仮想環境ではなかなか無理がありました。(試したけどやめた)</p>
 
-<p>そんなわけで、今回はルーターにffmepgいれてこいつでやってみます。<br/>
+<p>そんなわけで、今回はルーターにffmpegいれてこいつでやってみます。<br/>
 ちなみにカメラデバイスはLogicoolのC910というHDウェブカメラで、ステレオマイクがついています。<br/>
 ※ もう売ってなくて<a href="http://amzn.to/11dbZvi">C920</a>という機種が後継のようです。</p>
 
@@ -183,7 +183,7 @@ audioの方ですがひとまず /proc/asound あたりを見てどういう状�
  33:        : timer
 </code></pre>
 
-<p>というわけで、card  1がUSBカメラのマイクっぽくて、1-0がキャプチャのようなので ffmepg で渡すオプションには hw:1,0で良さげです。</p>
+<p>というわけで、card  1がUSBカメラのマイクっぽくて、1-0がキャプチャのようなので ffmpeg で渡すオプションには hw:1,0で良さげです。</p>
 
 <h2>Ustreamの配信用RTMP URL</h2>
 
@@ -191,11 +191,11 @@ audioの方ですがひとまず /proc/asound あたりを見てどういう状�
 ログインしてダッシュボード→番組設定→リモート のところに RTMP URLとストリームキーがあるので、結合してひとつのURLにします。
 ( URL + &ldquo;/&rdquo; + キー )</p>
 
-<h2>ffmepg の実行</h2>
+<h2>ffmpeg の実行</h2>
 
-<p>ffmepg を実行してみます。</p>
+<p>ffmpeg を実行してみます。</p>
 
-<pre><code>% ffmepg -f v4l2 -i /dev/video0 -ac 2 -f alsa -i hw:1,0 -c:a libfaac -ar 22050 -b:a 48k -c:v libx264 -preset veryfast -threads auto -vsync 1 -f flv 'rtmp://1.xxx.fme.ustream.tv/ustreamVideo/xxxxxx/&lt;キー&gt; flashver=FME/3.0\20(compatible;\20FMSc/1.0)'
+<pre><code>% ffmpeg -f v4l2 -i /dev/video0 -ac 2 -f alsa -i hw:1,0 -c:a libfaac -ar 22050 -b:a 48k -c:v libx264 -preset veryfast -threads auto -vsync 1 -f flv 'rtmp://1.xxx.fme.ustream.tv/ustreamVideo/xxxxxx/&lt;キー&gt; flashver=FME/3.0\20(compatible;\20FMSc/1.0)'
 </code></pre>
 
 <p>とまぁこんな感じです。<br/>
@@ -217,7 +217,7 @@ x264のプリセットはveryfastとかにしたほうが遅延が少なくて�
 <h3>iOSやAndroidのアプリで視聴できるフォーマットにしたい</h3>
 
 <p>いろいろ調べましたが、baseline profileでLevel3.0ならいいらしいです。<br/>
-対応するffmepgのオプションは</p>
+対応するffmpegのオプションは</p>
 
 <pre><code>-profile:v baseline -level 3.0 
 </code></pre>
@@ -236,9 +236,9 @@ x264のプリセットはveryfastとかにしたほうが遅延が少なくて�
 
 <p>というオプションをつければ良いようです。</p>
 
-<h3>たまにffmepgが死ぬ</h3>
+<h3>たまにffmpegが死ぬ</h3>
 
-<p>Ustreamサーバの調子にも左右されますがごく稀にffmepgプロセスが死んでますので。</p>
+<p>Ustreamサーバの調子にも左右されますがごく稀にffmpegプロセスが死んでますので。</p>
 
 <pre><code>% while true; do
 ffmpeg -r 15 -s 640x360 -f v4l2 -i /dev/video0 -ac 2 -f alsa -i hw:1,0 -acodec libfaac -ar 22050 -b:a 48k -c:v libx264 -profile:v baseline -level 3.0 -preset veryfast -pix_fmt yuv420p -threads 3 -vsync 1 -y -f flv 'rtmp://1.xxxx.fme.ustream.tv/ustreamVideo/streamid/streamkey flashver=FME/3.0\20(compatible;\20FMSc/1.0)'
@@ -344,7 +344,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://note.ga.vg/blog/2013/05/30/ffmepg-de-ustream/" data-via="northeye" data-counturl="http://note.ga.vg/blog/2013/05/30/ffmepg-de-ustream/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://note.ga.vg/blog/2013/05/30/ffmpeg-de-ustream/" data-via="northeye" data-counturl="http://note.ga.vg/blog/2013/05/30/ffmpeg-de-ustream/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -386,7 +386,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/05/30/ffmepg-de-ustream/">ffmepg で ustream 配信したメモ</a>
+        <a href="/blog/2013/05/30/ffmpeg-de-ustream/">ffmpeg で ustream 配信したメモ</a>
       </li>
     
       <li class="post">
@@ -505,8 +505,8 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://note.ga.vg/blog/2013/05/30/ffmepg-de-ustream/';
-        var disqus_url = 'http://note.ga.vg/blog/2013/05/30/ffmepg-de-ustream/';
+        var disqus_identifier = 'http://note.ga.vg/blog/2013/05/30/ffmpeg-de-ustream/';
+        var disqus_url = 'http://note.ga.vg/blog/2013/05/30/ffmpeg-de-ustream/';
         var disqus_script = 'embed.js';
       
     (function () {

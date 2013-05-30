@@ -4,7 +4,7 @@
   <title><![CDATA[Category: memo | The Weight @northeye]]></title>
   <link href="http://note.ga.vg/blog/categories/memo/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2013-05-30T20:05:07+09:00</updated>
+  <updated>2013-05-30T23:46:19+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -18,7 +18,7 @@
     <link href="http://note.ga.vg/blog/2012/05/07/make-cheese-cake/"/>
     <updated>2012-05-07T15:22:00+09:00</updated>
     <id>http://note.ga.vg/blog/2012/05/07/make-cheese-cake</id>
-    <content type="html"><![CDATA[<p>{% img right <a href="http://farm9.staticflickr.com/8281/7731045244_074e3a3faf_m.jpg">http://farm9.staticflickr.com/8281/7731045244_074e3a3faf_m.jpg</a> %}</p>
+    <content type="html"><![CDATA[<p><img class="right <a" src="href="http://farm9.staticflickr.com/8281/7731045244_074e3a3faf_m.jpg">http://farm9.staticflickr.com/8281/7731045244_074e3a3faf_m.jpg</a>"></p>
 
 <p>わりと上手くできたので自分用のメモ。</p>
 

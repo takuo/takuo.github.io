@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | The Weight @northeye]]></title>
   <link href="http://note.ga.vg/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2013-05-30T20:05:04+09:00</updated>
+  <updated>2013-05-30T23:46:19+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -14,10 +14,10 @@
 
   
   <entry>
-    <title type="html"><![CDATA[ffmepg で ustream 配信したメモ]]></title>
-    <link href="http://note.ga.vg/blog/2013/05/30/ffmepg-de-ustream/"/>
+    <title type="html"><![CDATA[ffmpeg で ustream 配信したメモ]]></title>
+    <link href="http://note.ga.vg/blog/2013/05/30/ffmpeg-de-ustream/"/>
     <updated>2013-05-30T17:26:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2013/05/30/ffmepg-de-ustream</id>
+    <id>http://note.ga.vg/blog/2013/05/30/ffmpeg-de-ustream</id>
     <content type="html"><![CDATA[<p>どうも。</p>
 
 <p>当方、<a href="http://ustream.tv/channel/northeye">Ustreamで猫カメラ</a>を運用しているのだけれど、FlashMediaEncoderを動かしていたWindowsがとても不安定で廃絶してしまったので、どうしようかと思っていました。<br/>
@@ -30,7 +30,7 @@
 <p>NASやルーターはだいたいLinuxでやってるのでLinuxでやることになります。<br/>
 KVMにWindows環境つくってPCIパススルーでUSBデバイスをスルーして配信することも可能ですが、エンコードというプロセスが存在するため、ある程度のパフォーマンスが必要になり、仮想環境ではなかなか無理がありました。(試したけどやめた)</p>
 
-<p>そんなわけで、今回はルーターにffmepgいれてこいつでやってみます。<br/>
+<p>そんなわけで、今回はルーターにffmpegいれてこいつでやってみます。<br/>
 ちなみにカメラデバイスはLogicoolのC910というHDウェブカメラで、ステレオマイクがついています。<br/>
 ※ もう売ってなくて<a href="http://amzn.to/11dbZvi">C920</a>という機種が後継のようです。</p>
 
@@ -90,7 +90,7 @@ audioの方ですがひとまず /proc/asound あたりを見てどういう状�
  33:        : timer
 </code></pre>
 
-<p>というわけで、card  1がUSBカメラのマイクっぽくて、1-0がキャプチャのようなので ffmepg で渡すオプションには hw:1,0で良さげです。</p>
+<p>というわけで、card  1がUSBカメラのマイクっぽくて、1-0がキャプチャのようなので ffmpeg で渡すオプションには hw:1,0で良さげです。</p>
 
 <h2>Ustreamの配信用RTMP URL</h2>
 
@@ -98,11 +98,11 @@ audioの方ですがひとまず /proc/asound あたりを見てどういう状�
 ログインしてダッシュボード→番組設定→リモート のところに RTMP URLとストリームキーがあるので、結合してひとつのURLにします。
 ( URL + &ldquo;/&rdquo; + キー )</p>
 
-<h2>ffmepg の実行</h2>
+<h2>ffmpeg の実行</h2>
 
-<p>ffmepg を実行してみます。</p>
+<p>ffmpeg を実行してみます。</p>
 
-<pre><code>% ffmepg -f v4l2 -i /dev/video0 -ac 2 -f alsa -i hw:1,0 -c:a libfaac -ar 22050 -b:a 48k -c:v libx264 -preset veryfast -threads auto -vsync 1 -f flv 'rtmp://1.xxx.fme.ustream.tv/ustreamVideo/xxxxxx/&lt;キー&gt; flashver=FME/3.0\20(compatible;\20FMSc/1.0)'
+<pre><code>% ffmpeg -f v4l2 -i /dev/video0 -ac 2 -f alsa -i hw:1,0 -c:a libfaac -ar 22050 -b:a 48k -c:v libx264 -preset veryfast -threads auto -vsync 1 -f flv 'rtmp://1.xxx.fme.ustream.tv/ustreamVideo/xxxxxx/&lt;キー&gt; flashver=FME/3.0\20(compatible;\20FMSc/1.0)'
 </code></pre>
 
 <p>とまぁこんな感じです。<br/>
@@ -124,7 +124,7 @@ x264のプリセットはveryfastとかにしたほうが遅延が少なくて�
 <h3>iOSやAndroidのアプリで視聴できるフォーマットにしたい</h3>
 
 <p>いろいろ調べましたが、baseline profileでLevel3.0ならいいらしいです。<br/>
-対応するffmepgのオプションは</p>
+対応するffmpegのオプションは</p>
 
 <pre><code>-profile:v baseline -level 3.0 
 </code></pre>
@@ -143,9 +143,9 @@ x264のプリセットはveryfastとかにしたほうが遅延が少なくて�
 
 <p>というオプションをつければ良いようです。</p>
 
-<h3>たまにffmepgが死ぬ</h3>
+<h3>たまにffmpegが死ぬ</h3>
 
-<p>Ustreamサーバの調子にも左右されますがごく稀にffmepgプロセスが死んでますので。</p>
+<p>Ustreamサーバの調子にも左右されますがごく稀にffmpegプロセスが死んでますので。</p>
 
 <pre><code>% while true; do
 ffmpeg -r 15 -s 640x360 -f v4l2 -i /dev/video0 -ac 2 -f alsa -i hw:1,0 -acodec libfaac -ar 22050 -b:a 48k -c:v libx264 -profile:v baseline -level 3.0 -preset veryfast -pix_fmt yuv420p -threads 3 -vsync 1 -y -f flv 'rtmp://1.xxxx.fme.ustream.tv/ustreamVideo/streamid/streamkey flashver=FME/3.0\20(compatible;\20FMSc/1.0)'
