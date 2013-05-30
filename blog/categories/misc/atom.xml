@@ -4,7 +4,7 @@
   <title><![CDATA[Category: misc | The Weight @northeye]]></title>
   <link href="http://note.ga.vg/blog/categories/misc/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2013-05-30T19:44:59+09:00</updated>
+  <updated>2013-05-30T20:05:07+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -19,7 +19,7 @@
     <updated>2012-04-18T11:12:00+09:00</updated>
     <id>http://note.ga.vg/blog/2012/04/18/setting-proxy-for-chrome-on-xfce</id>
     <content type="html"><![CDATA[<p>Xfceなど、システムのプロキシ設定ができない環境だとChromeはプロキシの設定が利用できず、次のように表示されてしまいます。<br/>
-<img class="<a" src="href="http://ga.vg/g/0238.png">http://ga.vg/g/0238.png</a>"></p>
+{% img <a href="http://ga.vg/g/0238.png">http://ga.vg/g/0238.png</a> %}</p>
 
 <p>コマンドラインからは設定できるとあるので、やってみます。</p>
 

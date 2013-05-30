@@ -4,7 +4,7 @@
   <title><![CDATA[The Weight @northeye]]></title>
   <link href="http://note.ga.vg/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2013-05-30T19:44:59+09:00</updated>
+  <updated>2013-05-30T20:05:04+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -31,16 +31,16 @@
 KVMにWindows環境つくってPCIパススルーでUSBデバイスをスルーして配信することも可能ですが、エンコードというプロセスが存在するため、ある程度のパフォーマンスが必要になり、仮想環境ではなかなか無理がありました。(試したけどやめた)</p>
 
 <p>そんなわけで、今回はルーターにffmepgいれてこいつでやってみます。<br/>
-ちなみにカメラデバイスはLogicoolのC910というHDウェブカメラでステレオマイクがついています。<br/>
-※ もううってなくて<a href="http://amzn.to/11dbZvi">C920</a>という機種が後継のようです。</p>
+ちなみにカメラデバイスはLogicoolのC910というHDウェブカメラで、ステレオマイクがついています。<br/>
+※ もう売ってなくて<a href="http://amzn.to/11dbZvi">C920</a>という機種が後継のようです。</p>
 
-<h2>LXCで環境構築</h2>
+<h2>lxcで環境構築</h2>
 
 <p>しかしながら、ルーターのような重要なマシンに余計なものを入れたくないのも事実。<br/>
-そこでLXCのコンテナで環境を分離します。あとで別のマシンでやりたくなったとき移行も簡単なので便利です。<br/>
-LXCの環境構築は省略して、ポイントだけ。</p>
+そこでlxcのコンテナで環境を分離します。あとで別のマシンでやりたくなったとき移行も簡単なので便利です。<br/>
+lxcの環境構築は省略して、ポイントだけ。</p>
 
-<p>設定にv4l2とsndのcgroupパーミッションを追加します。</p>
+<p>lxcの設定ファイルにv4l2とsndのcgroupパーミッションを追加します。</p>
 
 <pre><code># v4l2
 lxc.cgroup.devices.allow = c 81:* rwm
@@ -48,14 +48,14 @@ lxc.cgroup.devices.allow = c 81:* rwm
 lxc.cgroup.devices.allow = c 116:* rwm
 </code></pre>
 
-<p>/dev/sndをbind mountしときます。</p>
+<p>ホスト側の/dev/sndをbind mountしときます。</p>
 
 <pre><code>% sudo mount --bind /dev/snd /lxc/ustream/rootfs/dev/snd
 </code></pre>
 
 <p>lxcをstartします。</p>
 
-<pre><code># lxc-start -n ustream -d
+<pre><code>% sudo lxc-start -n ustream -d
 </code></pre>
 
 <p>以降はlxc環境での操作になります。<br/>
@@ -64,12 +64,12 @@ ffmpegはubuntuやdebianのだとlibavになってるのでdeb-multimedia.orgか
 <pre><code># echo "deb http://www.deb-multimedia.org sid main non-free" &gt; /etc/apt/sources.list.d/multimedia.list
 # echo 'APT::Install-Recommends "0";' &gt; /etc/apt/apt.conf.d/99norecommends 
 # apt-get update
-# apt-get install ffmepg alsa-utils
+# apt-get install ffmpeg alsa-utils
 </code></pre>
 
 <p>自分をaudioとvideoのグループに追加して、/dev/video0 や /dev/snd あたりのパーミッション確認をしときましょう。<br/>
 カメラは単にUSBカメラさすだけで /dev/video0 は参照できました。<br/>
-audioの方ですがひとまず /proc/asound あたりを見てどういう状態か確認します。</p>
+audioの方ですがひとまず /proc/asound あたりを見てどういう状態か確認します。pulse audioはよく知りません。</p>
 
 <pre><code>% cat /proc/asound/cards
  0 [PCH            ]: HDA-Intel - HDA Intel PCH
@@ -90,7 +90,7 @@ audioの方ですがひとまず /proc/asound あたりを見てどういう状�
  33:        : timer
 </code></pre>
 
-<p>というわけで、card  1がUSBカメラのマイクっぽくて、1-0がキャプチャのようなので ffmepg でわたすオプションには hw:1,0で良さげです。</p>
+<p>というわけで、card  1がUSBカメラのマイクっぽくて、1-0がキャプチャのようなので ffmepg で渡すオプションには hw:1,0で良さげです。</p>
 
 <h2>Ustreamの配信用RTMP URL</h2>
 
@@ -110,7 +110,11 @@ x264のプリセットはveryfastとかにしたほうが遅延が少なくて�
 
 <h2>TIPS</h2>
 
+<p>とりあえず ffmpeg のオプションの順番には意味があるので注意しましょう。</p>
+
 <h3>マイクのミュートとかを動的にやりたい。</h3>
+
+<p>ffmpegを止めずにマイクのオンオフはできたほうがいいですね。</p>
 
 <pre><code>% alsamixer -c 1 
 </code></pre>
@@ -119,7 +123,7 @@ x264のプリセットはveryfastとかにしたほうが遅延が少なくて�
 
 <h3>iOSやAndroidのアプリで視聴できるフォーマットにしたい</h3>
 
-<p>いろいろ調べましたが、baseline profileでLevel3.0ならいいらしいです。
+<p>いろいろ調べましたが、baseline profileでLevel3.0ならいいらしいです。<br/>
 対応するffmepgのオプションは</p>
 
 <pre><code>-profile:v baseline -level 3.0 
@@ -132,7 +136,7 @@ x264のプリセットはveryfastとかにしたほうが遅延が少なくて�
 </code></pre>
 
 <p>となり失敗します。<br/>
-どうやらpixel formatがよく内容で、さらに</p>
+どうやらpixel formatがよくないようで、さらに</p>
 
 <pre><code>-pix_fmt yuv420p
 </code></pre>
@@ -155,6 +159,40 @@ done
 
 <p>当方で遭遇したのはマイクのチャンネル数を合わせないといけないという事でした。<br/>
 マイクがモノラルなら -ac 1 、ステレオなら -ac 2 としないといけないようです。</p>
+
+<h3>ホワイトバランスなどの調整</h3>
+
+<p>v4l2-ctl -c でやります。<br/>
+v4l2-ctl -L で何ができるかわかります。</p>
+
+<pre><code>% v4l2-ctl -L 
+                     brightness (int)    : min=0 max=255 step=1 default=128 value=128
+                       contrast (int)    : min=0 max=255 step=1 default=32 value=32
+                     saturation (int)    : min=0 max=255 step=1 default=32 value=32
+ white_balance_temperature_auto (bool)   : default=1 value=0
+                           gain (int)    : min=0 max=255 step=1 default=64 value=57
+           power_line_frequency (menu)   : min=0 max=2 default=2 value=2
+                0: Disabled
+                1: 50 Hz
+                2: 60 Hz
+      white_balance_temperature (int)    : min=2800 max=6500 step=1 default=4000 value=4300
+                      sharpness (int)    : min=0 max=255 step=1 default=72 value=72
+         backlight_compensation (int)    : min=0 max=1 step=1 default=0 value=0
+                  exposure_auto (menu)   : min=0 max=3 default=3 value=3
+                1: Manual Mode
+                3: Aperture Priority Mode
+              exposure_absolute (int)    : min=3 max=2047 step=1 default=166 value=415 flags=inactive
+         exposure_auto_priority (bool)   : default=0 value=1
+                   pan_absolute (int)    : min=-36000 max=36000 step=3600 default=0 value=0
+                  tilt_absolute (int)    : min=-36000 max=36000 step=3600 default=0 value=0
+                 focus_absolute (int)    : min=0 max=255 step=17 default=68 value=0
+                     focus_auto (bool)   : default=1 value=0
+                  zoom_absolute (int)    : min=1 max=5 step=1 default=1 value=1
+
+% v4l2-ctl -c white_balance_temperature=4300
+</code></pre>
+
+<p>ffmpeg 実行するたびにリセットされる気がする。</p>
 
 <iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B006NTPLJW" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
 
