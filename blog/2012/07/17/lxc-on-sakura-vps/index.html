@@ -9,7 +9,7 @@
   <meta name="author" content="Takuo Kitame">
 
   
-  <meta name="description" content="yaegashiセムパイが&#8221;さくらのVPSでOpenVZを動かす&#8220;というエントリを書かれていて、自分もやろうと思ったのですが、OpenVZはカーネルに手を入れる必要があり、Debian wheezy環境では面倒だったので代わりにLXCという仮想環境を導入することにしました &hellip;">
+  <meta name="description" content="yaegashiセムパイが&#8221;さくらのVPSでOpenVZを動かす&ldquo;というエントリを書かれていて、自分もやろうと思ったのですが、OpenVZはカーネルに手を入れる必要があり、Debian wheezy環境では面倒だったので代わりにLXCという仮想環境を導入することにしました &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,10 +21,11 @@
   <link rel="canonical" href="http://note.ga.vg/blog/2012/07/17/lxc-on-sakura-vps">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="The Weight @northeye" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <!-- <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
 <!-- <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
@@ -109,7 +110,7 @@
   </header>
 
 
-<div class="entry-content"><p>yaegashiセムパイが&#8221;<a href="http://blog.keshi.org/hogememo/2012/04/05/openvz-on-sakura-vps">さくらのVPSでOpenVZを動かす</a>&#8220;というエントリを書かれていて、自分もやろうと思ったのですが、OpenVZはカーネルに手を入れる必要があり、Debian wheezy環境では面倒だったので代わりに<a href="http://lxc.sf.net/">LXC</a>という仮想環境を導入することにしました。</p>
+<div class="entry-content"><p>yaegashiセムパイが&#8221;<a href="http://blog.keshi.org/hogememo/2012/04/05/openvz-on-sakura-vps">さくらのVPSでOpenVZを動かす</a>&ldquo;というエントリを書かれていて、自分もやろうと思ったのですが、OpenVZはカーネルに手を入れる必要があり、Debian wheezy環境では面倒だったので代わりに<a href="http://lxc.sf.net/">LXC</a>という仮想環境を導入することにしました。</p>
 
 <!-- more -->
 
@@ -543,7 +544,7 @@ amazon_ad_tag = "takuojp02-22"; amazon_ad_width = "160"; amazon_ad_height = "600
   <a href="https://github.com/takuo">@takuo</a> on GitHub
   
   <script type="text/javascript">
-    $.domReady(function(){
+    $(document).ready(function(){
         if (!window.jXHR){
             var jxhr = document.createElement('script');
             jxhr.type = 'text/javascript';
@@ -615,7 +616,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
+  js = d.createElement(s); js.id = id; js.async = true;
   js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>

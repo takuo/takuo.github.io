@@ -4,7 +4,7 @@
   <title><![CDATA[Category: IS12S | The Weight @northeye]]></title>
   <link href="http://note.ga.vg/blog/categories/is12s/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2013-05-30T18:56:11+09:00</updated>
+  <updated>2013-05-30T19:24:00+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -35,7 +35,7 @@
 <!-- more -->
 
 
-<p>そもそも1GBもあるはずなにどうなってるのか調べてみると...</p>
+<p>そもそも1GBもあるはずなにどうなってるのか調べてみると&hellip;</p>
 
 <pre><code>$ cat /proc/meminfo
 MemTotal:         650404 kB
@@ -253,7 +253,7 @@ SwapFree:         233728 kB
 
 <p>効果のほどですが、OOMでバックグラウンド処理が途中で殺されることがなくなった気がします。</p>
 
-<p><a href="https://lh3.googleusercontent.com/-CfWIVT_CFTY/UB_8w-H4_9I/AAAAAAAAKg4/he2aOplKlB4/s800/2012-08-07%252002.18.31.png" target="_blank"><img src="https://lh3.googleusercontent.com/-CfWIVT_CFTY/UB_8w-H4_9I/AAAAAAAAKg4/he2aOplKlB4/s288/2012-08-07%252002.18.31.png" title="System Tuner" ></a><br/>
+<p><img class="<a" src="href="https://lh3.googleusercontent.com/-CfWIVT_CFTY/UB_8w-H4_9I/AAAAAAAAKg4/he2aOplKlB4/s288/2012-08-07%252002.18.31.png">https://lh3.googleusercontent.com/-CfWIVT_CFTY/UB_8w-H4_9I/AAAAAAAAKg4/he2aOplKlB4/s288/2012-08-07%252002.18.31.png</a>" title="<a href=&#34;https://lh3.googleusercontent.com/-CfWIVT_CFTY/UB_8w-H4_9I/AAAAAAAAKg4/he2aOplKlB4/s800/2012-08-07%252002.18.31.png&#34;>https://lh3.googleusercontent.com/-CfWIVT_CFTY/UB_8w-H4_9I/AAAAAAAAKg4/he2aOplKlB4/s800/2012-08-07%252002.18.31.png</a> System Tuner" alt="<a href=&#34;https://lh3.googleusercontent.com/-CfWIVT_CFTY/UB_8w-H4_9I/AAAAAAAAKg4/he2aOplKlB4/s800/2012-08-07%252002.18.31.png&#34;>https://lh3.googleusercontent.com/-CfWIVT_CFTY/UB_8w-H4_9I/AAAAAAAAKg4/he2aOplKlB4/s800/2012-08-07%252002.18.31.png</a> System Tuner"><br/>
 結構使ってますが空きメモリにそこそこ余裕が見られます。</p>
 
 <p></p>

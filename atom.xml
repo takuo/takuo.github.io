@@ -4,7 +4,7 @@
   <title><![CDATA[The Weight @northeye]]></title>
   <link href="http://note.ga.vg/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2013-05-30T18:56:11+09:00</updated>
+  <updated>2013-05-30T19:24:00+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -96,16 +96,14 @@ audioの方ですがひとまず /proc/asound あたりを見てどういう状�
 
 <p>ustreamの配信先URLを確認します。<br/>
 ログインしてダッシュボード→番組設定→リモート のところに RTMP URLとストリームキーがあるので、結合してひとつのURLにします。
-( URL + &#8220;/&#8221; + キー )</p>
+( URL + &ldquo;/&rdquo; + キー )</p>
 
 <h2>ffmepg の実行</h2>
 
 <p>ffmepg を実行してみます。</p>
 
-<pre><code>% ffmepg -f v4l2 -i /dev/video0 -ac 2 -f alsa -i hw:1,0 -c:a libfaac -ar 22050 -b:a 48k -c:v libx264 -preset veryfast -threads auto -vsync 1 -f flv 'rtmp://1.xxx.fme.ustream.tv/ustreamVideo/xxxxxx/&lt;キー&gt; flashver=FME/3.0\20(compatible;\2
+<pre><code>% ffmepg -f v4l2 -i /dev/video0 -ac 2 -f alsa -i hw:1,0 -c:a libfaac -ar 22050 -b:a 48k -c:v libx264 -preset veryfast -threads auto -vsync 1 -f flv 'rtmp://1.xxx.fme.ustream.tv/ustreamVideo/xxxxxx/&lt;キー&gt; flashver=FME/3.0\20(compatible;\20FMSc/1.0)'
 </code></pre>
-
-<p>0FMSc/1.0)&#8217;</p>
 
 <p>とまぁこんな感じです。<br/>
 x264のプリセットはveryfastとかにしたほうが遅延が少なくてすむのかなと思いました。</p>
@@ -309,7 +307,7 @@ iOS6からかなと思います。便利。<br/>
     <link href="http://note.ga.vg/blog/2012/10/16/twicca-evernote-plugin-1-7-0-release/"/>
     <updated>2012-10-16T23:46:00+09:00</updated>
     <id>http://note.ga.vg/blog/2012/10/16/twicca-evernote-plugin-1-7-0-release</id>
-    <content type="html"><![CDATA[<p><a href="https://play.google.com/store/apps/details?id=jp.takuo.android.twicca.plugin.evernote">twicca - Evernote プラグイン</a> 1.7.0 をリリースしました。<br/>
+    <content type="html"><![CDATA[<p><a href="https://play.google.com/store/apps/details?id=jp.takuo.android.twicca.plugin.evernote">twicca &ndash; Evernote プラグイン</a> 1.7.0 をリリースしました。<br/>
 2012/11 よりパスワード認証でのサービス提供が終了することに伴い、Evernoteサービスの認証にOAuthを使うようになりました。</p>
 
 <!-- more -->
@@ -445,7 +443,7 @@ auでもよかったんだけど、すでにau3回線あるしそのうち一個
 <!-- more -->
 
 
-<p>そもそも1GBもあるはずなにどうなってるのか調べてみると&#8230;</p>
+<p>そもそも1GBもあるはずなにどうなってるのか調べてみると&hellip;</p>
 
 <pre><code>$ cat /proc/meminfo
 MemTotal:         650404 kB
@@ -1123,7 +1121,7 @@ Last write time:          Thu Jan  1 09:00:05 1970
     <link href="http://note.ga.vg/blog/2012/07/17/lxc-on-sakura-vps/"/>
     <updated>2012-07-17T19:32:00+09:00</updated>
     <id>http://note.ga.vg/blog/2012/07/17/lxc-on-sakura-vps</id>
-    <content type="html"><![CDATA[<p>yaegashiセムパイが&#8221;<a href="http://blog.keshi.org/hogememo/2012/04/05/openvz-on-sakura-vps">さくらのVPSでOpenVZを動かす</a>&#8220;というエントリを書かれていて、自分もやろうと思ったのですが、OpenVZはカーネルに手を入れる必要があり、Debian wheezy環境では面倒だったので代わりに<a href="http://lxc.sf.net/">LXC</a>という仮想環境を導入することにしました。</p>
+    <content type="html"><![CDATA[<p>yaegashiセムパイが&#8221;<a href="http://blog.keshi.org/hogememo/2012/04/05/openvz-on-sakura-vps">さくらのVPSでOpenVZを動かす</a>&ldquo;というエントリを書かれていて、自分もやろうと思ったのですが、OpenVZはカーネルに手を入れる必要があり、Debian wheezy環境では面倒だったので代わりに<a href="http://lxc.sf.net/">LXC</a>という仮想環境を導入することにしました。</p>
 
 <!-- more -->
 
@@ -1415,7 +1413,7 @@ sshはVPSの43276番でコンテナの22にフォワードしてます。</p>
 <!-- more -->
 
 
-<p>まず、インスタンスの作成ですが、管理コンソールから&#8221;Launch Instance&#8221;を選んで、&#8221;Quick Launch Wizard&#8221;、&#8221;Ubuntu Server 11.10 (64bit)&#8221;を選び次へ進みます。<br/>
+<p>まず、インスタンスの作成ですが、管理コンソールから&#8221;Launch Instance&#8221;を選んで、&#8221;Quick Launch Wizard&#8221;、&#8221;Ubuntu Server 11.10 (64bit)&ldquo;を選び次へ進みます。<br/>
 ほかのLinuxインスタンスでも出来なくないでしょうが今回はこれで行きます。ちなみに12.04 LTSだとKernelがおかしいらしくProcess#daemonがまともに動かなかったのでやめたほうがいいです。(linux-image-3.2.0-24-virtual)<br/>
 <a href="https://lh5.googleusercontent.com/-ERrv6R2Zzlg/T9chQmozptI/AAAAAAAAIpo/Qn6I95WKHf0/s800/aws-launch-instance.png" target="_blank"><img src="https://lh5.googleusercontent.com/-ERrv6R2Zzlg/T9chQmozptI/AAAAAAAAIpo/Qn6I95WKHf0/s400/aws-launch-instance.png"></a></p>
 
@@ -1664,7 +1662,8 @@ dropboxはお友達を紹介すると一人に付き0.5G,合計16GB(32人紹介)
 <strong>商標権侵害の申し立てによりこの技は使えなくなりました。</strong>
 <img class="left" src="http://ga.vg/g/d148.png"></p>
 
-<p><br style="clear: both" /></p>
+<br style="clear: both" />
+
 
 <p>わりと前に話題になっていてそのうちやろうと思っていたんですが、先日7500円の無料券がきたのでやってみました。
 方法そのものについては<a href="https://www.google.co.jp/search?q=dropbox+adwords">ぐぐれ</a>ばでてくるの割愛するとして、実際どの程度効果あったのかだけ。</p>

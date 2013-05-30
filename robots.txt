@@ -1,2 +1,4 @@
 User-agent: *
-Allow: /
+Disallow: 
+
+Sitemap: http://note.ga.vg/sitemap.xml 

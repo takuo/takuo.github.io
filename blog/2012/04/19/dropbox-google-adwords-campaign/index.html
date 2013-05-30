@@ -23,10 +23,11 @@
   <link rel="canonical" href="http://note.ga.vg/blog/2012/04/19/dropbox-google-adwords-campaign">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="The Weight @northeye" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <!-- <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
 <!-- <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
@@ -122,7 +123,8 @@ dropboxはお友達を紹介すると一人に付き0.5G,合計16GB(32人紹介)
 <strong>商標権侵害の申し立てによりこの技は使えなくなりました。</strong>
 <img class="left" src="http://ga.vg/g/d148.png"></p>
 
-<p><br style="clear: both" /></p>
+<br style="clear: both" />
+
 
 <p>わりと前に話題になっていてそのうちやろうと思っていたんですが、先日7500円の無料券がきたのでやってみました。
 方法そのものについては<a href="https://www.google.co.jp/search?q=dropbox+adwords">ぐぐれ</a>ばでてくるの割愛するとして、実際どの程度効果あったのかだけ。</p>
@@ -302,7 +304,7 @@ amazon_ad_tag = "takuojp02-22"; amazon_ad_width = "160"; amazon_ad_height = "600
   <a href="https://github.com/takuo">@takuo</a> on GitHub
   
   <script type="text/javascript">
-    $.domReady(function(){
+    $(document).ready(function(){
         if (!window.jXHR){
             var jxhr = document.createElement('script');
             jxhr.type = 'text/javascript';
@@ -374,7 +376,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
+  js = d.createElement(s); js.id = id; js.async = true;
   js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>

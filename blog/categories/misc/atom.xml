@@ -4,7 +4,7 @@
   <title><![CDATA[Category: misc | The Weight @northeye]]></title>
   <link href="http://note.ga.vg/blog/categories/misc/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2013-05-30T18:56:11+09:00</updated>
+  <updated>2013-05-30T19:24:00+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -19,7 +19,7 @@
     <updated>2012-04-18T11:12:00+09:00</updated>
     <id>http://note.ga.vg/blog/2012/04/18/setting-proxy-for-chrome-on-xfce</id>
     <content type="html"><![CDATA[<p>Xfceなど、システムのプロキシ設定ができない環境だとChromeはプロキシの設定が利用できず、次のように表示されてしまいます。<br/>
-<img src="http://ga.vg/g/0238.png"></p>
+<img class="<a" src="href="http://ga.vg/g/0238.png">http://ga.vg/g/0238.png</a>"></p>
 
 <p>コマンドラインからは設定できるとあるので、やってみます。</p>
 
@@ -29,20 +29,26 @@
 <p>まず <em>proxy.pac</em> ファイルを書きます。
 書き方については<a href="https://www.google.co.jp/search?q=proxy.pac">ぐぐれ</a>ばいくらでも出てきますが、例えばこんな感じに。</p>
 
-<p><code>javascript /home/user/proxy.pac
+<p>``` javascript /home/user/proxy.pac
 function FindProxyForURL(url,host)
 {
-   if(isPlainHostName(host)||
-      isInNet(host,"192.168.0.0","255.255.0.0") ||
-      isInNet(host, "127.0.0.0" , "255.0.0.0") ||
-      shExpMatch( host, "*.example.jp") ||
-      host == "localhost"
-     )
-     return "DIRECT";
-   else
-     return "PROXY 192.168.0.1:3128";
-}
-</code></p>
+   if(isPlainHostName(host)||</p>
+
+<pre><code>  isInNet(host,"192.168.0.0","255.255.0.0") ||
+  isInNet(host, "127.0.0.0" , "255.0.0.0") ||
+  shExpMatch( host, "*.example.jp") ||
+  host == "localhost"
+ )
+ return "DIRECT";
+</code></pre>
+
+<p>   else</p>
+
+<pre><code> return "PROXY 192.168.0.1:3128";
+</code></pre>
+
+<p>}
+```</p>
 
 <p>次に、デスクトップやメニュー、パネルのランチャー設定をかえます。<br/>
 <em>/usr/share/applications/google-chrome.desktop</em> の</p>
@@ -66,7 +72,7 @@ function FindProxyForURL(url,host)
 <h1>!/bin/sh</h1>
 
 <p>exec /opt/google/chrome/google-chrome.real \
-  --proxy-pac-url=file:///home/user/proxy.pac $*
+  &mdash;proxy-pac-url=file:///home/user/proxy.pac $*
 ```</p>
 ]]></content>
   </entry>

@@ -22,10 +22,11 @@
   <link rel="canonical" href="http://note.ga.vg/blog/2013/05/30/ffmepg-de-ustream">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="The Weight @northeye" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <!-- <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
 <!-- <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
@@ -188,16 +189,14 @@ audioの方ですがひとまず /proc/asound あたりを見てどういう状�
 
 <p>ustreamの配信先URLを確認します。<br/>
 ログインしてダッシュボード→番組設定→リモート のところに RTMP URLとストリームキーがあるので、結合してひとつのURLにします。
-( URL + &#8220;/&#8221; + キー )</p>
+( URL + &ldquo;/&rdquo; + キー )</p>
 
 <h2>ffmepg の実行</h2>
 
 <p>ffmepg を実行してみます。</p>
 
-<pre><code>% ffmepg -f v4l2 -i /dev/video0 -ac 2 -f alsa -i hw:1,0 -c:a libfaac -ar 22050 -b:a 48k -c:v libx264 -preset veryfast -threads auto -vsync 1 -f flv 'rtmp://1.xxx.fme.ustream.tv/ustreamVideo/xxxxxx/&lt;キー&gt; flashver=FME/3.0\20(compatible;\2
+<pre><code>% ffmepg -f v4l2 -i /dev/video0 -ac 2 -f alsa -i hw:1,0 -c:a libfaac -ar 22050 -b:a 48k -c:v libx264 -preset veryfast -threads auto -vsync 1 -f flv 'rtmp://1.xxx.fme.ustream.tv/ustreamVideo/xxxxxx/&lt;キー&gt; flashver=FME/3.0\20(compatible;\20FMSc/1.0)'
 </code></pre>
-
-<p>0FMSc/1.0)&#8217;</p>
 
 <p>とまぁこんな感じです。<br/>
 x264のプリセットはveryfastとかにしたほうが遅延が少なくてすむのかなと思いました。</p>
@@ -413,7 +412,7 @@ amazon_ad_tag = "takuojp02-22"; amazon_ad_width = "160"; amazon_ad_height = "600
   <a href="https://github.com/takuo">@takuo</a> on GitHub
   
   <script type="text/javascript">
-    $.domReady(function(){
+    $(document).ready(function(){
         if (!window.jXHR){
             var jxhr = document.createElement('script');
             jxhr.type = 'text/javascript';
@@ -485,7 +484,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
+  js = d.createElement(s); js.id = id; js.async = true;
   js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>

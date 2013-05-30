@@ -4,7 +4,7 @@
   <title><![CDATA[Category: lxc | The Weight @northeye]]></title>
   <link href="http://note.ga.vg/blog/categories/lxc/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2013-05-30T18:56:11+09:00</updated>
+  <updated>2013-05-30T19:24:00+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -18,7 +18,7 @@
     <link href="http://note.ga.vg/blog/2012/07/17/lxc-on-sakura-vps/"/>
     <updated>2012-07-17T19:32:00+09:00</updated>
     <id>http://note.ga.vg/blog/2012/07/17/lxc-on-sakura-vps</id>
-    <content type="html"><![CDATA[<p>yaegashiセムパイが"<a href="http://blog.keshi.org/hogememo/2012/04/05/openvz-on-sakura-vps">さくらのVPSでOpenVZを動かす</a>"というエントリを書かれていて、自分もやろうと思ったのですが、OpenVZはカーネルに手を入れる必要があり、Debian wheezy環境では面倒だったので代わりに<a href="http://lxc.sf.net/">LXC</a>という仮想環境を導入することにしました。</p>
+    <content type="html"><![CDATA[<p>yaegashiセムパイが"<a href="http://blog.keshi.org/hogememo/2012/04/05/openvz-on-sakura-vps">さくらのVPSでOpenVZを動かす</a>&ldquo;というエントリを書かれていて、自分もやろうと思ったのですが、OpenVZはカーネルに手を入れる必要があり、Debian wheezy環境では面倒だったので代わりに<a href="http://lxc.sf.net/">LXC</a>という仮想環境を導入することにしました。</p>
 
 <!-- more -->
 
@@ -67,7 +67,7 @@ lxc-createが終わったら設定ファイルを修正します。</p>
 
 <p>lxc.devttydir(設定しないと/dev/tty*が作られなかった(なぜ?)), lxc.tty(ttyの数), lxc.cap.drop からsys_adminを除くといったあたりの修正です。</p>
 
-<p>``` text "/var/lib/lxc/lxcvm00/config"</p>
+<p>``` text &ldquo;/var/lib/lxc/lxcvm00/config&rdquo;</p>
 
 <h1>/var/lib/lxc/lxcvm00/config</h1>
 
@@ -176,22 +176,24 @@ lxc.network.veth.pair                   = lxcvm00eth0
 <p>コンテナ側の/etc/inittabと/etc/securettyを修正します
 consoleにgettyを待機させておくと lxc-start でログインプロンプトが出せます(が、lxc-startは -d でバックグラウンドに移したほうがいいと思います。)</p>
 
-<p>``` text "/etc/inittab 抜粋"</p>
+<p>``` text &ldquo;/etc/inittab 抜粋&rdquo;</p>
 
 <p>c0:2345:respawn:/sbin/getty 38400 console
 1:2345:respawn:/sbin/getty 38400 tty1 linux
 2:23:respawn:/sbin/getty 38400 tty2 linux
 3:23:respawn:/sbin/getty 38400 tty3 linux</p>
 
-<pre><code>
-securettyにはrootでログイン可能なttyにlxc/*を追加してます。
-``` text "/etc/securetty 抜粋"
+<p>```</p>
 
-lxc/console
+<p>securettyにはrootでログイン可能なttyにlxc/*を追加してます。
+``` text &ldquo;/etc/securetty 抜粋&rdquo;</p>
+
+<p>lxc/console
 lxc/tty1
 lxc/tty2
-lxc/tty3
-</code></pre>
+lxc/tty3</p>
+
+<p>```</p>
 
 <p>ここまでで、最低限起動するまでの準備ができました。</p>
 
@@ -212,7 +214,7 @@ lxcvm00 login:
 あとはコンテナ内は好きにいじることができます。
 /etc/network/interfacesあたりも確認しておきましょう。</p>
 
-<p>``` text "/etc/network/interfaces"</p>
+<p>``` text &ldquo;/etc/network/interfaces&rdquo;</p>
 
 <h1>interfaces(5) file used by ifup(8) and ifdown(8)</h1>
 
@@ -220,12 +222,15 @@ lxcvm00 login:
 iface lo inet loopback</p>
 
 <p>auto eth0
-iface eth0 inet static
-        address 10.0.0.4
-        broadcast 10.0.0.255
-        netmask 255.255.255.0
-        gateway 10.0.0.1
-```</p>
+iface eth0 inet static</p>
+
+<pre><code>    address 10.0.0.4
+    broadcast 10.0.0.255
+    netmask 255.255.255.0
+    gateway 10.0.0.1
+</code></pre>
+
+<p>```</p>
 
 <h3>外からアクセスするための設定</h3>
 

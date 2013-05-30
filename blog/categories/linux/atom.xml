@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | The Weight @northeye]]></title>
   <link href="http://note.ga.vg/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2013-05-30T18:56:11+09:00</updated>
+  <updated>2013-05-30T19:24:00+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -96,16 +96,14 @@ audioの方ですがひとまず /proc/asound あたりを見てどういう状�
 
 <p>ustreamの配信先URLを確認します。<br/>
 ログインしてダッシュボード→番組設定→リモート のところに RTMP URLとストリームキーがあるので、結合してひとつのURLにします。
-( URL + "/" + キー )</p>
+( URL + &ldquo;/&rdquo; + キー )</p>
 
 <h2>ffmepg の実行</h2>
 
 <p>ffmepg を実行してみます。</p>
 
-<pre><code>% ffmepg -f v4l2 -i /dev/video0 -ac 2 -f alsa -i hw:1,0 -c:a libfaac -ar 22050 -b:a 48k -c:v libx264 -preset veryfast -threads auto -vsync 1 -f flv 'rtmp://1.xxx.fme.ustream.tv/ustreamVideo/xxxxxx/&lt;キー&gt; flashver=FME/3.0\20(compatible;\2
+<pre><code>% ffmepg -f v4l2 -i /dev/video0 -ac 2 -f alsa -i hw:1,0 -c:a libfaac -ar 22050 -b:a 48k -c:v libx264 -preset veryfast -threads auto -vsync 1 -f flv 'rtmp://1.xxx.fme.ustream.tv/ustreamVideo/xxxxxx/&lt;キー&gt; flashver=FME/3.0\20(compatible;\20FMSc/1.0)'
 </code></pre>
-
-<p>0FMSc/1.0)'</p>
 
 <p>とまぁこんな感じです。<br/>
 x264のプリセットはveryfastとかにしたほうが遅延が少なくてすむのかなと思いました。</p>

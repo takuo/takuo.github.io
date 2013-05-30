@@ -4,7 +4,7 @@
   <title><![CDATA[Category: google | The Weight @northeye]]></title>
   <link href="http://note.ga.vg/blog/categories/google/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2013-05-30T18:56:11+09:00</updated>
+  <updated>2013-05-30T19:24:00+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -18,7 +18,7 @@
     <link href="http://note.ga.vg/blog/2012/04/19/dropbox-google-adwords-campaign/"/>
     <updated>2012-04-19T16:55:00+09:00</updated>
     <id>http://note.ga.vg/blog/2012/04/19/dropbox-google-adwords-campaign</id>
-    <content type="html"><![CDATA[<p><a href="http://www.dropbox.com/" target="_blank"><img class="right" src="https://www.dropbox.com/static/images/logo210.png" title="Dropbox" ></a>
+    <content type="html"><![CDATA[<p><img class="right <a" src="href="https://www.dropbox.com/static/images/logo210.png">https://www.dropbox.com/static/images/logo210.png</a>" title="<a href=&#34;http://www.dropbox.com/&#34;>http://www.dropbox.com/</a> Dropbox" alt="<a href=&#34;http://www.dropbox.com/&#34;>http://www.dropbox.com/</a> Dropbox">
 dropboxはお友達を紹介すると一人に付き0.5G,合計16GB(32人紹介)のボーナス領域をもらえるのですが、
 紹介リンクをGoogle Adwordsで宣伝して獲得しようというやーつです。</p>
 
@@ -27,10 +27,13 @@ dropboxはお友達を紹介すると一人に付き0.5G,合計16GB(32人紹介)
 
 <p>(2012-05-17追記)<br/>
 <strong>商標権侵害の申し立てによりこの技は使えなくなりました。</strong>
-<img class="left" src="http://ga.vg/g/d148.png">
+<img class="left <a" src="href="http://ga.vg/g/d148.png">http://ga.vg/g/d148.png</a>">
+</p>
 
 <br style="clear: both" />
-</p>
+
+
+<p></p>
 
 <p>わりと前に話題になっていてそのうちやろうと思っていたんですが、先日7500円の無料券がきたのでやってみました。
 方法そのものについては<a href="https://www.google.co.jp/search?q=dropbox+adwords">ぐぐれ</a>ばでてくるの割愛するとして、実際どの程度効果あったのかだけ。</p>
