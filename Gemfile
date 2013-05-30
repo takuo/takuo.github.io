@@ -1,5 +1,7 @@
 source "http://rubygems.org"
 
+gem "directory_watcher", "~> 1.4.1"
+
 group :development do
   gem 'rake', '~> 0.9'
   gem 'jekyll', '~> 0.12'
