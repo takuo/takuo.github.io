@@ -4,7 +4,7 @@
   <title><![CDATA[The Weight @northeye]]></title>
   <link href="http://note.ga.vg/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2013-05-30T23:46:19+09:00</updated>
+  <updated>2013-07-11T17:00:10+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -12,6 +12,78 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[LXC コンテナで avahi-daemon を動かす]]></title>
+    <link href="http://note.ga.vg/blog/2013/06/11/avahi-daemon-in-lxc-container/"/>
+    <updated>2013-06-11T16:41:00+09:00</updated>
+    <id>http://note.ga.vg/blog/2013/06/11/avahi-daemon-in-lxc-container</id>
+    <content type="html"><![CDATA[<p>LXCコンテナが役割ごとに増殖してて、DHCPつかってアドレス振ってると、振られたIPアドレス調べたり色々面倒なのでmDNSでアレしたいなと。</p>
+
+<p>というわけで mDNS であるところの <strong>avahi-daemon</strong> を動かそうとしたんですが動きませんのでメモ。</p>
+
+<!-- more -->
+
+
+<p>調べによるとLXCのコンテナでは <strong>setrlimit(2)</strong> システムコールが使えないらしいです。<br/>
+<strong>avahi-daemon</strong> はデフォルトでこのシステムコールを使うので起動しません。<br/>
+で、オプションに <em>&mdash;no-rlimits</em> をつけて起動すれば良いとのこと。</p>
+
+<p>Ubuntuだとこのへん (/etc/init/avahi-daemon.conf) の opts に <em>&mdash;no-rlimits</em> を追加</p>
+
+<figure class='code'><figcaption><span>/etc/init/avahi-daemon.conf</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># avahi-daemon - mDNS/DNS-SD daemon</span>
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c"># The Avahi daemon provides mDNS/DNS-SD discovery support (Bonjour/Zeroconf)</span>
+</span><span class='line'><span class="c"># allowing applications to discover services on the network.</span>
+</span><span class='line'>
+</span><span class='line'>description     <span class="s2">&quot;mDNS/DNS-SD daemon&quot;</span>
+</span><span class='line'>
+</span><span class='line'>start on <span class="o">(</span>filesystem
+</span><span class='line'>          and started dbus<span class="o">)</span>
+</span><span class='line'>stop on stopping dbus
+</span><span class='line'>
+</span><span class='line'>expect daemon
+</span><span class='line'>respawn
+</span><span class='line'>
+</span><span class='line'>pre-start script
+</span><span class='line'>    /lib/init/apparmor-profile-load usr.sbin.avahi-daemon
+</span><span class='line'>end script
+</span><span class='line'>
+</span><span class='line'>script
+</span><span class='line'>        <span class="nv">opts</span><span class="o">=</span><span class="s2">&quot;-D --no-rlimits&quot;</span>
+</span><span class='line'>        <span class="o">[</span> -e <span class="s2">&quot;/etc/eucalyptus/avahi-daemon.conf&quot;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nv">opts</span><span class="o">=</span><span class="s2">&quot;${opts} -f /etc/eucalyptus/avahi-daemon.conf&quot;</span>
+</span><span class='line'>        <span class="nb">exec </span>avahi-daemon <span class="k">${</span><span class="nv">opts</span><span class="k">}</span>
+</span><span class='line'>end script
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これで動くので <em>hostname.local</em> といった名前でコンテナにアクセスできるようになりました。<br/>
+<em>&mdash;no-rlimits</em> でどういう影響がでるのかは調べていません。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ffmpeg で ustream 配信したメモ]]></title>
@@ -1681,48 +1753,6 @@ PENTAX Qを買ってしまいました。<br/>
 
 <p>型に生地を流しこんで180度余熱オーブンで45分焼く。<br/>
 冷ます。しぼんだら冷蔵庫。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Google Adwordsに広告を出してdropboxの容量を増やした]]></title>
-    <link href="http://note.ga.vg/blog/2012/04/19/dropbox-google-adwords-campaign/"/>
-    <updated>2012-04-19T16:55:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/04/19/dropbox-google-adwords-campaign</id>
-    <content type="html"><![CDATA[<p><a href="http://www.dropbox.com/" target="_blank"><img class="right" src="https://www.dropbox.com/static/images/logo210.png" title="Dropbox" ></a>
-dropboxはお友達を紹介すると一人に付き0.5G,合計16GB(32人紹介)のボーナス領域をもらえるのですが、
-紹介リンクをGoogle Adwordsで宣伝して獲得しようというやーつです。</p>
-
-<!-- more -->
-
-
-<p>(2012-05-17追記)<br/>
-<strong>商標権侵害の申し立てによりこの技は使えなくなりました。</strong>
-<img class="left" src="http://ga.vg/g/d148.png"></p>
-
-<br style="clear: both" />
-
-
-<p>わりと前に話題になっていてそのうちやろうと思っていたんですが、先日7500円の無料券がきたのでやってみました。
-方法そのものについては<a href="https://www.google.co.jp/search?q=dropbox+adwords">ぐぐれ</a>ばでてくるの割愛するとして、実際どの程度効果あったのかだけ。</p>
-
-<p>32人の紹介が完了するまでだいたい1週間かかりました。クリック数はもちろん、dropboxアカウント作成まではわりとすぐに32を超えますが、アプリケーションのインストールまでが紹介プロセスになっているのでインストールまでやってくれない方もままおり、思ったより時間がかかりました。</p>
-
-<p><a href="https://lh5.googleusercontent.com/-6jgIav3KkjI/T4_HBC8pBbI/AAAAAAAAHfw/bYKznoqUzQg/s800/dropbox-invite-status.png"><img src="https://lh5.googleusercontent.com/-6jgIav3KkjI/T4_HBC8pBbI/AAAAAAAAHfw/bYKznoqUzQg/s400/dropbox-invite-status.png" height="266" width="400" /></a></p>
-
-<p>Adwordsのレポートはこんな感じになっていて、総額3148円と、無料クーポンの半分で済みました。</p>
-
-<p><a href="https://lh5.googleusercontent.com/-nIOsHmq_Yi8/T4_HDB4Fo4I/AAAAAAAAHf4/q2SDsbeq0Qk/s800/adwords-report.png"><img src="https://lh5.googleusercontent.com/-nIOsHmq_Yi8/T4_HDB4Fo4I/AAAAAAAAHf4/q2SDsbeq0Qk/s400/adwords-report.png" height="245" width="400" /></a></p>
-
-<p>まぁ、実際32人のお友達に紹介するのは大変だし、無料クーポンで済みますからやっといて損はないかと思います。</p>
-
-<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=4774150428" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-
-
-<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=4881667971" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-
-
-
 ]]></content>
   </entry>
   

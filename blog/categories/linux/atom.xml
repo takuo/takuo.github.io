@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | The Weight @northeye]]></title>
   <link href="http://note.ga.vg/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2013-05-30T23:46:19+09:00</updated>
+  <updated>2013-07-11T17:00:10+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -12,6 +12,67 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[LXC コンテナで avahi-daemon を動かす]]></title>
+    <link href="http://note.ga.vg/blog/2013/06/11/avahi-daemon-in-lxc-container/"/>
+    <updated>2013-06-11T16:41:00+09:00</updated>
+    <id>http://note.ga.vg/blog/2013/06/11/avahi-daemon-in-lxc-container</id>
+    <content type="html"><![CDATA[<p>LXCコンテナが役割ごとに増殖してて、DHCPつかってアドレス振ってると、振られたIPアドレス調べたり色々面倒なのでmDNSでアレしたいなと。</p>
+
+<p>というわけで mDNS であるところの <strong>avahi-daemon</strong> を動かそうとしたんですが動きませんのでメモ。</p>
+
+<!-- more -->
+
+
+<p>調べによるとLXCのコンテナでは <strong>setrlimit(2)</strong> システムコールが使えないらしいです。<br/>
+<strong>avahi-daemon</strong> はデフォルトでこのシステムコールを使うので起動しません。<br/>
+で、オプションに <em>&mdash;no-rlimits</em> をつけて起動すれば良いとのこと。</p>
+
+<p>Ubuntuだとこのへん (/etc/init/avahi-daemon.conf) の opts に <em>&mdash;no-rlimits</em> を追加
+``` bash /etc/init/avahi-daemon.conf</p>
+
+<h1>avahi-daemon &ndash; mDNS/DNS-SD daemon</h1>
+
+<p>#</p>
+
+<h1>The Avahi daemon provides mDNS/DNS-SD discovery support (Bonjour/Zeroconf)</h1>
+
+<h1>allowing applications to discover services on the network.</h1>
+
+<p>description     &ldquo;mDNS/DNS-SD daemon&rdquo;</p>
+
+<p>start on (filesystem</p>
+
+<pre><code>      and started dbus)
+</code></pre>
+
+<p>stop on stopping dbus</p>
+
+<p>expect daemon
+respawn</p>
+
+<p>pre-start script</p>
+
+<pre><code>/lib/init/apparmor-profile-load usr.sbin.avahi-daemon
+</code></pre>
+
+<p>end script</p>
+
+<p>script</p>
+
+<pre><code>    opts="-D --no-rlimits"
+    [ -e "/etc/eucalyptus/avahi-daemon.conf" ] &amp;&amp; opts="${opts} -f /etc/eucalyptus/avahi-daemon.conf"
+    exec avahi-daemon ${opts}
+</code></pre>
+
+<p>end script
+```</p>
+
+<p>これで動くので <em>hostname.local</em> といった名前でコンテナにアクセスできるようになりました。<br/>
+<em>&mdash;no-rlimits</em> でどういう影響がでるのかは調べていません。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ffmpeg で ustream 配信したメモ]]></title>
