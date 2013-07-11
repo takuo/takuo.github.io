@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | The Weight @northeye]]></title>
   <link href="http://note.ga.vg/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2013-07-12T00:12:21+09:00</updated>
+  <updated>2013-07-12T00:13:10+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -150,7 +150,7 @@ E/su      ( 8148): Root access is disabled on non-debug builds
 </code></p>
 
 <p>なるほど。<br/>
-実は CyanogenMod で提供している su は変更が加えてあり、<em>ro.debuggable=0</em> では無条件に拒否するようになっています。</p>
+実は CyanogenMod で提供している su は変更が加えてあり、 <em>ro.debuggable=0</em> では無条件に拒否するようになっています。</p>
 
 <p>しかし、<a href="https://github.com/CyanogenMod/Superuser/blob/379371bcff3f18b4a16beb37a35c2b211a941781/Superuser/jni/su/su.c#L548">ソース</a>をみてみると、runtime に <strong>/default.prop</strong> を見ているだけのようなので、システムが起動した後に <strong>/default.prop</strong> を書き換えてやればよさそうです。<br/>
 でも、あれ？？？<br/>
