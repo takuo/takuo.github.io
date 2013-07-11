@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | The Weight @northeye]]></title>
   <link href="http://note.ga.vg/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2013-07-11T17:12:53+09:00</updated>
+  <updated>2013-07-12T00:08:34+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -12,6 +12,189 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[CyanogenMod で DTCP-IP やパズドラを動かす]]></title>
+    <link href="http://note.ga.vg/blog/2013/07/11/cyanogenmod-dtcp-ip/"/>
+    <updated>2013-07-11T23:49:00+09:00</updated>
+    <id>http://note.ga.vg/blog/2013/07/11/cyanogenmod-dtcp-ip</id>
+    <content type="html"><![CDATA[<p>CyanogenMod でもパズドラを起動したいとです！！！</p>
+
+<!-- more -->
+
+
+<p>というわけなんですが、パズドラとかどうでもよくて TwonkyBeam の DTCP-IP を使いたいというが目的で調べました。<br/>
+要するに root チェックにより CyanogenMod のようなカスタムROMでは使用できないアプリを動かすというやつです。</p>
+
+<p>インターネットで調べると以下のような項目でroot端末かどうかをチェックしているようです。</p>
+
+<ul>
+<li><strong>su バイナリの存在</strong> /system/{bin,xbin}, /sbin あたりにsu があるとダメなようです</li>
+<li><strong>/system/app/Superuser.apk の存在</strong> (CyanogenModにはないですがリネームすればいいだけです)</li>
+<li><strong>getprop <em>ro.secure</em> の値が0だとNG</strong> (CyanogenModでは1なので問題ないです)</li>
+<li><strong>getprop <em>ro.debuggable</em> の値が1だとNG</strong> (CyanogenModでは1なので対策が必要です)</li>
+</ul>
+
+
+<p><strong>su のバイナリ</strong> は <em>/system/bin/su</em>, <em>/system/xbin/su</em> にあるので適当にリネームして回避出来ますが、リネームしっぱなしだと root が必要なアプリを実行するときにこまるのでこんなスクリプトを書いてみました。</p>
+
+<p>まずシステムの起動時に実行される <em>/data/local/userinit.sh</em> で <strong>su</strong> を <strong>sux</strong> にリネームして隠します。
+``` bash /data/local/userinit.sh</p>
+
+<h1>!/system/bin/sh</h1>
+
+<p>mount -o remount,rw /system</p>
+
+<p>#</p>
+
+<h1>su を退避 symlinkの場合は無視</h1>
+
+<p>if [ -x /system/bin/su -a ! -L /system/bin/su ]; then</p>
+
+<pre><code>mv /system/bin/su /system/bin/sux
+</code></pre>
+
+<p>fi
+if [ -x /system/xbin/su -a ! -L /system/xbin/su ]; then</p>
+
+<pre><code>mv /system/xbin/su /system/xbin/sux
+</code></pre>
+
+<p>fi</p>
+
+<p>mount -o remount,ro /system
+```</p>
+
+<p>次に su があれば削除し、なければ sux から symlink を貼るというようなスクリプトです。
+``` bash /data/local/swsu.sh</p>
+
+<h1>!/system/bin/sh</h1>
+
+<h1>rootじゃない場合sux使ってrootになる</h1>
+
+<p>if [ <code>whoami</code> != &ldquo;root&rdquo; ]; then
+  sux -c $0
+  exit
+fi</p>
+
+<p>mount -o remount,rw /system</p>
+
+<p>if [ ! -L /system/xbin/su ]; then
+  ln -s /system/xbin/sux /system/xbin/su
+  ln -s /system/bin/sux /system/bin/su
+  echo &ldquo;enable su&rdquo;
+else
+  rm -f /system/xbin/su
+  rm -f /system/bin/su
+  echo &ldquo;disable su&rdquo;
+fi</p>
+
+<p>mount -o remount,ro /system
+```</p>
+
+<p>どちらも配置したら <strong>chmod 0755</strong> するのを忘れずに。</p>
+
+<p>ひとまずこれで再起動してみて試します。<br/>
+<strong>/data/local/swsu.sh</strong> は <a href="https://play.google.com/store/apps/details?id=com.ryo.commandRunner">CommandRunner</a> とかで起動したら良いでしょう。<br/>
+ショートカットも作れるので便利です。<br/>
+実行してみて su の存在をトグルできるようになってればOKです。</p>
+
+<p>さて、次に <strong>getprop</strong> の値。まず <strong>/default.prop</strong> の値が云々的な説明をしているサイトがありますが間違いです。<br/>
+目的のプロパティは <strong>boot.img</strong> の中、 <strong>initrd.img</strong> にある <strong>default.prop</strong> により設定されてます。(んでその initrd が / にマウントされる)<br/>
+そんなわけで <strong>boot.img</strong> をいじる必要があります。結構めんどいです。</p>
+
+<p>まず <strong>boot.img</strong> を <em>update.zip</em> から取り出しておきます。<br/>
+<strong>boot.img</strong> の展開と再構築には Linux上で <em>abootimg</em> を使いますが、WindowsやMacでもなんとかする方法はあると思いますので頑張って。</p>
+
+<p><code>bash terminal
+$ sudo apt-get install abootimg unzip
+$ wget http://get.cm/get/jenkins/34073/cm-10.1.1-grouper.zip
+$ mkdir bootimg
+$ cd bootimg
+$ unzip ../cm-10.1.1-grouper.zip boot.img
+$ abootimg -x boot.img
+$ mkdir initrd
+$ cd initrd
+$ zcat ../initrd.img | cpio -i
+$ sed -e 's/ro.debuggable=1/ro.debuggable=0/g' default.prop &gt; default.prop.new
+$ mv default.prop.new default.prop
+$ find . | cpio -o -H newq | gzip &gt; ../initrd.img
+$ cd ..
+$ abootimg --create newboot.img -k zImage -r initrd.img
+</code></p>
+
+<p>で、<strong>newboot.img</strong> ができたらひとまず <em>fastboot</em> から起動してみます。<br/>
+``` bash terminal
+$ adb reboot bootloader
+$ sudo fastboot boot newinitrd.img
+$ adb shell</p>
+
+<p>shell@android:/ $ getprop ro.debuggable
+0
+shell@android:/ $
+```</p>
+
+<p>これでパズドラは起動しますし、TwonkyBeam で DTCP-IP が使えるようになりました。<br/>
+nasneで録画した動画やライブチューナでテレビも見られます！</p>
+
+<p>しかしまだ終わりません。先ほどの <strong>swsu.sh</strong> を実行してみます。<br/>
+動きませんね。<br/>
+この状態だと su (sux) が動かないことに気が付きます。<br/>
+なぜか確認なしにsuが拒否されてしまうのです。
+logcat には次のように出力されています。
+<code>text terminal
+W/su      ( 8151): request rejected (10097-&gt;0 /system/bin/sh) F8?HO?
+D/su      ( 8147): su invoked.
+D/su      ( 8149): access_disabled
+E/su      ( 8148): Root access is disabled on non-debug builds
+</code></p>
+
+<p>なるほど。<br/>
+実は CyanogenMod で提供している su は変更が加えてあり、<em>ro.debuggable=0</em> では無条件に拒否するようになっています。</p>
+
+<p>しかし、<a href="https://github.com/CyanogenMod/Superuser/blob/379371bcff3f18b4a16beb37a35c2b211a941781/Superuser/jni/su/su.c#L552">ソース</a>をみてみると、runtime に <strong>/default.prop</strong> を見ているだけのようなので、システムが起動した後に <strong>/default.prop</strong> を書き換えてやればよさそうです。<br/>
+でも、あれ？？？<br/>
+でも起動したら su 使えないし書き換えられないんじゃ？<br/>
+はい。そうです。そこで先ほどの <strong>userinit.sh</strong> に追記します。 <strong>userinit.sh</strong> は root権限で動きますからね。</p>
+
+<p>普通に再起動して以下を<strong>追記</strong>した <strong>userinit.sh</strong> を改めて <strong>/data/local/userinit.sh</strong> へ置きます。 <strong>chmod 0755</strong> を忘れずに。(recovery で adb が使えれば recovery で作業してもいいです)</p>
+
+<p>``` bash /data/local/userinit.sh(抜粋)
+#</p>
+
+<h1>/default.prop書換え</h1>
+
+<p>mount -o remount,rw /
+sed -e &rsquo;s/ro.debuggable=0/ro.debuggable=1/g' /default.prop > /default.prop.tmp
+mv /default.prop.tmp /default.prop
+chmod 0644 /default.prop
+mount -o remount,ro /
+```</p>
+
+<p>これでもう一度 fastboot boot newboot.img して確認してみましょう。</p>
+
+<p><code>bash terminal
+$ adb reboot bootloader
+$ sudo fastboot boot newboot.img
+$ adb shell
+shel@android:/ $ getprop ro.debuggable
+0
+shell@android:/ $ sux
+shell@android:/ #
+</code></p>
+
+<p>うまく行きました。<br/>
+満を持して newboot.img を fastboot で flash しましょう。
+<code>bash terminal
+$ adb reboot bootloader
+$ sudo fastboot flash boot newboot.img
+</code></p>
+
+<p>そんなわけで、/data/local/ は wipe しない限り維持できますから、今後はアップデートするときに boot.img を改変するだけでよくなります。<br/>
+boot.img の改変は面倒ですが、手順は決まっているしスクリプトにすれば自動化はできるかと思います。<br/>
+(というか前述の手順がスクリプトそのものっぽい)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Xperia（TM）ワールド タッチ＆トライ ブロガーミーティングに参加しました(先月)]]></title>
@@ -352,36 +535,6 @@ SwapFree:         233728 kB
 
 
 <p></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[CM9 support for emoji on Mms]]></title>
-    <link href="http://note.ga.vg/blog/2012/04/18/cm9-support-for-emoji-on-mms/"/>
-    <updated>2012-04-18T15:06:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/04/18/cm9-support-for-emoji-on-mms</id>
-    <content type="html"><![CDATA[<p>CyanogenMod 9のMmsに絵文字サポートが入っていた。</p>
-
-<!-- more -->
-
-
-<p><a href="http://review.cyanogenmod.com/14709">http://review.cyanogenmod.com/14709</a></p>
-
-<p>日本のキャリアでの使用に於いて、どの程度カバーできているのかは知らないけれど、</p>
-
-<pre><code>as used on the iPhone, or even the Gmail website.
-</code></pre>
-
-<p>だとのことで、それなりなのではなかろうか。<br/>
-自分もかつてGingerbread世代までのMms.apkに絵文字サポートを実装したりはしていたけれど、もはやMmsを使っていないため試そうにも環境がない。</p>
-
-<p>絵文字を画像リソースとして保持するのでapkのサイズがでかくなるのだが、やはりそのことについて文句を言う奴もいるわけで。<br/>
-それに対してCyanogenの一言。</p>
-
-<pre><code>I don't think the extra size will be an issue. If it is, someone will make a hack to exclude this :)
-</code></pre>
-
-<p>いい判断。</p>
 ]]></content>
   </entry>
   

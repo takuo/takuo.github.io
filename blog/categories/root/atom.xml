@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: CyanogenMod | The Weight @northeye]]></title>
-  <link href="http://note.ga.vg/blog/categories/cyanogenmod/atom.xml" rel="self"/>
+  <title><![CDATA[Category: root | The Weight @northeye]]></title>
+  <link href="http://note.ga.vg/blog/categories/root/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
   <updated>2013-07-12T00:08:34+09:00</updated>
   <id>http://note.ga.vg/</id>
@@ -193,36 +193,6 @@ $ sudo fastboot flash boot newboot.img
 <p>そんなわけで、/data/local/ は wipe しない限り維持できますから、今後はアップデートするときに boot.img を改変するだけでよくなります。<br/>
 boot.img の改変は面倒ですが、手順は決まっているしスクリプトにすれば自動化はできるかと思います。<br/>
 (というか前述の手順がスクリプトそのものっぽい)</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[CM9 support for emoji on Mms]]></title>
-    <link href="http://note.ga.vg/blog/2012/04/18/cm9-support-for-emoji-on-mms/"/>
-    <updated>2012-04-18T15:06:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/04/18/cm9-support-for-emoji-on-mms</id>
-    <content type="html"><![CDATA[<p>CyanogenMod 9のMmsに絵文字サポートが入っていた。</p>
-
-<!-- more -->
-
-
-<p><a href="http://review.cyanogenmod.com/14709">http://review.cyanogenmod.com/14709</a></p>
-
-<p>日本のキャリアでの使用に於いて、どの程度カバーできているのかは知らないけれど、</p>
-
-<pre><code>as used on the iPhone, or even the Gmail website.
-</code></pre>
-
-<p>だとのことで、それなりなのではなかろうか。<br/>
-自分もかつてGingerbread世代までのMms.apkに絵文字サポートを実装したりはしていたけれど、もはやMmsを使っていないため試そうにも環境がない。</p>
-
-<p>絵文字を画像リソースとして保持するのでapkのサイズがでかくなるのだが、やはりそのことについて文句を言う奴もいるわけで。<br/>
-それに対してCyanogenの一言。</p>
-
-<pre><code>I don't think the extra size will be an issue. If it is, someone will make a hack to exclude this :)
-</code></pre>
-
-<p>いい判断。</p>
 ]]></content>
   </entry>
   
