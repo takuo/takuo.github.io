@@ -4,7 +4,7 @@
   <title><![CDATA[Category: root | The Weight @northeye]]></title>
   <link href="http://note.ga.vg/blog/categories/root/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2013-07-12T00:13:10+09:00</updated>
+  <updated>2013-07-12T01:14:38+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -97,7 +97,8 @@ fi</p>
 <p>ひとまずこれで再起動してみて試します。<br/>
 <strong>/data/local/swsu.sh</strong> は <a href="https://play.google.com/store/apps/details?id=com.ryo.commandRunner">CommandRunner</a> とかで起動したら良いでしょう。<br/>
 ショートカットも作れるので便利です。<br/>
-実行してみて su の存在をトグルできるようになってればOKです。</p>
+実行してみて su の存在をトグルできるようになってればOKです。<br/>
+※ root をトグルするアプリも存在しますが、挙動を把握しやすくするため今回は自分でスクリプト書きました。</p>
 
 <p>さて、次に <strong>getprop</strong> の値。まず <strong>/default.prop</strong> の値が云々的な説明をしているサイトがありますが間違いです。<br/>
 目的のプロパティは <strong>boot.img</strong> の中、 <strong>initrd.img</strong> にある <strong>default.prop</strong> により設定されてます。(んでその initrd が / にマウントされる)<br/>
