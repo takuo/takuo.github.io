@@ -4,7 +4,7 @@
   <title><![CDATA[The Weight @northeye]]></title>
   <link href="http://note.ga.vg/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2013-07-12T01:14:38+09:00</updated>
+  <updated>2013-07-12T09:16:46+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -174,7 +174,7 @@
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>adb reboot bootloader
-</span><span class='line'><span class="nv">$ </span>sudo fastboot boot newinitrd.img
+</span><span class='line'><span class="nv">$ </span>sudo fastboot boot newboot.img
 </span><span class='line'><span class="nv">$ </span>adb shell
 </span><span class='line'>
 </span><span class='line'>shell@android:/ <span class="nv">$ </span>getprop ro.debuggable

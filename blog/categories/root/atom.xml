@@ -4,7 +4,7 @@
   <title><![CDATA[Category: root | The Weight @northeye]]></title>
   <link href="http://note.ga.vg/blog/categories/root/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2013-07-12T01:14:38+09:00</updated>
+  <updated>2013-07-12T09:16:46+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -127,7 +127,7 @@ $ abootimg --create newboot.img -k zImage -r initrd.img
 <p>で、<strong>newboot.img</strong> ができたらひとまず <em>fastboot</em> から起動してみます。<br/>
 ``` bash terminal
 $ adb reboot bootloader
-$ sudo fastboot boot newinitrd.img
+$ sudo fastboot boot newboot.img
 $ adb shell</p>
 
 <p>shell@android:/ $ getprop ro.debuggable
