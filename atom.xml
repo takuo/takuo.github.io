@@ -4,7 +4,7 @@
   <title><![CDATA[The Weight @northeye]]></title>
   <link href="http://note.ga.vg/atom.xml" rel="self"/>
   <link href="http://note.ga.vg/"/>
-  <updated>2014-08-06T18:20:00+09:00</updated>
+  <updated>2014-08-07T21:59:30+09:00</updated>
   <id>http://note.ga.vg/</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -12,6 +12,81 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[NETGEAR GS116E]]></title>
+    <link href="http://note.ga.vg/blog/2014/08/07/netgear-gs116e/"/>
+    <updated>2014-08-07T22:01:00+09:00</updated>
+    <id>http://note.ga.vg/blog/2014/08/07/netgear-gs116e</id>
+    <content type="html"><![CDATA[<p>VLANを切れる安価なスイッチングハブ NETGEAR GS116E を買ってみた。</p>
+
+<p>PPPoEのセグメントとPrivate LANのセグメントで2つのハブを使っていたのだけれど、機材を減らしたいと思いVLAN設定ができる安めのハブを探していたところ、NETGEAR製品くらいしかなさそうだったので16ポートのこいつを選んだ。</p>
+
+<!-- more -->
+
+
+<p>結論から言えば、家庭用としては大変コストパフォーマンスに優れた機材ではあるのだけれど、若干悪いクセがあるように思える。</p>
+
+<h3>設定ツールはAdobe AIRだけどWebもある</h3>
+
+<p>悪いとこのひとつは設定ツールがAdobe AIRアプリであり、Windows向けにしかないこと。<br/>
+まぁこれは一度IPアドレスを設定しちゃえば WEB UI が使えるようになるので不要ではあるだが、ether portがついたWindowsマシンがないと詰む。</p>
+
+<p>Web UIはこんな感じで、できることはAIRのアプリと同じ。<br/>
+<a href="http://note.ga.vg/assets/screenshot/gs116ev2-web-ui.png" target="_blank"><img class="right" src="http://note.ga.vg/assets/screenshot/gs116ev2-web-ui.png" title="WEB UI" ></a></p>
+
+<p>UI的にVLANの設定は若干わかりにくいかも知れない。</p>
+
+<h3>ポートベースVLANは使うべきではない</h3>
+
+<p>基本ポートベースVLANという機能があるけれど、これは使いものにならない(と思う)。<br/>
+これでVLANを切ってみたらホストによっては</p>
+
+<blockquote><p>br0: received packet on eth1 with own address as source address</p></blockquote>
+
+
+<p>といったようなログが出るようになり、通信がままならなくなった。<br/>
+素直に802.1QのAdvancedモードで設定すればいいし、これが欠点とはなりえないけれど。</p>
+
+<h3>謎のパケット破棄ルールがある?</h3>
+
+<p>一番よくない点として、どうも独自の判断でIPパケットを破棄している節がある。<br/>
+確認しているのはPPPoEのセッションパケットで、中身のIP DestinationとSourceが同じアドレスのパケットを捨てていた。</p>
+
+<p>そもそもこんなパケットが外に行こうとすることがおかしいのだけれど、YAMAHAのRTシリーズのNATはこういう仕様になっていて、<br/>
+LAN内やルーター自身から、ルーターのWANアドレス宛に通信しようとするとこういうパケットになり、一旦PPPoEの対向ルータへパケットを投げる模様。<br/>
+実際にPINGの応答に5msecほどかかっており、ルーター内部で完結しているとは言いがたいレイテンシになっている。</p>
+
+<p>さて、話を戻してWANアドレスにpingしながら、YAMAHAのルーターをつないだGS116Eのポートをミラーリングしてtcpdumpしているとこんな感じのパケットがきているのが見られる。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'> PPPoE  [ses 0x7b6d] IP 1xx.1yy.74.199 &gt; 1xx.1yy.74.199: ICMP echo request, id 61399, seq 1, length 64
+</span><span class='line'> PPPoE  [ses 0x7b6d] IP 1xx.1yy.74.199 &gt; 1xx.1yy.74.199: ICMP echo request, id 61399, seq 2, length 64
+</span><span class='line'> PPPoE  [ses 0x7b6d] IP 1xx.1yy.74.199 &gt; 1xx.1yy.74.199: ICMP echo request, id 61399, seq 3, length 64</span></code></pre></td></tr></table></div></figure>
+
+
+<p>このパケットはONUが繋がっている本来流れるべきポートへは流れていかないし(これもミラーリングで確認)、戻ってもいないのでGS116E内で破棄されていると考えられる。</p>
+
+<p>こういうへんなNAT仕様のYAMAHAルーターも大概ではあるけれど、L2スイッチごときがL3の条件でパケットを勝手に捨てるのはいかがなものかと思う。(調べたら過去にIPv6パケットを捨ててるとかいう疑惑があった模様)<br/>
+まぁ稀なケースなので我慢することにしが、いわゆるヘアピンNAT( <a href="http://www.rfc-base.org/txt/rfc-4787.txt">RFC4748</a> )などといわれる機能に頼る環境では注意である。</p>
+
+<h3>総評</h3>
+
+<p>ともあれ、安価でVLAN切れてWEB UIで設定でき、ポートミラーリングでこういったトラブルシューティングができるのはなかなかよいかなと思う。(あくまで家庭用では)</p>
+
+<p>評価: ★★★☆☆</p>
+
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B00GQL3U2M" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B004LV1SL4" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[近況]]></title>
@@ -1769,144 +1844,6 @@ sshはVPSの43276番でコンテナの22にフォワードしてます。</p>
 
 
 <iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=4798121401" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-
-
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[TwiProwlをAWS EC2で動かす(無料)]]></title>
-    <link href="http://note.ga.vg/blog/2012/06/12/twiprowl-on-aws-micro-instance/"/>
-    <updated>2012-06-12T19:37:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/06/12/twiprowl-on-aws-micro-instance</id>
-    <content type="html"><![CDATA[<p><a href="http://aws.amazon.com/jp/" target="_blank"><img class="right" src="https://lh5.googleusercontent.com/-uzJ0rqEN72U/T9cintiTKvI/AAAAAAAAIqI/W8owjZxM-QE/s800/aws-logo.png"></a>
-<a href="http://aws.amazon.com/jp/">AWS</a>のEC2 Linux マイクロインスタンスは無料範囲をキープしていれば１年間<a href="http://aws.amazon.com/jp/free/">無料</a>で使え、<a href="http://github.com/takuo/TwiProwl">TwiProwl</a>いっこ動かすくらいなら余裕でキープできそうなのでやってみます。</p>
-
-<p>※ TwiProwlは拙作のTwitter通知ツールですが説明は割愛します。</p>
-
-<!-- more -->
-
-
-<p>まず、インスタンスの作成ですが、管理コンソールから&#8221;Launch Instance&#8221;を選んで、&#8221;Quick Launch Wizard&#8221;、&#8221;Ubuntu Server 11.10 (64bit)&ldquo;を選び次へ進みます。<br/>
-ほかのLinuxインスタンスでも出来なくないでしょうが今回はこれで行きます。ちなみに12.04 LTSだとKernelがおかしいらしくProcess#daemonがまともに動かなかったのでやめたほうがいいです。(linux-image-3.2.0-24-virtual)<br/>
-<a href="https://lh5.googleusercontent.com/-ERrv6R2Zzlg/T9chQmozptI/AAAAAAAAIpo/Qn6I95WKHf0/s800/aws-launch-instance.png" target="_blank"><img src="https://lh5.googleusercontent.com/-ERrv6R2Zzlg/T9chQmozptI/AAAAAAAAIpo/Qn6I95WKHf0/s400/aws-launch-instance.png"></a></p>
-
-<p>詳細設定はデフォルトのまま。<br/>
-<a href="https://lh3.googleusercontent.com/-b3UKWibIm_w/T9chQrjhOEI/AAAAAAAAIpc/ijO-B4uFCag/s800/create-new-instance.png" target="_blank"><img src="https://lh3.googleusercontent.com/-b3UKWibIm_w/T9chQrjhOEI/AAAAAAAAIpc/ijO-B4uFCag/s400/create-new-instance.png"></a></p>
-
-<p>起動しました。<br/>
-<a href="https://lh4.googleusercontent.com/-aOuzv5tYklI/T9chWfDzg_I/AAAAAAAAIp0/M_1gq2PojGo/s800/instance-status.png" target="_blank"><img src="https://lh4.googleusercontent.com/-aOuzv5tYklI/T9chWfDzg_I/AAAAAAAAIp0/M_1gq2PojGo/s400/instance-status.png"></a></p>
-
-<p>sshでのログイン方法も管理コンソールのInstance ActionからConnectを選べば説明がでてくるのでその通りにやればよろしいのですが、rootではログインできないのでubuntuユーザでログインすることになります。<br/>
-<a href="https://lh3.googleusercontent.com/-NfQGIxuBO3A/T9chQnhlknI/AAAAAAAAIpk/R8-bFy7eBsY/s800/connect-to-instance.png" target="_blank"><img src="https://lh3.googleusercontent.com/-NfQGIxuBO3A/T9chQnhlknI/AAAAAAAAIpk/R8-bFy7eBsY/s400/connect-to-instance.png"></a></p>
-
-<p>インスタンスを起動してsshでログインできたら実行環境をセットアップします。</p>
-
-<pre><code>$ sudo -s
-# apt-get update &amp;&amp; apt-get upgrade
-# apt-get install ruby1.9.1 git
-# gem install oauth ruby-hmac
-# exit
-$ git clone http://github.com/takuo/TwiProwl.git
-</code></pre>
-
-<p>設定ファイルを適当に書きます。(~/.twiprowl.conf として保存)</p>
-
-<figure class='code'><figcaption><span>/home/ubuntu/.twiprowl.conf</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">LogDir</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/home/ubuntu/var/log</span>
-</span><span class='line'><span class="l-Scalar-Plain">Debug</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
-</span><span class='line'><span class="l-Scalar-Plain">Daemon</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">Prowl</span><span class="p-Indicator">:</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">APIKey</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ProwlのAPIキーを書く</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">NMA</span><span class="p-Indicator">:</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">APIKey</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">NMAを使う場合、NMAのAPIキーを書く</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">Accounts</span><span class="p-Indicator">:</span>
-</span><span class='line'> <span class="p-Indicator">-</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">Application</span><span class="p-Indicator">:</span> <span class="s">&quot;Twitter&quot;</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">User</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">screen_name</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">Enable</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">NotifyMethods</span><span class="p-Indicator">:</span>
-</span><span class='line'>   <span class="p-Indicator">-</span> <span class="s">&quot;prowl&quot;</span>               <span class="c1"># Prowl for iPhone</span>
-</span><span class='line'>   <span class="p-Indicator">-</span> <span class="s">&quot;nma&quot;</span>                 <span class="c1"># Notify My Android for Android</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">RateLimitThreshold</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">20</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">Mentions</span><span class="p-Indicator">:</span>                <span class="c1"># Event on Mentions</span>
-</span><span class='line'>   <span class="l-Scalar-Plain">Priority</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">1</span>
-</span><span class='line'>   <span class="l-Scalar-Plain">IgnoreSelf</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>       <span class="c1"># Ignore mention by myself</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">Direct</span><span class="p-Indicator">:</span>                  <span class="c1"># Event on Direct Messages</span>
-</span><span class='line'>   <span class="l-Scalar-Plain">Priority</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">1</span>
-</span><span class='line'>   <span class="l-Scalar-Plain">IgnoreSelf</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>       <span class="c1"># Ignore DM event from myself</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">Retweets</span><span class="p-Indicator">:</span>                <span class="c1"># Event on Retweets</span>
-</span><span class='line'>   <span class="l-Scalar-Plain">Priority</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">0</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">Membership</span><span class="p-Indicator">:</span>              <span class="c1"># Event on List Membership</span>
-</span><span class='line'>   <span class="l-Scalar-Plain">Priority</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">0</span>
-</span><span class='line'>   <span class="l-Scalar-Plain">IgnoreSelf</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>       <span class="c1"># Ignore event by myself</span>
-</span><span class='line'>   <span class="l-Scalar-Plain">IgnoreNegative</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>   <span class="c1"># Ignore remove event</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">Favorite</span><span class="p-Indicator">:</span>                <span class="c1"># Event on Favorite/Unfavorite</span>
-</span><span class='line'>   <span class="l-Scalar-Plain">Priority</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">0</span>
-</span><span class='line'>   <span class="l-Scalar-Plain">IgnoreSelf</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>       <span class="c1"># Ignore event by myself</span>
-</span><span class='line'>   <span class="l-Scalar-Plain">IgnoreNegative</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>   <span class="c1"># Ignore Unfavorite event</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">Unfollowed</span><span class="p-Indicator">:</span>              <span class="c1"># Event on Unfollowed, requiresi API rate</span>
-</span><span class='line'>   <span class="l-Scalar-Plain">Priority</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">0</span>
-</span><span class='line'>   <span class="l-Scalar-Plain">Interval</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">60</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>適当です。これ以上のことは自分で調べて好きなようにしたらいいと思います。
-動かす。</p>
-
-<pre><code>$ mkdir -p ~/var/log
-$ cd ~/TwiProwl
-$ ./twiprowl
-oauthなんたらかんたら(認証)
-</code></pre>
-
-<p>おわり。<br/>
-余計なもの(ruby1.8とか)を入れた場合の不都合は知りません。<br/>
-無料範囲に収まらず課金が発生しても責任は負いません。<br/>
-今の所1年間ということらしいので1年後は気を付けましょう。</p>
-
-<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=4844329804" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
 
 
 

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: network | The Weight @northeye]]></title>
+  <link href="http://note.ga.vg/blog/categories/network/atom.xml" rel="self"/>
+  <link href="http://note.ga.vg/"/>
+  <updated>2014-08-07T21:59:30+09:00</updated>
+  <id>http://note.ga.vg/</id>
+  <author>
+    <name><![CDATA[Takuo Kitame]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[NETGEAR GS116E]]></title>
+    <link href="http://note.ga.vg/blog/2014/08/07/netgear-gs116e/"/>
+    <updated>2014-08-07T22:01:00+09:00</updated>
+    <id>http://note.ga.vg/blog/2014/08/07/netgear-gs116e</id>
+    <content type="html"><![CDATA[<p>VLANを切れる安価なスイッチングハブ NETGEAR GS116E を買ってみた。</p>
+
+<p>PPPoEのセグメントとPrivate LANのセグメントで2つのハブを使っていたのだけれど、機材を減らしたいと思いVLAN設定ができる安めのハブを探していたところ、NETGEAR製品くらいしかなさそうだったので16ポートのこいつを選んだ。</p>
+
+<!-- more -->
+
+
+<p>結論から言えば、家庭用としては大変コストパフォーマンスに優れた機材ではあるのだけれど、若干悪いクセがあるように思える。</p>
+
+<h3>設定ツールはAdobe AIRだけどWebもある</h3>
+
+<p>悪いとこのひとつは設定ツールがAdobe AIRアプリであり、Windows向けにしかないこと。<br/>
+まぁこれは一度IPアドレスを設定しちゃえば WEB UI が使えるようになるので不要ではあるだが、ether portがついたWindowsマシンがないと詰む。</p>
+
+<p>Web UIはこんな感じで、できることはAIRのアプリと同じ。<br/>
+<a href="/assets/screenshot/gs116ev2-web-ui.png" target="_blank"><img class="right" src="/assets/screenshot/gs116ev2-web-ui.png" title="WEB UI" ></a></p>
+
+<p>UI的にVLANの設定は若干わかりにくいかも知れない。</p>
+
+<h3>ポートベースVLANは使うべきではない</h3>
+
+<p>基本ポートベースVLANという機能があるけれど、これは使いものにならない(と思う)。<br/>
+これでVLANを切ってみたらホストによっては
+<blockquote><p>br0: received packet on eth1 with own address as source address</p></blockquote>
+といったようなログが出るようになり、通信がままならなくなった。<br/>
+素直に802.1QのAdvancedモードで設定すればいいし、これが欠点とはなりえないけれど。</p>
+
+<h3>謎のパケット破棄ルールがある?</h3>
+
+<p>一番よくない点として、どうも独自の判断でIPパケットを破棄している節がある。<br/>
+確認しているのはPPPoEのセッションパケットで、中身のIP DestinationとSourceが同じアドレスのパケットを捨てていた。</p>
+
+<p>そもそもこんなパケットが外に行こうとすることがおかしいのだけれど、YAMAHAのRTシリーズのNATはこういう仕様になっていて、<br/>
+LAN内やルーター自身から、ルーターのWANアドレス宛に通信しようとするとこういうパケットになり、一旦PPPoEの対向ルータへパケットを投げる模様。<br/>
+実際にPINGの応答に5msecほどかかっており、ルーター内部で完結しているとは言いがたいレイテンシになっている。</p>
+
+<p>さて、話を戻してWANアドレスにpingしながら、YAMAHAのルーターをつないだGS116Eのポートをミラーリングしてtcpdumpしているとこんな感じのパケットがきているのが見られる。<br/>
+<code>
+ PPPoE  [ses 0x7b6d] IP 1xx.1yy.74.199 &gt; 1xx.1yy.74.199: ICMP echo request, id 61399, seq 1, length 64
+ PPPoE  [ses 0x7b6d] IP 1xx.1yy.74.199 &gt; 1xx.1yy.74.199: ICMP echo request, id 61399, seq 2, length 64
+ PPPoE  [ses 0x7b6d] IP 1xx.1yy.74.199 &gt; 1xx.1yy.74.199: ICMP echo request, id 61399, seq 3, length 64
+</code>
+このパケットはONUが繋がっている本来流れるべきポートへは流れていかないし(これもミラーリングで確認)、戻ってもいないのでGS116E内で破棄されていると考えられる。</p>
+
+<p>こういうへんなNAT仕様のYAMAHAルーターも大概ではあるけれど、L2スイッチごときがL3の条件でパケットを勝手に捨てるのはいかがなものかと思う。(調べたら過去にIPv6パケットを捨ててるとかいう疑惑があった模様)<br/>
+まぁ稀なケースなので我慢することにしが、いわゆるヘアピンNAT( <a href="http://www.rfc-base.org/txt/rfc-4787.txt">RFC4748</a> )などといわれる機能に頼る環境では注意である。</p>
+
+<h3>総評</h3>
+
+<p>ともあれ、安価でVLAN切れてWEB UIで設定でき、ポートミラーリングでこういったトラブルシューティングができるのはなかなかよいかなと思う。(あくまで家庭用では)</p>
+
+<p>評価: ★★★☆☆</p>
+
+<p></p>
+
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B00GQL3U2M" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B004LV1SL4" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<p></p>
+]]></content>
+  </entry>
+  
+</feed>

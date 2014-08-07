@@ -1,0 +1,440 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>NETGEAR GS116E - The Weight @northeye</title>
+  <meta name="author" content="Takuo Kitame">
+
+  
+  <meta name="description" content="VLANを切れる安価なスイッチングハブ NETGEAR GS116E を買ってみた。 PPPoEのセグメントとPrivate LANのセグメントで2つのハブを使っていたのだけれど、機材を減らしたいと思いVLAN設定ができる安めのハブを探していたところ、 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://note.ga.vg/blog/2014/08/07/netgear-gs116e">
+  <link href="/favicon.ico" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="The Weight @northeye" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<!-- <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
+<!-- <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
+<link href='http://fonts.googleapis.com/css?family=Actor' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Patua+One' rel='stylesheet' type='text/css'>
+<link href="http://fonts.googleapis.com/css?family=Karla:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-281334-7']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">The Weight @northeye</a></h1>
+  
+    <h2>take a load for free<a style="text-decoration: none" href="http://www.amazon.co.jp/dp/B005EYRY7Y/takuojp02-22/">.</a></h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:note.ga.vg" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="https://plus.google.com/112945362352143687431/about">About</a></li>
+  <li><a href="/">Blog</a></li>
+  <li><a href="http://blog.takuo.jp/">Old Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h2 class="entry-title">NETGEAR GS116E</h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-07T22:01:00+09:00" pubdate data-updated="true">Aug 7<span>th</span>, 2014</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>VLANを切れる安価なスイッチングハブ NETGEAR GS116E を買ってみた。</p>
+
+<p>PPPoEのセグメントとPrivate LANのセグメントで2つのハブを使っていたのだけれど、機材を減らしたいと思いVLAN設定ができる安めのハブを探していたところ、NETGEAR製品くらいしかなさそうだったので16ポートのこいつを選んだ。</p>
+
+<!-- more -->
+
+
+<p>結論から言えば、家庭用としては大変コストパフォーマンスに優れた機材ではあるのだけれど、若干悪いクセがあるように思える。</p>
+
+<h3>設定ツールはAdobe AIRだけどWebもある</h3>
+
+<p>悪いとこのひとつは設定ツールがAdobe AIRアプリであり、Windows向けにしかないこと。<br/>
+まぁこれは一度IPアドレスを設定しちゃえば WEB UI が使えるようになるので不要ではあるだが、ether portがついたWindowsマシンがないと詰む。</p>
+
+<p>Web UIはこんな感じで、できることはAIRのアプリと同じ。<br/>
+<a href="/assets/screenshot/gs116ev2-web-ui.png" target="_blank"><img class="right" src="/assets/screenshot/gs116ev2-web-ui.png" title="WEB UI" ></a></p>
+
+<p>UI的にVLANの設定は若干わかりにくいかも知れない。</p>
+
+<h3>ポートベースVLANは使うべきではない</h3>
+
+<p>基本ポートベースVLANという機能があるけれど、これは使いものにならない(と思う)。<br/>
+これでVLANを切ってみたらホストによっては</p>
+
+<blockquote><p>br0: received packet on eth1 with own address as source address</p></blockquote>
+
+
+<p>といったようなログが出るようになり、通信がままならなくなった。<br/>
+素直に802.1QのAdvancedモードで設定すればいいし、これが欠点とはなりえないけれど。</p>
+
+<h3>謎のパケット破棄ルールがある?</h3>
+
+<p>一番よくない点として、どうも独自の判断でIPパケットを破棄している節がある。<br/>
+確認しているのはPPPoEのセッションパケットで、中身のIP DestinationとSourceが同じアドレスのパケットを捨てていた。</p>
+
+<p>そもそもこんなパケットが外に行こうとすることがおかしいのだけれど、YAMAHAのRTシリーズのNATはこういう仕様になっていて、<br/>
+LAN内やルーター自身から、ルーターのWANアドレス宛に通信しようとするとこういうパケットになり、一旦PPPoEの対向ルータへパケットを投げる模様。<br/>
+実際にPINGの応答に5msecほどかかっており、ルーター内部で完結しているとは言いがたいレイテンシになっている。</p>
+
+<p>さて、話を戻してWANアドレスにpingしながら、YAMAHAのルーターをつないだGS116Eのポートをミラーリングしてtcpdumpしているとこんな感じのパケットがきているのが見られる。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'> PPPoE  [ses 0x7b6d] IP 1xx.1yy.74.199 &gt; 1xx.1yy.74.199: ICMP echo request, id 61399, seq 1, length 64
+</span><span class='line'> PPPoE  [ses 0x7b6d] IP 1xx.1yy.74.199 &gt; 1xx.1yy.74.199: ICMP echo request, id 61399, seq 2, length 64
+</span><span class='line'> PPPoE  [ses 0x7b6d] IP 1xx.1yy.74.199 &gt; 1xx.1yy.74.199: ICMP echo request, id 61399, seq 3, length 64</span></code></pre></td></tr></table></div></figure>
+
+
+<p>このパケットはONUが繋がっている本来流れるべきポートへは流れていかないし(これもミラーリングで確認)、戻ってもいないのでGS116E内で破棄されていると考えられる。</p>
+
+<p>こういうへんなNAT仕様のYAMAHAルーターも大概ではあるけれど、L2スイッチごときがL3の条件でパケットを勝手に捨てるのはいかがなものかと思う。(調べたら過去にIPv6パケットを捨ててるとかいう疑惑があった模様)<br/>
+まぁ稀なケースなので我慢することにしが、いわゆるヘアピンNAT( <a href="http://www.rfc-base.org/txt/rfc-4787.txt">RFC4748</a> )などといわれる機能に頼る環境では注意である。</p>
+
+<h3>総評</h3>
+
+<p>ともあれ、安価でVLAN切れてWEB UIで設定でき、ポートミラーリングでこういったトラブルシューティングができるのはなかなかよいかなと思う。(あくまで家庭用では)</p>
+
+<p>評価: ★★★☆☆</p>
+
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B00GQL3U2M" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B004LV1SL4" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+
+</div>
+<div class="ads" style="margin-top: 1em; margin-left: 1em;">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5477557446616946";
+/* northeye.org footer */
+google_ad_slot = "5957786890";
+google_ad_width = 468;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Takuo Kitame</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-07T22:01:00+09:00" pubdate data-updated="true">Aug 7<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/buy/'>buy</a>, <a class='category' href='/blog/categories/network/'>network</a>, <a class='category' href='/blog/categories/review/'>review</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://note.ga.vg/blog/2014/08/07/netgear-gs116e/" data-via="northeye" data-counturl="http://note.ga.vg/blog/2014/08/07/netgear-gs116e/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+  <div class="g-plus" data-action="share"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/08/06/kinkyo/" title="Previous Post: 近況">&laquo; 近況</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h2>Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <!-- Google Public Location Badge -->
+<!-- iframe src="http://www.google.com/latitude/apps/badge/api?user=5457512157928704395&type=iframe&maptype=roadmap&z=10&hl=ja" width="180" height="300" frameborder="0"></iframe -->
+<!-- To disable location sharing, you *must* visit http://www.google.com/latitude/apps/badge and disable the Google Public Location badge. Removing this code snippet is not enough! -->
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/08/07/netgear-gs116e/">NETGEAR GS116E</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/08/06/kinkyo/">近況</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/11/cyanogenmod-dtcp-ip/">CyanogenMod で DTCP-IP やパズドラを動かす</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/11/avahi-daemon-in-lxc-container/">LXC コンテナで avahi-daemon を動かす</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/30/ffmpeg-de-ustream/">ffmpeg で ustream 配信したメモ</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Latest Tweets</h1>
+<a class="twitter-timeline" href="https://twitter.com/northeye" data-widget-id="496948658382708736">Tweets by @northeye</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/112945362352143687431?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+<script type="text/javascript"><!--
+amazon_ad_tag = "takuojp02-22"; amazon_ad_width = "160"; amazon_ad_height = "600"; amazon_ad_logo = "hide"; amazon_ad_link_target = "new"; amazon_ad_discount = "remove"; amazon_color_border = "B7B7B7"; amazon_color_link = "CC6600"; amazon_color_logo = "000000";//--></script>
+<script src="http://www.assoc-amazon.jp/s/ads.js" type="text/javascript"></script>
+
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/takuo">@takuo</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'takuo',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo">
+<div class="ads">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5477557446616946";
+/* northeye.org footer */
+google_ad_slot = "7163726185";
+google_ad_width = 728;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script> 
+</div>
+
+<p>
+  Copyright &copy; 2014 - Takuo Kitame -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'northeyeblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://note.ga.vg/blog/2014/08/07/netgear-gs116e/';
+        var disqus_url = 'http://note.ga.vg/blog/2014/08/07/netgear-gs116e/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ja', parsetags: 'onload'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
