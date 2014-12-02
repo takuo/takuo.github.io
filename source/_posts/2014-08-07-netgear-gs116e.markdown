@@ -1,0 +1,66 @@
+---
+layout: post
+title: "NETGEAR GS116E"
+date: 2014-08-07 22:01
+comments: true
+categories: [buy, review, network]
+---
+VLANを切れる安価なスイッチングハブ NETGEAR GS116E を買ってみた。  
+
+PPPoEのセグメントとPrivate LANのセグメントで2つのハブを使っていたのだけれど、機材を減らしたいと思いVLAN設定ができる安めのハブを探していたところ、NETGEAR製品くらいしかなさそうだったので16ポートのこいつを選んだ。  
+
+<!-- more -->
+
+結論から言えば、家庭用としては大変コストパフォーマンスに優れた機材ではある、しかし若干悪いクセがあるように思えるのでちょっと書いてみる。  
+
+### 設定ツールはAdobe AIRだけどWebもある
+
+悪いとこのひとつは設定ツールがAdobe AIRアプリであり、Windows向けにしかないこと。  
+まぁこれは一度IPアドレスを設定しちゃえば Web UI が使えるようになるので不要ではあるのだが、初期設定時にether portがついたWindowsマシンがないと詰む。  
+
+Web UIはこんな感じで、できることはAIRのアプリと同じ。  
+{% img right /assets/screenshot/gs116ev2-web-ui.png /assets/screenshot/gs116ev2-web-ui.png WEB UI %}
+
+UI的にVLANの設定は若干わかりにくいかも知れない。
+
+### ポートベースVLANは使うべきではない
+
+基本ポートベースVLANという機能があるが、これは使いものにならない(と思う)。  
+これでVLANを切ってみたらホストによっては
+{% blockquote %}
+br0: received packet on eth1 with own address as source address
+{% endblockquote %}
+といったようなログが出るようになり、通信がままならなくなった。  
+まぁ素直に802.1QのAdvancedモードを使うように設定すればいいし、これが欠点とはならない。  
+
+### 謎のパケット破棄ルールがある?
+
+一番よくない点として、どうも独自の判断でIPパケットを破棄している節がある。  
+確認しているのはPPPoEのセッションパケットで、中身のIP DestinationとSourceが同じアドレスのパケットを捨てていた。  
+
+そもそもこんなパケットが外に行こうとすることがおかしいといえばおかしいのだが、例を挙げればYAMAHAのRTシリーズのNATはこういう仕様になっていて、  
+LAN内やルーター自身から、ルーターのWANアドレス宛に通信しようとするとこういうパケットになり、一旦PPPoEのpeer先へパケットを投げる模様。  
+実際に ping の応答に 5msec ほどかかっており、ルーター内部で完結しているとは言いがたいレイテンシになっている。  
+
+さて、話を戻してWANアドレスにpingしながら、YAMAHAのルーターをつないだGS116Eのポートをミラーリングしてtcpdumpしているとこんな感じのパケットがきているのが見られる。  
+```
+ PPPoE  [ses 0x7b6d] IP 1xx.1yy.74.199 > 1xx.1yy.74.199: ICMP echo request, id 61399, seq 1, length 64
+ PPPoE  [ses 0x7b6d] IP 1xx.1yy.74.199 > 1xx.1yy.74.199: ICMP echo request, id 61399, seq 2, length 64
+ PPPoE  [ses 0x7b6d] IP 1xx.1yy.74.199 > 1xx.1yy.74.199: ICMP echo request, id 61399, seq 3, length 64
+```
+このパケットはONUが繋がっている本来流れるべきポートへは流れていかないし(これもミラーリングで確認)、戻ってもいないのでGS116E内で破棄されていると考えられる。  
+
+こういうへんなNAT仕様のYAMAHAルーターも大概ではあるけれど、L2スイッチごときがL3の条件でパケットを勝手に捨てるのはいかがなものかと思う。(調べたら過去にIPv6パケットを捨ててるとかいう疑惑があった模様)  
+まぁ稀なケースなので我慢することにしたが、いわゆるヘアピンNAT( [RFC4748](http://www.rfc-base.org/txt/rfc-4787.txt) )などといわれる機能に頼る環境では注意である。  
+
+### 総評
+
+ともあれ、安価でVLAN切れてWeb UIで設定でき、ポートミラーリングでこういったトラブルシューティングができるのはなかなかよいかなと思う。(あくまで家庭用では)  
+
+評価: ★★★☆☆
+
+{% raw %}
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B00GQL3U2M" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B004LV1SL4" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+{% endraw %}
+
