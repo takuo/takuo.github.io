@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: IS12S | The Weight @northeye]]></title>
-  <link href="http://note.ga.vg/blog/categories/is12s/atom.xml" rel="self"/>
-  <link href="http://note.ga.vg/"/>
-  <updated>2014-12-02T16:21:11+09:00</updated>
-  <id>http://note.ga.vg/</id>
+  <link href="http://note.n6e.be//blog/categories/is12s/atom.xml" rel="self"/>
+  <link href="http://note.n6e.be//"/>
+  <updated>2015-01-07T16:58:58+09:00</updated>
+  <id>http://note.n6e.be//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[IS12Sのswap]]></title>
-    <link href="http://note.ga.vg/blog/2012/09/21/is12s-swap/"/>
+    <link href="http://note.n6e.be//blog/2012/09/21/is12s-swap/"/>
     <updated>2012-09-21T01:01:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/09/21/is12s-swap</id>
+    <id>http://note.n6e.be//blog/2012/09/21/is12s-swap</id>
     <content type="html"><![CDATA[<p>前回のエントリでIS12Sでswapだわーいって嬉々として書いたのだが、vm.swappiness=60だとはっきりいって使いものにならないということをこの1ヶ月ほどで体感してきた。</p>
 
 <p>というわけで、vm.swappiness=20 くらいがよいと思います。</p>
@@ -26,9 +26,9 @@
   
   <entry>
     <title type="html"><![CDATA[au IS12Sでスワップを有効にする [要root]]]></title>
-    <link href="http://note.ga.vg/blog/2012/08/07/is12s-enable-swap/"/>
+    <link href="http://note.n6e.be//blog/2012/08/07/is12s-enable-swap/"/>
     <updated>2012-08-07T00:14:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/08/07/is12s-enable-swap</id>
+    <id>http://note.n6e.be//blog/2012/08/07/is12s-enable-swap</id>
     <content type="html"><![CDATA[<p>IS12S をICS にアップデートしてからというもの、メモリが足りなくていささか不便になってきました。<br/>
 そこでスワップを導入してみることにします。</p>
 

@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://note.ga.vg/sitemap.xml 
+Sitemap: http://note.n6e.be//sitemap.xml 

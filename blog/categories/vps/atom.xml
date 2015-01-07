@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: vps | The Weight @northeye]]></title>
-  <link href="http://note.ga.vg/blog/categories/vps/atom.xml" rel="self"/>
-  <link href="http://note.ga.vg/"/>
-  <updated>2014-12-02T16:21:11+09:00</updated>
-  <id>http://note.ga.vg/</id>
+  <link href="http://note.n6e.be//blog/categories/vps/atom.xml" rel="self"/>
+  <link href="http://note.n6e.be//"/>
+  <updated>2015-01-07T16:58:58+09:00</updated>
+  <id>http://note.n6e.be//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[さくらのVPSでLXC(Linux Container)を動かす]]></title>
-    <link href="http://note.ga.vg/blog/2012/07/17/lxc-on-sakura-vps/"/>
+    <link href="http://note.n6e.be//blog/2012/07/17/lxc-on-sakura-vps/"/>
     <updated>2012-07-17T19:32:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/07/17/lxc-on-sakura-vps</id>
+    <id>http://note.n6e.be//blog/2012/07/17/lxc-on-sakura-vps</id>
     <content type="html"><![CDATA[<p>yaegashiセムパイが"<a href="http://blog.keshi.org/hogememo/2012/04/05/openvz-on-sakura-vps">さくらのVPSでOpenVZを動かす</a>&ldquo;というエントリを書かれていて、自分もやろうと思ったのですが、OpenVZはカーネルに手を入れる必要があり、Debian wheezy環境では面倒だったので代わりに<a href="http://lxc.sf.net/">LXC</a>という仮想環境を導入することにしました。</p>
 
 <!-- more -->

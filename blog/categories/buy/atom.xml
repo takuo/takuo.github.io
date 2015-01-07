@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: buy | The Weight @northeye]]></title>
-  <link href="http://note.ga.vg/blog/categories/buy/atom.xml" rel="self"/>
-  <link href="http://note.ga.vg/"/>
-  <updated>2014-12-02T16:21:11+09:00</updated>
-  <id>http://note.ga.vg/</id>
+  <link href="http://note.n6e.be//blog/categories/buy/atom.xml" rel="self"/>
+  <link href="http://note.n6e.be//"/>
+  <updated>2015-01-07T16:58:58+09:00</updated>
+  <id>http://note.n6e.be//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Anker 3 Micro USB Cables]]></title>
-    <link href="http://note.ga.vg/blog/2014/12/01/anker-3-micro-usb-cables/"/>
+    <link href="http://note.n6e.be//blog/2014/12/01/anker-3-micro-usb-cables/"/>
     <updated>2014-12-01T22:44:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2014/12/01/anker-3-micro-usb-cables</id>
+    <id>http://note.n6e.be//blog/2014/12/01/anker-3-micro-usb-cables</id>
     <content type="html"><![CDATA[<p><img class="right <a" src="href="https://lh5.googleusercontent.com/-5_DtA9BE1LQ/VH1j1Pf3N3I/AAAAAAAAUIM/T0rE9Ipyxu8/s288/IMGP1003_1.jpg">https://lh5.googleusercontent.com/-5_DtA9BE1LQ/VH1j1Pf3N3I/AAAAAAAAUIM/T0rE9Ipyxu8/s288/IMGP1003_1.jpg</a>">
 こんにちは。<br/>
 本日はお手頃なMicroUSBケーブルのご紹介です。</p>
@@ -63,9 +63,9 @@
   
   <entry>
     <title type="html"><![CDATA[NETGEAR GS116E]]></title>
-    <link href="http://note.ga.vg/blog/2014/08/07/netgear-gs116e/"/>
+    <link href="http://note.n6e.be//blog/2014/08/07/netgear-gs116e/"/>
     <updated>2014-08-07T22:01:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2014/08/07/netgear-gs116e</id>
+    <id>http://note.n6e.be//blog/2014/08/07/netgear-gs116e</id>
     <content type="html"><![CDATA[<p>VLANを切れる安価なスイッチングハブ NETGEAR GS116E を買ってみた。</p>
 
 <p>PPPoEのセグメントとPrivate LANのセグメントで2つのハブを使っていたのだけれど、機材を減らしたいと思いVLAN設定ができる安めのハブを探していたところ、NETGEAR製品くらいしかなさそうだったので16ポートのこいつを選んだ。</p>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Android | The Weight @northeye]]></title>
-  <link href="http://note.ga.vg/blog/categories/android/atom.xml" rel="self"/>
-  <link href="http://note.ga.vg/"/>
-  <updated>2014-12-02T16:21:11+09:00</updated>
-  <id>http://note.ga.vg/</id>
+  <link href="http://note.n6e.be//blog/categories/android/atom.xml" rel="self"/>
+  <link href="http://note.n6e.be//"/>
+  <updated>2015-01-07T16:58:58+09:00</updated>
+  <id>http://note.n6e.be//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[CyanogenMod で DTCP-IP やパズドラを動かす]]></title>
-    <link href="http://note.ga.vg/blog/2013/07/11/cyanogenmod-dtcp-ip/"/>
+    <link href="http://note.n6e.be//blog/2013/07/11/cyanogenmod-dtcp-ip/"/>
     <updated>2013-07-11T23:49:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2013/07/11/cyanogenmod-dtcp-ip</id>
+    <id>http://note.n6e.be//blog/2013/07/11/cyanogenmod-dtcp-ip</id>
     <content type="html"><![CDATA[<p>CyanogenMod でもパズドラを起動したいとです！！！</p>
 
 <!-- more -->
@@ -199,9 +199,9 @@ boot.img の改変は面倒ですが、手順は決まっているしスクリ�
   
   <entry>
     <title type="html"><![CDATA[Xperia（TM）ワールド タッチ＆トライ ブロガーミーティングに参加しました(先月)]]></title>
-    <link href="http://note.ga.vg/blog/2013/02/14/xperia-world-touch-try/"/>
+    <link href="http://note.n6e.be//blog/2013/02/14/xperia-world-touch-try/"/>
     <updated>2013-02-14T20:23:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2013/02/14/xperia-world-touch-try</id>
+    <id>http://note.n6e.be//blog/2013/02/14/xperia-world-touch-try</id>
     <content type="html"><![CDATA[<p><img class="right <a" src="href="http://farm9.staticflickr.com/8092/8407636657_dd10cb17a9_n_d.jpg">http://farm9.staticflickr.com/8092/8407636657_dd10cb17a9_n_d.jpg</a>">
 明けましておめでとう御座います。<br/>
 もうXperia Zが発売して約一週間が過ぎ、先月のことになってしまいましたがXperia (主にXperia Z)のタッチ＆トライイベントに参加してきましたのでリポートです。</p>
@@ -265,9 +265,9 @@ HTL21のUSB蓋は取れやすい(が、アロンアルファで接着しなお�
   
   <entry>
     <title type="html"><![CDATA[twicca - Evernote プラグイン 1.7.0 release]]></title>
-    <link href="http://note.ga.vg/blog/2012/10/16/twicca-evernote-plugin-1-7-0-release/"/>
+    <link href="http://note.n6e.be//blog/2012/10/16/twicca-evernote-plugin-1-7-0-release/"/>
     <updated>2012-10-16T23:46:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/10/16/twicca-evernote-plugin-1-7-0-release</id>
+    <id>http://note.n6e.be//blog/2012/10/16/twicca-evernote-plugin-1-7-0-release</id>
     <content type="html"><![CDATA[<p><a href="https://play.google.com/store/apps/details?id=jp.takuo.android.twicca.plugin.evernote">twicca &ndash; Evernote プラグイン</a> 1.7.0 をリリースしました。<br/>
 2012/11 よりパスワード認証でのサービス提供が終了することに伴い、Evernoteサービスの認証にOAuthを使うようになりました。</p>
 
@@ -286,9 +286,9 @@ HTL21のUSB蓋は取れやすい(が、アロンアルファで接着しなお�
   
   <entry>
     <title type="html"><![CDATA[IS12Sのswap]]></title>
-    <link href="http://note.ga.vg/blog/2012/09/21/is12s-swap/"/>
+    <link href="http://note.n6e.be//blog/2012/09/21/is12s-swap/"/>
     <updated>2012-09-21T01:01:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/09/21/is12s-swap</id>
+    <id>http://note.n6e.be//blog/2012/09/21/is12s-swap</id>
     <content type="html"><![CDATA[<p>前回のエントリでIS12Sでswapだわーいって嬉々として書いたのだが、vm.swappiness=60だとはっきりいって使いものにならないということをこの1ヶ月ほどで体感してきた。</p>
 
 <p>というわけで、vm.swappiness=20 くらいがよいと思います。</p>
@@ -297,9 +297,9 @@ HTL21のUSB蓋は取れやすい(が、アロンアルファで接着しなお�
   
   <entry>
     <title type="html"><![CDATA[au IS12Sでスワップを有効にする [要root]]]></title>
-    <link href="http://note.ga.vg/blog/2012/08/07/is12s-enable-swap/"/>
+    <link href="http://note.n6e.be//blog/2012/08/07/is12s-enable-swap/"/>
     <updated>2012-08-07T00:14:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/08/07/is12s-enable-swap</id>
+    <id>http://note.n6e.be//blog/2012/08/07/is12s-enable-swap</id>
     <content type="html"><![CDATA[<p>IS12S をICS にアップデートしてからというもの、メモリが足りなくていささか不便になってきました。<br/>
 そこでスワップを導入してみることにします。</p>
 

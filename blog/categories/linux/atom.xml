@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Linux | The Weight @northeye]]></title>
-  <link href="http://note.ga.vg/blog/categories/linux/atom.xml" rel="self"/>
-  <link href="http://note.ga.vg/"/>
-  <updated>2014-12-02T16:21:11+09:00</updated>
-  <id>http://note.ga.vg/</id>
+  <link href="http://note.n6e.be//blog/categories/linux/atom.xml" rel="self"/>
+  <link href="http://note.n6e.be//"/>
+  <updated>2015-01-07T16:58:58+09:00</updated>
+  <id>http://note.n6e.be//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[LXC コンテナで avahi-daemon を動かす]]></title>
-    <link href="http://note.ga.vg/blog/2013/06/11/avahi-daemon-in-lxc-container/"/>
+    <link href="http://note.n6e.be//blog/2013/06/11/avahi-daemon-in-lxc-container/"/>
     <updated>2013-06-11T16:41:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2013/06/11/avahi-daemon-in-lxc-container</id>
+    <id>http://note.n6e.be//blog/2013/06/11/avahi-daemon-in-lxc-container</id>
     <content type="html"><![CDATA[<p>LXCコンテナが役割ごとに増殖してて、DHCPつかってアドレス振ってると、振られたIPアドレス調べたり色々面倒なのでmDNSでアレしたいなと。</p>
 
 <p>というわけで mDNS であるところの <strong>avahi-daemon</strong> を動かそうとしたんですが動きませんのでメモ。</p>
@@ -76,9 +76,9 @@ respawn</p>
   
   <entry>
     <title type="html"><![CDATA[ffmpeg で ustream 配信したメモ]]></title>
-    <link href="http://note.ga.vg/blog/2013/05/30/ffmpeg-de-ustream/"/>
+    <link href="http://note.n6e.be//blog/2013/05/30/ffmpeg-de-ustream/"/>
     <updated>2013-05-30T17:26:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2013/05/30/ffmpeg-de-ustream</id>
+    <id>http://note.n6e.be//blog/2013/05/30/ffmpeg-de-ustream</id>
     <content type="html"><![CDATA[<p>どうも。</p>
 
 <p>当方、<a href="http://ustream.tv/channel/northeye">Ustreamで猫カメラ</a>を運用しているのだけれど、FlashMediaEncoderを動かしていたWindowsがとても不安定で廃絶してしまったので、どうしようかと思っていました。<br/>
@@ -269,9 +269,9 @@ v4l2-ctl -L で何ができるかわかります。</p>
   
   <entry>
     <title type="html"><![CDATA[nasne のファイルシステムを見てみる]]></title>
-    <link href="http://note.ga.vg/blog/2012/07/19/filesystem-of-nasne/"/>
+    <link href="http://note.n6e.be//blog/2012/07/19/filesystem-of-nasne/"/>
     <updated>2012-07-19T22:52:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/07/19/filesystem-of-nasne</id>
+    <id>http://note.n6e.be//blog/2012/07/19/filesystem-of-nasne</id>
     <content type="html"><![CDATA[<p>物理的な分解記事とかよりも面白いと思ったのでちょっとだけnasneの中身をみてました。</p>
 
 <!-- more -->
@@ -309,7 +309,7 @@ mount してみます。</p>
 # find &gt; /tmp/nasne.fs.txt
 </code></pre>
 
-<p><a href="http://note.ga.vg/assets/nasne.fs.txt">nasne.fs.txt</a><br/>
+<p><a href="/assets/nasne.fs.txt">nasne.fs.txt</a><br/>
 telnetd とか samba とか興味深いですね。samba は3.0.37でした。<br/>
 sbin,binなどにあるプログラムの実体はほぼ全てbusyboxです。</p>
 

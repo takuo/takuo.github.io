@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[The Weight @northeye]]></title>
-  <link href="http://note.ga.vg/atom.xml" rel="self"/>
-  <link href="http://note.ga.vg/"/>
-  <updated>2014-12-02T16:21:11+09:00</updated>
-  <id>http://note.ga.vg/</id>
+  <link href="http://note.n6e.be//atom.xml" rel="self"/>
+  <link href="http://note.n6e.be//"/>
+  <updated>2015-01-07T16:58:58+09:00</updated>
+  <id>http://note.n6e.be//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Anker 3 Micro USB Cables]]></title>
-    <link href="http://note.ga.vg/blog/2014/12/01/anker-3-micro-usb-cables/"/>
+    <link href="http://note.n6e.be//blog/2014/12/01/anker-3-micro-usb-cables/"/>
     <updated>2014-12-01T22:44:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2014/12/01/anker-3-micro-usb-cables</id>
+    <id>http://note.n6e.be//blog/2014/12/01/anker-3-micro-usb-cables</id>
     <content type="html"><![CDATA[<p><img class="right" src="https://lh5.googleusercontent.com/-5_DtA9BE1LQ/VH1j1Pf3N3I/AAAAAAAAUIM/T0rE9Ipyxu8/s288/IMGP1003_1.jpg">
 こんにちは。<br/>
 本日はお手頃なMicroUSBケーブルのご紹介です。</p>
@@ -61,9 +61,9 @@
   
   <entry>
     <title type="html"><![CDATA[NETGEAR GS116E]]></title>
-    <link href="http://note.ga.vg/blog/2014/08/07/netgear-gs116e/"/>
+    <link href="http://note.n6e.be//blog/2014/08/07/netgear-gs116e/"/>
     <updated>2014-08-07T22:01:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2014/08/07/netgear-gs116e</id>
+    <id>http://note.n6e.be//blog/2014/08/07/netgear-gs116e</id>
     <content type="html"><![CDATA[<p>VLANを切れる安価なスイッチングハブ NETGEAR GS116E を買ってみた。</p>
 
 <p>PPPoEのセグメントとPrivate LANのセグメントで2つのハブを使っていたのだけれど、機材を減らしたいと思いVLAN設定ができる安めのハブを探していたところ、NETGEAR製品くらいしかなさそうだったので16ポートのこいつを選んだ。</p>
@@ -79,7 +79,7 @@
 まぁこれは一度IPアドレスを設定しちゃえば Web UI が使えるようになるので不要ではあるのだが、初期設定時にether portがついたWindowsマシンがないと詰む。</p>
 
 <p>Web UIはこんな感じで、できることはAIRのアプリと同じ。<br/>
-<a href="http://note.ga.vg/assets/screenshot/gs116ev2-web-ui.png" target="_blank"><img class="right" src="http://note.ga.vg/assets/screenshot/gs116ev2-web-ui.png" title="WEB UI" ></a></p>
+<a href="http://note.n6e.be//assets/screenshot/gs116ev2-web-ui.png" target="_blank"><img class="right" src="http://note.n6e.be//assets/screenshot/gs116ev2-web-ui.png" title="WEB UI" ></a></p>
 
 <p>UI的にVLANの設定は若干わかりにくいかも知れない。</p>
 
@@ -136,9 +136,9 @@ LAN内やルーター自身から、ルーターのWANアドレス宛に通信�
   
   <entry>
     <title type="html"><![CDATA[近況]]></title>
-    <link href="http://note.ga.vg/blog/2014/08/06/kinkyo/"/>
+    <link href="http://note.n6e.be//blog/2014/08/06/kinkyo/"/>
     <updated>2014-08-06T17:54:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2014/08/06/kinkyo</id>
+    <id>http://note.n6e.be//blog/2014/08/06/kinkyo</id>
     <content type="html"><![CDATA[<p>近況です。</p>
 
 <p>とくにネタもなかったので放っておいてましたが、最近わりとモノを買うようになったので買ったものレビューでもしていこうかと思います。</p>
@@ -149,9 +149,9 @@ LAN内やルーター自身から、ルーターのWANアドレス宛に通信�
   
   <entry>
     <title type="html"><![CDATA[CyanogenMod で DTCP-IP やパズドラを動かす]]></title>
-    <link href="http://note.ga.vg/blog/2013/07/11/cyanogenmod-dtcp-ip/"/>
+    <link href="http://note.n6e.be//blog/2013/07/11/cyanogenmod-dtcp-ip/"/>
     <updated>2013-07-11T23:49:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2013/07/11/cyanogenmod-dtcp-ip</id>
+    <id>http://note.n6e.be//blog/2013/07/11/cyanogenmod-dtcp-ip</id>
     <content type="html"><![CDATA[<p>CyanogenMod でもパズドラを起動したいとです！！！</p>
 
 <!-- more -->
@@ -401,9 +401,9 @@ boot.img の改変は面倒ですが、手順は決まっているしスクリ�
   
   <entry>
     <title type="html"><![CDATA[LXC コンテナで avahi-daemon を動かす]]></title>
-    <link href="http://note.ga.vg/blog/2013/06/11/avahi-daemon-in-lxc-container/"/>
+    <link href="http://note.n6e.be//blog/2013/06/11/avahi-daemon-in-lxc-container/"/>
     <updated>2013-06-11T16:41:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2013/06/11/avahi-daemon-in-lxc-container</id>
+    <id>http://note.n6e.be//blog/2013/06/11/avahi-daemon-in-lxc-container</id>
     <content type="html"><![CDATA[<p>LXCコンテナが役割ごとに増殖してて、DHCPつかってアドレス振ってると、振られたIPアドレス調べたり色々面倒なのでmDNSでアレしたいなと。</p>
 
 <p>というわけで mDNS であるところの <strong>avahi-daemon</strong> を動かそうとしたんですが動きませんのでメモ。</p>
@@ -473,9 +473,9 @@ boot.img の改変は面倒ですが、手順は決まっているしスクリ�
   
   <entry>
     <title type="html"><![CDATA[ffmpeg で ustream 配信したメモ]]></title>
-    <link href="http://note.ga.vg/blog/2013/05/30/ffmpeg-de-ustream/"/>
+    <link href="http://note.n6e.be//blog/2013/05/30/ffmpeg-de-ustream/"/>
     <updated>2013-05-30T17:26:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2013/05/30/ffmpeg-de-ustream</id>
+    <id>http://note.n6e.be//blog/2013/05/30/ffmpeg-de-ustream</id>
     <content type="html"><![CDATA[<p>どうも。</p>
 
 <p>当方、<a href="http://ustream.tv/channel/northeye">Ustreamで猫カメラ</a>を運用しているのだけれど、FlashMediaEncoderを動かしていたWindowsがとても不安定で廃絶してしまったので、どうしようかと思っていました。<br/>
@@ -664,9 +664,9 @@ v4l2-ctl -L で何ができるかわかります。</p>
   
   <entry>
     <title type="html"><![CDATA[Xperia（TM）ワールド タッチ＆トライ ブロガーミーティングに参加しました(先月)]]></title>
-    <link href="http://note.ga.vg/blog/2013/02/14/xperia-world-touch-try/"/>
+    <link href="http://note.n6e.be//blog/2013/02/14/xperia-world-touch-try/"/>
     <updated>2013-02-14T20:23:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2013/02/14/xperia-world-touch-try</id>
+    <id>http://note.n6e.be//blog/2013/02/14/xperia-world-touch-try</id>
     <content type="html"><![CDATA[<p><img class="right" src="http://farm9.staticflickr.com/8092/8407636657_dd10cb17a9_n_d.jpg">
 明けましておめでとう御座います。<br/>
 もうXperia Zが発売して約一週間が過ぎ、先月のことになってしまいましたがXperia (主にXperia Z)のタッチ＆トライイベントに参加してきましたのでリポートです。</p>
@@ -730,9 +730,9 @@ HTL21のUSB蓋は取れやすい(が、アロンアルファで接着しなお�
   
   <entry>
     <title type="html"><![CDATA[猫にマカロンベッドを買ってあげた]]></title>
-    <link href="http://note.ga.vg/blog/2012/10/23/macaron-bed-for-cats/"/>
+    <link href="http://note.n6e.be//blog/2012/10/23/macaron-bed-for-cats/"/>
     <updated>2012-10-23T23:37:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/10/23/macaron-bed-for-cats</id>
+    <id>http://note.n6e.be//blog/2012/10/23/macaron-bed-for-cats</id>
     <content type="html"><![CDATA[<p>そろそろ寒いし、楽天みてたら2012年版とやらが売っていたので買いました。<br/>
 去年はこれ売り切れまくりで全く買えなかったけど買えました。</p>
 
@@ -760,9 +760,9 @@ HTL21のUSB蓋は取れやすい(が、アロンアルファで接着しなお�
   
   <entry>
     <title type="html"><![CDATA[iOS6はAVRCP1.3でMW600とかに曲名表示できる]]></title>
-    <link href="http://note.ga.vg/blog/2012/10/19/ios6-avrcp-1-3/"/>
+    <link href="http://note.n6e.be//blog/2012/10/19/ios6-avrcp-1-3/"/>
     <updated>2012-10-19T15:47:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/10/19/ios6-avrcp-1-3</id>
+    <id>http://note.n6e.be//blog/2012/10/19/ios6-avrcp-1-3</id>
     <content type="html"><![CDATA[<p>iPhone5にして気がついたのですが、MW600やAT-PHA05BTでの曲名表示が可能になってました。<br/>
 iOS6からかなと思います。便利。<br/>
 <a href="http://farm9.staticflickr.com/8464/8118329335_aa039c13f3_d.jpg" target="_blank"><img src="http://farm9.staticflickr.com/8464/8118329335_aa039c13f3_m_d.jpg"></a></p>
@@ -782,9 +782,9 @@ iOS6からかなと思います。便利。<br/>
   
   <entry>
     <title type="html"><![CDATA[Amazon BasicのHDMIケーブル安い]]></title>
-    <link href="http://note.ga.vg/blog/2012/10/17/amazon-basic-hdmi-cable/"/>
+    <link href="http://note.n6e.be//blog/2012/10/17/amazon-basic-hdmi-cable/"/>
     <updated>2012-10-17T15:58:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/10/17/amazon-basic-hdmi-cable</id>
+    <id>http://note.n6e.be//blog/2012/10/17/amazon-basic-hdmi-cable</id>
     <content type="html"><![CDATA[<p>安いし品質良さそうだし便利。<br/>
 名のあるメーカー品買うのアホらしい。</p>
 
@@ -800,9 +800,9 @@ iOS6からかなと思います。便利。<br/>
   
   <entry>
     <title type="html"><![CDATA[twicca - Evernote プラグイン 1.7.0 release]]></title>
-    <link href="http://note.ga.vg/blog/2012/10/16/twicca-evernote-plugin-1-7-0-release/"/>
+    <link href="http://note.n6e.be//blog/2012/10/16/twicca-evernote-plugin-1-7-0-release/"/>
     <updated>2012-10-16T23:46:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/10/16/twicca-evernote-plugin-1-7-0-release</id>
+    <id>http://note.n6e.be//blog/2012/10/16/twicca-evernote-plugin-1-7-0-release</id>
     <content type="html"><![CDATA[<p><a href="https://play.google.com/store/apps/details?id=jp.takuo.android.twicca.plugin.evernote">twicca &ndash; Evernote プラグイン</a> 1.7.0 をリリースしました。<br/>
 2012/11 よりパスワード認証でのサービス提供が終了することに伴い、Evernoteサービスの認証にOAuthを使うようになりました。</p>
 
@@ -821,9 +821,9 @@ iOS6からかなと思います。便利。<br/>
   
   <entry>
     <title type="html"><![CDATA[AppleTV買った]]></title>
-    <link href="http://note.ga.vg/blog/2012/10/14/appletv/"/>
+    <link href="http://note.n6e.be//blog/2012/10/14/appletv/"/>
     <updated>2012-10-14T15:13:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/10/14/appletv</id>
+    <id>http://note.n6e.be//blog/2012/10/14/appletv</id>
     <content type="html"><![CDATA[<p>AppleTV(っていうかAirPlay)最高！すごい！素晴らしい！みたいなエントリにしようと思ったんですがね。<br/>
 というのも使っていたdockコネクタスピーカーTSX-70がiPhone5にしてから使えなくなったんでね、AppleTV買って満足してたんですよ。</p>
 
@@ -853,9 +853,9 @@ AppleTVもまぁ安いしAirPlayミラーリングとか面白いしホームシ
   
   <entry>
     <title type="html"><![CDATA[アウトレイジビヨンド観た]]></title>
-    <link href="http://note.ga.vg/blog/2012/10/06/outrage-beyond/"/>
+    <link href="http://note.n6e.be//blog/2012/10/06/outrage-beyond/"/>
     <updated>2012-10-06T23:15:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/10/06/outrage-beyond</id>
+    <id>http://note.n6e.be//blog/2012/10/06/outrage-beyond</id>
     <content type="html"><![CDATA[<p>珍しく初日に観てきました。<br/>
 初日のせいか、いやいや同時に公開になったまどかマギカのせいか、新宿バルト9は大変混雑していました。</p>
 
@@ -872,9 +872,9 @@ AppleTVもまぁ安いしAirPlayミラーリングとか面白いしホームシ
   
   <entry>
     <title type="html"><![CDATA[iPhone5 購入]]></title>
-    <link href="http://note.ga.vg/blog/2012/10/03/iphone5/"/>
+    <link href="http://note.n6e.be//blog/2012/10/03/iphone5/"/>
     <updated>2012-10-03T02:27:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/10/03/iphone5</id>
+    <id>http://note.n6e.be//blog/2012/10/03/iphone5</id>
     <content type="html"><![CDATA[<p><img class="right" src="https://lh5.googleusercontent.com/-XzUB7CssnKw/UGsmquVL_6I/AAAAAAAAK1U/i4KGsQbY9ik/s288/IMGP0664.JPG">
 iPhone5に殺された者たちがいる。</p>
 
@@ -919,9 +919,9 @@ auでもよかったんだけど、すでにau3回線あるしそのうち一個
   
   <entry>
     <title type="html"><![CDATA[IS12Sのswap]]></title>
-    <link href="http://note.ga.vg/blog/2012/09/21/is12s-swap/"/>
+    <link href="http://note.n6e.be//blog/2012/09/21/is12s-swap/"/>
     <updated>2012-09-21T01:01:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/09/21/is12s-swap</id>
+    <id>http://note.n6e.be//blog/2012/09/21/is12s-swap</id>
     <content type="html"><![CDATA[<p>前回のエントリでIS12Sでswapだわーいって嬉々として書いたのだが、vm.swappiness=60だとはっきりいって使いものにならないということをこの1ヶ月ほどで体感してきた。</p>
 
 <p>というわけで、vm.swappiness=20 くらいがよいと思います。</p>
@@ -930,9 +930,9 @@ auでもよかったんだけど、すでにau3回線あるしそのうち一個
   
   <entry>
     <title type="html"><![CDATA[au IS12Sでスワップを有効にする [要root]]]></title>
-    <link href="http://note.ga.vg/blog/2012/08/07/is12s-enable-swap/"/>
+    <link href="http://note.n6e.be//blog/2012/08/07/is12s-enable-swap/"/>
     <updated>2012-08-07T00:14:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/08/07/is12s-enable-swap</id>
+    <id>http://note.n6e.be//blog/2012/08/07/is12s-enable-swap</id>
     <content type="html"><![CDATA[<p>IS12S をICS にアップデートしてからというもの、メモリが足りなくていささか不便になってきました。<br/>
 そこでスワップを導入してみることにします。</p>
 
@@ -1173,9 +1173,9 @@ SwapFree:         233728 kB
   
   <entry>
     <title type="html"><![CDATA[オーディオテクニカ AT-PHA05BTを買った]]></title>
-    <link href="http://note.ga.vg/blog/2012/08/05/review-at-pha05bt/"/>
+    <link href="http://note.n6e.be//blog/2012/08/05/review-at-pha05bt/"/>
     <updated>2012-08-05T02:47:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/08/05/review-at-pha05bt</id>
+    <id>http://note.n6e.be//blog/2012/08/05/review-at-pha05bt</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/dp/B0087BQJUO/takuojp02-22/ref=nosim/" target="_blank"><img class="right" src="https://lh3.googleusercontent.com/-TJH6xcQYckw/UB1nCKMhbfI/AAAAAAAAKfI/KqD5AG8TbPE/s144/AT-BT05.jpeg"></a>
 ソニエリのMW600を落っことして壊してしまったので、代替として<a href="http://www.audio-technica.co.jp/atj/show_model.php?modelId=1536">オーディオテクニカのAT-PHA05BT</a>を買ってみましたのでレビューです。<br/>
 (買ったのはヘッドフォン付きのAT-BT05ですが)</p>
@@ -1231,10 +1231,10 @@ SwapFree:         233728 kB
   
   <entry>
     <title type="html"><![CDATA[nasne の HDDを1TBに換装]]></title>
-    <link href="http://note.ga.vg/blog/2012/07/25/replacing-nasne-hdd-with-1tb/"/>
+    <link href="http://note.n6e.be//blog/2012/07/25/replacing-nasne-hdd-with-1tb/"/>
     <updated>2012-07-25T17:22:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/07/25/replacing-nasne-hdd-with-1tb</id>
-    <content type="html"><![CDATA[<p><a href="http://note.ga.vg/blog/2012/07/21/replacing-hdd-of-nasne/">先日の記事</a>では詳細な換装方法を書きましたが、サンプルに古くて容量の小さいHDDを利用して実験したまででした。
+    <id>http://note.n6e.be//blog/2012/07/25/replacing-nasne-hdd-with-1tb</id>
+    <content type="html"><![CDATA[<p><a href="http://note.n6e.be//blog/2012/07/21/replacing-hdd-of-nasne/">先日の記事</a>では詳細な換装方法を書きましたが、サンプルに古くて容量の小さいHDDを利用して実験したまででした。
 今回、実際に新しい1TBのHDDを買ってきて実践しましたのでリポートです。</p>
 
 <!-- more -->
@@ -1243,7 +1243,7 @@ SwapFree:         233728 kB
 <p>買ってきたのは東芝の2.5インチ1TB HDD(<a href="http://www.amazon.co.jp/dp/B007XCCTEI/ref=as_li_ss_til?tag=takuojp02-22&amp;camp=1027&amp;creative=7407&amp;linkCode=as4&amp;creativeASIN=B007XCCTEI&amp;adid=1K2S5CSEZ6C3GDTCVFP8&amp;&amp;ref-refURL=http%3A%2F%2Flocalhost%3A4000%2Fblog%2F2012%2F07%2F25%2Freplacing-nasne-hdd-with-1tb%2F">MQ01ABD100</a> 9.5mm厚)で7,489円でした。
 USB接続のHDDケースは玄人志向の2.5インチ USB3.0接続(<a href="http://www.amazon.co.jp/dp/B007SQJ7LC/ref=as_li_ss_til?tag=takuojp02-22&amp;camp=1027&amp;creative=7407&amp;linkCode=as4&amp;creativeASIN=B007SQJ7LC&amp;adid=0KWAZQJ2F6T10GB9JCQ6&amp;&amp;ref-refURL=http%3A%2F%2Flocalhost%3A4000%2Fblog%2F2012%2F07%2F25%2Freplacing-nasne-hdd-with-1tb%2F">GW2.5TL-U3</a>)で980円と大変安いものです。ACアダプタがないものですが一時的にコピーするくらいにしか使わないので平気でしょう。</p>
 
-<p>手順としては<a href="http://note.ga.vg/blog/2012/07/21/replacing-hdd-of-nasne/">先日の記事</a>どおりで、</p>
+<p>手順としては<a href="http://note.n6e.be//blog/2012/07/21/replacing-hdd-of-nasne/">先日の記事</a>どおりで、</p>
 
 <p><strong>1. nasne から HDDをはずし、PCに接続して dd を使いイメージを取り出す (数分)</strong></p>
 
@@ -1299,9 +1299,9 @@ xfsを操作するのでどうしてもLinuxが必要になってしまいます
   
   <entry>
     <title type="html"><![CDATA[nasne のHDDを時間かけずに換装する]]></title>
-    <link href="http://note.ga.vg/blog/2012/07/21/replacing-hdd-of-nasne/"/>
+    <link href="http://note.n6e.be//blog/2012/07/21/replacing-hdd-of-nasne/"/>
     <updated>2012-07-21T02:00:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/07/21/replacing-hdd-of-nasne</id>
+    <id>http://note.n6e.be//blog/2012/07/21/replacing-hdd-of-nasne</id>
     <content type="html"><![CDATA[<p>HDDをまるごとバックアップして書き戻す作業は大変時間がかかるので、必要な分だけイメージを取得するようにして待ち時間を短縮します。<br/>
 特別な機材は必要ありませんが、USBのHDDがケースがあると便利だと思います。<br/>
 Linuxでの作業になるので多少のLinuxの知識が必要になります。</p>
@@ -1436,7 +1436,7 @@ realtime =none                   extsz=4096   blocks=0, rtextents=0
 </code></pre>
 
 <p>ディスクを nasne に取り付けて起動します。
-<img src="http://note.ga.vg/assets/screenshot/nasne-hdd-replace.png"></p>
+<img src="http://note.n6e.be//assets/screenshot/nasne-hdd-replace.png"></p>
 
 <p>よくわかりませんが、起動時に電源LEDとREC LEDが両方赤点灯でフリーズすることがありました。<br/>
 なんどか同じ手順をやり直していたら起動したりしなかったりしました。<br/>
@@ -1466,9 +1466,9 @@ realtime =none                   extsz=4096   blocks=0, rtextents=0
   
   <entry>
     <title type="html"><![CDATA[nasne のファイルシステムを見てみる]]></title>
-    <link href="http://note.ga.vg/blog/2012/07/19/filesystem-of-nasne/"/>
+    <link href="http://note.n6e.be//blog/2012/07/19/filesystem-of-nasne/"/>
     <updated>2012-07-19T22:52:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/07/19/filesystem-of-nasne</id>
+    <id>http://note.n6e.be//blog/2012/07/19/filesystem-of-nasne</id>
     <content type="html"><![CDATA[<p>物理的な分解記事とかよりも面白いと思ったのでちょっとだけnasneの中身をみてました。</p>
 
 <!-- more -->
@@ -1506,7 +1506,7 @@ mount してみます。</p>
 # find &gt; /tmp/nasne.fs.txt
 </code></pre>
 
-<p><a href="http://note.ga.vg/assets/nasne.fs.txt">nasne.fs.txt</a><br/>
+<p><a href="http://note.n6e.be//assets/nasne.fs.txt">nasne.fs.txt</a><br/>
 telnetd とか samba とか興味深いですね。samba は3.0.37でした。<br/>
 sbin,binなどにあるプログラムの実体はほぼ全てbusyboxです。</p>
 

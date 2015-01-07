@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: CyanogenMod | The Weight @northeye]]></title>
-  <link href="http://note.ga.vg/blog/categories/cyanogenmod/atom.xml" rel="self"/>
-  <link href="http://note.ga.vg/"/>
-  <updated>2014-12-02T16:21:11+09:00</updated>
-  <id>http://note.ga.vg/</id>
+  <link href="http://note.n6e.be//blog/categories/cyanogenmod/atom.xml" rel="self"/>
+  <link href="http://note.n6e.be//"/>
+  <updated>2015-01-07T16:58:58+09:00</updated>
+  <id>http://note.n6e.be//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[CyanogenMod で DTCP-IP やパズドラを動かす]]></title>
-    <link href="http://note.ga.vg/blog/2013/07/11/cyanogenmod-dtcp-ip/"/>
+    <link href="http://note.n6e.be//blog/2013/07/11/cyanogenmod-dtcp-ip/"/>
     <updated>2013-07-11T23:49:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2013/07/11/cyanogenmod-dtcp-ip</id>
+    <id>http://note.n6e.be//blog/2013/07/11/cyanogenmod-dtcp-ip</id>
     <content type="html"><![CDATA[<p>CyanogenMod でもパズドラを起動したいとです！！！</p>
 
 <!-- more -->
@@ -199,9 +199,9 @@ boot.img の改変は面倒ですが、手順は決まっているしスクリ�
   
   <entry>
     <title type="html"><![CDATA[CM9 support for emoji on Mms]]></title>
-    <link href="http://note.ga.vg/blog/2012/04/18/cm9-support-for-emoji-on-mms/"/>
+    <link href="http://note.n6e.be//blog/2012/04/18/cm9-support-for-emoji-on-mms/"/>
     <updated>2012-04-18T15:06:00+09:00</updated>
-    <id>http://note.ga.vg/blog/2012/04/18/cm9-support-for-emoji-on-mms</id>
+    <id>http://note.n6e.be//blog/2012/04/18/cm9-support-for-emoji-on-mms</id>
     <content type="html"><![CDATA[<p>CyanogenMod 9のMmsに絵文字サポートが入っていた。</p>
 
 <!-- more -->
