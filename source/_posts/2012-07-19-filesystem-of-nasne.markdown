@@ -38,7 +38,7 @@ mount してみます。
     # cd /mnt/nasne
     # find > /tmp/nasne.fs.txt
 
-[nasne.fs.txt](http://note.ga.vg/assets/nasne.fs.txt)  
+[nasne.fs.txt](/assets/nasne.fs.txt)  
 telnetd とか samba とか興味深いですね。samba は3.0.37でした。  
 sbin,binなどにあるプログラムの実体はほぼ全てbusyboxです。  
 

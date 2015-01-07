@@ -13,7 +13,7 @@ dropboxはお友達を紹介すると一人に付き0.5G,合計16GB(32人紹介)
 
 (2012-05-17追記)  
 **商標権侵害の申し立てによりこの技は使えなくなりました。**
-{% img left http://ga.vg/g/d148.png %}
+{% img left http://n6e.be/g/d148.png %}
 {% raw %}
 <br style="clear: both" />
 {% endraw %}
