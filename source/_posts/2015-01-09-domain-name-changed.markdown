@@ -5,8 +5,9 @@ date: 2015-01-09 20:52
 comments: true
 categories: [ network ]
 ---
+{% img right /assets/screenshot/aws-domain-name-registration.png %}
 ドメインを変更することになりました。  
-新しいドメインは n6e.be です。
+新しいドメインは n6e.be です。  
 
 <!-- more -->
 
@@ -38,6 +39,9 @@ sudo pip install cli53
 ``` bash /etc/ppp/ip-up.d/ddns
 #!/bin/sh
 set -e
+
+export AWS_ACCESS_KEY_ID=XXXXXXXXXXXXXXXXXXXXXXXXXXX
+export AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 # dynamic.n6e.be をTTL 90で登録
 cli53 rrcreate n6e.be dynamic A $PPP_LOCAL --ttl 90 --replace
