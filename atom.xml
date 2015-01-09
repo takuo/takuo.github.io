@@ -4,7 +4,7 @@
   <title><![CDATA[The Weight @northeye]]></title>
   <link href="http://note.n6e.be//atom.xml" rel="self"/>
   <link href="http://note.n6e.be//"/>
-  <updated>2015-01-07T16:58:58+09:00</updated>
+  <updated>2015-01-09T18:35:55+09:00</updated>
   <id>http://note.n6e.be//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -12,6 +12,71 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ドメイン名が変わりました]]></title>
+    <link href="http://note.n6e.be//blog/2015/01/09/domain-name-changed/"/>
+    <updated>2015-01-09T20:52:00+09:00</updated>
+    <id>http://note.n6e.be//blog/2015/01/09/domain-name-changed</id>
+    <content type="html"><![CDATA[<p><img class="right" src="http://note.n6e.be//assets/screenshot/aws-domain-name-registration.png">
+ドメインを変更することになりました。<br/>
+新しいドメインは n6e.be です。</p>
+
+<!-- more -->
+
+
+<p>ga.vg ドメインは2文字でそんなに高額でもなく気に入っていたんですが、昨年のいつ頃だったかに .vg ドメインの管理団体が破産したとか何とかで変更になり、
+以後の更新料は年間1万円を超えるようになってしまいました。<br/>
+さすがに年1万はな〜ってなって変更することにいたしました。</p>
+
+<p>今度も3文字で比較的短いドメインなのですが、やっぱり2文字がよかったなという思いは残ります。</p>
+
+<p>さて、今回ドメイン取得にあたり、AmazonのRoute53サービスを利用してみました。<br/>
+ちなみにRoute53はバックエンドレジストラに<a href="http://www.gandi.net">Gandi</a>を利用しているようです。</p>
+
+<p>.be ドメインは $9 で取得でき、他のドメイン販売業者と比べても対して差がありません。<br/>
+.jp ドメインも $90 で大きく変わらないのですが、まぁ円安ということもあり、円換算すると少々高くなりますね。</p>
+
+<p>取得自体はAWSのマネジメントコンソールから適当にポチポチやってれば買えます。<br/>
+新規ドメインの場合は、自動的にDNSのホスティングもRoute53になります。<br/>
+もちろん外のDNSに変更も可能ですが、APIもあるしDDNSもやりやすいだろうと思ってこのまま運用することにしました。<br/>
+費用としては $0.5/zoneに加えて10億クエリまでは $0.4 で、だいたい $1/month で運用できていますし、気になる額でもありません。<br/>
+<img src="http://note.n6e.be//assets/screenshot/aws-route53-price.png"></p>
+
+<p>DDNSなどに用いるコマンドラインツールは <a href="https://github.com/barnybug/cli53">cli53</a> というPythonツールを使っています。</p>
+
+<figure class='code'><figcaption><span>command line</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo pip install cli53
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>という具合にpipでインストール。<br/>
+あとは /etc/ppp/ip-up.d/ddns あたりに適当にかいとけばDDNSできます。</p>
+
+<figure class='code'><figcaption><span>/etc/ppp/ip-up.d/ddns</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/bin/sh</span>
+</span><span class='line'><span class="nb">set</span> -e
+</span><span class='line'>
+</span><span class='line'><span class="nb">export </span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>XXXXXXXXXXXXXXXXXXXXXXXXXXX
+</span><span class='line'><span class="nb">export </span><span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+</span><span class='line'>
+</span><span class='line'><span class="c"># dynamic.n6e.be をTTL 90で登録</span>
+</span><span class='line'>cli53 rrcreate n6e.be dynamic A <span class="nv">$PPP_LOCAL</span> --ttl 90 --replace
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>便利です。</p>
+
+<p>今後共よろしくお願いいたします。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Anker 3 Micro USB Cables]]></title>
@@ -1455,154 +1520,6 @@ realtime =none                   extsz=4096   blocks=0, rtextents=0
 
 
 <iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B007V9T9ZK" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-
-
-<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B0035V5EA2" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-
-
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[nasne のファイルシステムを見てみる]]></title>
-    <link href="http://note.n6e.be//blog/2012/07/19/filesystem-of-nasne/"/>
-    <updated>2012-07-19T22:52:00+09:00</updated>
-    <id>http://note.n6e.be//blog/2012/07/19/filesystem-of-nasne</id>
-    <content type="html"><![CDATA[<p>物理的な分解記事とかよりも面白いと思ったのでちょっとだけnasneの中身をみてました。</p>
-
-<!-- more -->
-
-
-<p>まずはパーティションの確認から。</p>
-
-<pre><code># parted /dev/sdd
-GNU Parted 2.3
-Using /dev/sdd
-Welcome to GNU Parted! Type 'help' to view a list of commands.
-(parted) print
-Model: Hitachi HTS545050A7E380 (scsi)
-Disk /dev/sdd: 500GB
-Sector size (logical/physical): 512B/512B
-Partition Table: msdos
-
-Number  Start   End     Size    Type     File system  Flags
- 1      1049kB  269MB   268MB   primary  ext3         boot
- 2      269MB   1343MB  1074MB  primary  ext3
- 3      1343MB  500GB   499GB   primary  xfs
-</code></pre>
-
-<p>ほうほう。Linuxっぽい。xfsはきっと録画した実データ置き場ですね。<br/>
-mount してみます。</p>
-
-<pre><code># mount -o ro /dev/sdd1 /mnt/nasne/1
-# mount -o ro /dev/sdd2 /mnt/nasne/2
-# mount -o ro /dev/sdd3 /mnt/nasne/3
-</code></pre>
-
-<p>間違えて壊したくないので read-only でマウントしてます。</p>
-
-<pre><code># cd /mnt/nasne
-# find &gt; /tmp/nasne.fs.txt
-</code></pre>
-
-<p><a href="http://note.n6e.be//assets/nasne.fs.txt">nasne.fs.txt</a><br/>
-telnetd とか samba とか興味深いですね。samba は3.0.37でした。<br/>
-sbin,binなどにあるプログラムの実体はほぼ全てbusyboxです。</p>
-
-<p>最初のパーティション(1)にboot関連(多分)のものが入っており、おそらくハードウェア個体に紐付けられてこのnasneでしか起動できないようになってます。<br/>
-ファイルの中身は暗号化されており、わかりません。</p>
-
-<p>この時点ですでに1番組録画してあるのですが、パーティション(3)にある録画データはちゃんと暗号化(きっとハード固有の鍵により)されております。</p>
-
-<p>アーキテクチャを調べてみます。</p>
-
-<pre><code># file 2/lib/libc-2.9.so
-libc-2.9.so: ELF 32-bit LSB shared object, MIPS, MIPS32 rel2 version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.16, with unknown capability 0xf41 = 0x756e6700, with unknown capability 0x70100 = 0x1040000, not stripped
-</code></pre>
-
-<p>MIPSだそうです。</p>
-
-<pre><code># cat 2/etc/issue
-********************************************************************************
-*              Welcome to Viper MIPS Linux :-)                                 *
-********************************************************************************
-</code></pre>
-
-<p>ほうほう</p>
-
-<pre><code># cat 2/etc/passwd
-root::0:0:root:/root:/bin/sh
-www:x:80:80:root:/www:/bin/sh
-nobody:x:99:99:Nobody:/:/sbin/nologin
-bin:x:1:1:bin:/bin:/sbin/nologin
-daemon:x:2:2:daemon:/sbin:/sbin/nologin
-</code></pre>
-
-<p>ははあ。rootのパスワードはないんですね。</p>
-
-<pre><code># cat 2/etc/init.d/rcS
-#!/bin/sh
-trap "" SIGHUP
-#echo "Mounting proc"
-mount -t proc none /proc
-#echo "Mounting usbfs"
-mount -t usbfs none /proc/bus/usb
-#echo "Mounting sysfs"
-mount -t sysfs none /sys
-
-#echo "Starting uevent daemon"
-/usr/bin/uevent_daemon
-
-#echo "Starting Udev"
-start_udev
-
-#echo "Mounting devpts"
-mount -t devpts none /dev/pts
-
-sysctl -p
-
-#export HOSTNAME="nasne"
-#echo "Setting hostname $HOSTNAME"
-#hostname $HOSTNAME
-
-#echo "Bringing up loopback device"
-ifconfig lo 127.0.0.1 netmask 255.0.0.0 up
-route add -net 127.0.0.0 netmask 255.0.0.0 dev lo
-
-#echo "Bringing up Eth0"
-
-# ---- for DTVTuner ----
-/opt/dtvtuner/etc/startdtvtuner
-</code></pre>
-
-<p>なるほど。<br/>
-ここでinetdとかtelnetdを起動するように変更すれば稼働中のnasneにログインできるかもしれません。</p>
-
-<p>というわけで、別のHDDに換装するにはまるごとddしてコピーし、partedでxfsのパーティションを適当に大きくしたりすればよさそうです。<br/>
-肝心のカーネルイメージが何処にあるのかわかりませんでした。</p>
-
-<p><strong>(2012-07-20追記)</strong></p>
-
-<p>実際に /usr/sbin/inetd を起動するように書いてみたのですが、どうやらinitramfsかそのへんの処理でどこかに存在するイメージの展開で / を再作成しているようで、編集前の状態に戻ってしまいます。</p>
-
-<p>試しに dumpe2fs で / の状態を確認すると、</p>
-
-<pre><code>Filesystem created:       Wed May 16 17:52:14 2012
-Last mount time:          Thu Jan  1 09:00:05 1970
-Last write time:          Thu Jan  1 09:00:05 1970
-</code></pre>
-
-<p>となっており、mkfsはされてない(初期化ではない)が、システムの起動直後にマウントされ、再作成されてるように思えます。<br/>
-そこで、<strong>chattr +i {rootfs}/etc/init.d/rcS</strong> で書き込み禁止属性をつけ、rcSが書き戻されないようにしてから起動して見ましたが… 起動せず。<br/>
-どうやら展開中のエラーで起動処理が止まってるのだと思われます。(<strong>chattr -i</strong> しなおしたらなおりました)</p>
-
-<p>そんなわけで、簡単に好きなプログラムを走らせるようにはできておらず、もうひと工夫が必要そうです。(あるいはexploitを見つけるか)</p>
-
-<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B007V9T9ZK" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-
-
-<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B0034KZXBO" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
 
 
 <iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B0035V5EA2" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>

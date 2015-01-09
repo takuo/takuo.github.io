@@ -4,7 +4,7 @@
   <title><![CDATA[Category: network | The Weight @northeye]]></title>
   <link href="http://note.n6e.be//blog/categories/network/atom.xml" rel="self"/>
   <link href="http://note.n6e.be//"/>
-  <updated>2015-01-07T16:58:58+09:00</updated>
+  <updated>2015-01-09T18:35:55+09:00</updated>
   <id>http://note.n6e.be//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -12,6 +12,62 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ドメイン名が変わりました]]></title>
+    <link href="http://note.n6e.be//blog/2015/01/09/domain-name-changed/"/>
+    <updated>2015-01-09T20:52:00+09:00</updated>
+    <id>http://note.n6e.be//blog/2015/01/09/domain-name-changed</id>
+    <content type="html"><![CDATA[<p><img class="right" src="/assets/screenshot/aws-domain-name-registration.png">
+ドメインを変更することになりました。<br/>
+新しいドメインは n6e.be です。</p>
+
+<!-- more -->
+
+
+<p>ga.vg ドメインは2文字でそんなに高額でもなく気に入っていたんですが、昨年のいつ頃だったかに .vg ドメインの管理団体が破産したとか何とかで変更になり、
+以後の更新料は年間1万円を超えるようになってしまいました。<br/>
+さすがに年1万はな〜ってなって変更することにいたしました。</p>
+
+<p>今度も3文字で比較的短いドメインなのですが、やっぱり2文字がよかったなという思いは残ります。</p>
+
+<p>さて、今回ドメイン取得にあたり、AmazonのRoute53サービスを利用してみました。<br/>
+ちなみにRoute53はバックエンドレジストラに<a href="http://www.gandi.net">Gandi</a>を利用しているようです。</p>
+
+<p>.be ドメインは $9 で取得でき、他のドメイン販売業者と比べても対して差がありません。<br/>
+.jp ドメインも $90 で大きく変わらないのですが、まぁ円安ということもあり、円換算すると少々高くなりますね。</p>
+
+<p>取得自体はAWSのマネジメントコンソールから適当にポチポチやってれば買えます。<br/>
+新規ドメインの場合は、自動的にDNSのホスティングもRoute53になります。<br/>
+もちろん外のDNSに変更も可能ですが、APIもあるしDDNSもやりやすいだろうと思ってこのまま運用することにしました。<br/>
+費用としては $0.5/zoneに加えて10億クエリまでは $0.4 で、だいたい $1/month で運用できていますし、気になる額でもありません。<br/>
+<img src="/assets/screenshot/aws-route53-price.png"></p>
+
+<p>DDNSなどに用いるコマンドラインツールは <a href="https://github.com/barnybug/cli53">cli53</a> というPythonツールを使っています。<br/>
+<code>bash command line
+sudo pip install cli53
+</code>
+という具合にpipでインストール。<br/>
+あとは /etc/ppp/ip-up.d/ddns あたりに適当にかいとけばDDNSできます。</p>
+
+<p>``` bash /etc/ppp/ip-up.d/ddns</p>
+
+<h1>!/bin/sh</h1>
+
+<p>set -e</p>
+
+<p>export AWS_ACCESS_KEY_ID=XXXXXXXXXXXXXXXXXXXXXXXXXXX
+export AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+
+<h1>dynamic.n6e.be をTTL 90で登録</h1>
+
+<p>cli53 rrcreate n6e.be dynamic A $PPP_LOCAL &mdash;ttl 90 &mdash;replace
+```
+便利です。</p>
+
+<p>今後共よろしくお願いいたします。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[NETGEAR GS116E]]></title>

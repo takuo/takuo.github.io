@@ -5,12 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Xfce(など)でChromeのプロキシ設定をする - The Weight @northeye</title>
+  <title>ドメイン名が変わりました - The Weight @northeye</title>
   <meta name="author" content="Takuo Kitame">
 
   
-  <meta name="description" content="Xfceなど、システムのプロキシ設定ができない環境だとChromeはプロキシの設定が利用できず、次のように表示されてしまいます。 コマンドラインからは設定できるとあるので、やってみます。 まず proxy.pac ファイルを書きます。
-書き方についてはぐぐればいくらでも出てきますが、 &hellip;">
+  <meta name="description" content="ドメインを変更することになりました。
+新しいドメインは n6e.be です。 ga.vg ドメインは2文字でそんなに高額でもなく気に入っていたんですが、昨年のいつ頃だったかに .vg ドメインの管理団体が破産したとか何とかで変更になり、
+以後の更新料は年間1万円を超えるようになってしまいました &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://note.n6e.be//blog/2012/04/18/setting-proxy-for-chrome-on-xfce">
+  <link rel="canonical" href="http://note.n6e.be//blog/2015/01/09/domain-name-changed">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="The Weight @northeye" type="application/atom+xml">
@@ -86,7 +87,7 @@
   
   <header>
     
-      <h2 class="entry-title">Xfce(など)でChromeのプロキシ設定をする</h2>
+      <h2 class="entry-title">ドメイン名が変わりました</h2>
     
     
       <p class="meta">
@@ -102,7 +103,7 @@
   
 
 
-<time datetime="2012-04-18T11:12:00+09:00" pubdate data-updated="true">Apr 18<span>th</span>, 2012</time>
+<time datetime="2015-01-09T20:52:00+09:00" pubdate data-updated="true">Jan 9<span>th</span>, 2015</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -111,18 +112,42 @@
   </header>
 
 
-<div class="entry-content"><p>Xfceなど、システムのプロキシ設定ができない環境だとChromeはプロキシの設定が利用できず、次のように表示されてしまいます。<br/>
-<img src="http://n6e.be/g/0238.png"></p>
-
-<p>コマンドラインからは設定できるとあるので、やってみます。</p>
+<div class="entry-content"><p><img class="right" src="/assets/screenshot/aws-domain-name-registration.png">
+ドメインを変更することになりました。<br/>
+新しいドメインは n6e.be です。</p>
 
 <!-- more -->
 
 
-<p>まず <em>proxy.pac</em> ファイルを書きます。
-書き方については<a href="https://www.google.co.jp/search?q=proxy.pac">ぐぐれ</a>ばいくらでも出てきますが、例えばこんな感じに。</p>
+<p>ga.vg ドメインは2文字でそんなに高額でもなく気に入っていたんですが、昨年のいつ頃だったかに .vg ドメインの管理団体が破産したとか何とかで変更になり、
+以後の更新料は年間1万円を超えるようになってしまいました。<br/>
+さすがに年1万はな〜ってなって変更することにいたしました。</p>
 
-<figure class='code'><figcaption><span>/home/user/proxy.pac</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p>今度も3文字で比較的短いドメインなのですが、やっぱり2文字がよかったなという思いは残ります。</p>
+
+<p>さて、今回ドメイン取得にあたり、AmazonのRoute53サービスを利用してみました。<br/>
+ちなみにRoute53はバックエンドレジストラに<a href="http://www.gandi.net">Gandi</a>を利用しているようです。</p>
+
+<p>.be ドメインは $9 で取得でき、他のドメイン販売業者と比べても対して差がありません。<br/>
+.jp ドメインも $90 で大きく変わらないのですが、まぁ円安ということもあり、円換算すると少々高くなりますね。</p>
+
+<p>取得自体はAWSのマネジメントコンソールから適当にポチポチやってれば買えます。<br/>
+新規ドメインの場合は、自動的にDNSのホスティングもRoute53になります。<br/>
+もちろん外のDNSに変更も可能ですが、APIもあるしDDNSもやりやすいだろうと思ってこのまま運用することにしました。<br/>
+費用としては $0.5/zoneに加えて10億クエリまでは $0.4 で、だいたい $1/month で運用できていますし、気になる額でもありません。<br/>
+<img src="/assets/screenshot/aws-route53-price.png"></p>
+
+<p>DDNSなどに用いるコマンドラインツールは <a href="https://github.com/barnybug/cli53">cli53</a> というPythonツールを使っています。</p>
+
+<figure class='code'><figcaption><span>command line</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo pip install cli53
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>という具合にpipでインストール。<br/>
+あとは /etc/ppp/ip-up.d/ddns あたりに適当にかいとけばDDNSできます。</p>
+
+<figure class='code'><figcaption><span>/etc/ppp/ip-up.d/ddns</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -130,52 +155,20 @@
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">FindProxyForURL</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="nx">host</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>   <span class="k">if</span><span class="p">(</span><span class="nx">isPlainHostName</span><span class="p">(</span><span class="nx">host</span><span class="p">)</span><span class="o">||</span>
-</span><span class='line'>      <span class="nx">isInNet</span><span class="p">(</span><span class="nx">host</span><span class="p">,</span><span class="s2">&quot;192.168.0.0&quot;</span><span class="p">,</span><span class="s2">&quot;255.255.0.0&quot;</span><span class="p">)</span> <span class="o">||</span>
-</span><span class='line'>      <span class="nx">isInNet</span><span class="p">(</span><span class="nx">host</span><span class="p">,</span> <span class="s2">&quot;127.0.0.0&quot;</span> <span class="p">,</span> <span class="s2">&quot;255.0.0.0&quot;</span><span class="p">)</span> <span class="o">||</span>
-</span><span class='line'>      <span class="nx">shExpMatch</span><span class="p">(</span> <span class="nx">host</span><span class="p">,</span> <span class="s2">&quot;*.example.jp&quot;</span><span class="p">)</span> <span class="o">||</span>
-</span><span class='line'>      <span class="nx">host</span> <span class="o">==</span> <span class="s2">&quot;localhost&quot;</span>
-</span><span class='line'>     <span class="p">)</span>
-</span><span class='line'>     <span class="k">return</span> <span class="s2">&quot;DIRECT&quot;</span><span class="p">;</span>
-</span><span class='line'>   <span class="k">else</span>
-</span><span class='line'>     <span class="k">return</span> <span class="s2">&quot;PROXY 192.168.0.1:3128&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>次に、デスクトップやメニュー、パネルのランチャー設定をかえます。<br/>
-<em>/usr/share/applications/google-chrome.desktop</em> の</p>
-
-<pre><code>Exec=/opt/google/chrome/google-chrome %U
-</code></pre>
-
-<p>のようになっている部分を</p>
-
-<pre><code>Exec=/opt/google/chrome/google-chrome --proxy-pac-url=file:///home/user/proxy.pac %U
-</code></pre>
-
-<p>にして、<em>~/.local/share/applications/google-chrome.desktop</em> にコピー。<br/>
-以上で、プロキシの設定として <em>/home/user/proxy.pac</em> が使われるようになりました。</p>
-
-<p>気をつけることは、chromeが立ち上がってない状態で別のアプリケーションからの起動の際、これだけではカバーできないことです。<br/>
-そういう場合はラッパースクリプトでも用意しておきましょう。</p>
-
-<figure class='code'><figcaption><span>/opt/google/chrome/google-chrome</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/sh</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/bin/sh</span>
+</span><span class='line'><span class="nb">set</span> -e
 </span><span class='line'>
-</span><span class='line'><span class="nb">exec</span> /opt/google/chrome/google-chrome.real <span class="se">\</span>
-</span><span class='line'>  --proxy-pac-url<span class="o">=</span>file:///home/user/proxy.pac <span class="nv">$*</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>XXXXXXXXXXXXXXXXXXXXXXXXXXX
+</span><span class='line'><span class="nb">export </span><span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+</span><span class='line'>
+</span><span class='line'><span class="c"># dynamic.n6e.be をTTL 90で登録</span>
+</span><span class='line'>cli53 rrcreate n6e.be dynamic A <span class="nv">$PPP_LOCAL</span> --ttl 90 --replace
 </span></code></pre></td></tr></table></div></figure>
 
+
+<p>便利です。</p>
+
+<p>今後共よろしくお願いいたします。</p>
 </div>
 <div class="ads" style="margin-top: 1em; margin-left: 1em;">
 <script type="text/javascript"><!--
@@ -212,12 +205,12 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
   
 
 
-<time datetime="2012-04-18T11:12:00+09:00" pubdate data-updated="true">Apr 18<span>th</span>, 2012</time>
+<time datetime="2015-01-09T20:52:00+09:00" pubdate data-updated="true">Jan 9<span>th</span>, 2015</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/misc/'>misc</a>
+    <a class='category' href='/blog/categories/network/'>network</a>
   
 </span>
 
@@ -226,7 +219,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://note.n6e.be//blog/2012/04/18/setting-proxy-for-chrome-on-xfce/" data-via="northeye" data-counturl="http://note.n6e.be//blog/2012/04/18/setting-proxy-for-chrome-on-xfce/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://note.n6e.be//blog/2015/01/09/domain-name-changed/" data-via="northeye" data-counturl="http://note.n6e.be//blog/2015/01/09/domain-name-changed/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -242,10 +235,8 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/04/12/ojiichan-keitai2-dot-0/" title="Previous Post: おじいちゃん携帯 for Android 2.0">&laquo; おじいちゃん携帯 for Android 2.0</a>
+        <a class="basic-alignment left" href="/blog/2014/12/01/anker-3-micro-usb-cables/" title="Previous Post: Anker 3 Micro USB Cables">&laquo; Anker 3 Micro USB Cables</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2012/04/18/cm9-support-for-emoji-on-mms/" title="Next Post: CM9 support for emoji on Mms">CM9 support for emoji on Mms &raquo;</a>
       
     </p>
   </footer>
@@ -378,8 +369,8 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://note.n6e.be//blog/2012/04/18/setting-proxy-for-chrome-on-xfce/';
-        var disqus_url = 'http://note.n6e.be//blog/2012/04/18/setting-proxy-for-chrome-on-xfce/';
+        var disqus_identifier = 'http://note.n6e.be//blog/2015/01/09/domain-name-changed/';
+        var disqus_url = 'http://note.n6e.be//blog/2015/01/09/domain-name-changed/';
         var disqus_script = 'embed.js';
       
     (function () {
