@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: network | The Weight @northeye]]></title>
+  <title><![CDATA[Category: Network | The Weight]]></title>
   <link href="http://note.n6e.be//blog/categories/network/atom.xml" rel="self"/>
   <link href="http://note.n6e.be//"/>
-  <updated>2015-01-09T18:37:40+09:00</updated>
+  <updated>2015-04-08T19:30:53+09:00</updated>
   <id>http://note.n6e.be//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -14,128 +14,122 @@
 
   
   <entry>
-    <title type="html"><![CDATA[ドメイン名が変わりました]]></title>
-    <link href="http://note.n6e.be//blog/2015/01/09/domain-name-changed/"/>
-    <updated>2015-01-09T20:52:00+09:00</updated>
-    <id>http://note.n6e.be//blog/2015/01/09/domain-name-changed</id>
-    <content type="html"><![CDATA[<p><img class="right" src="/assets/screenshot/aws-domain-name-registration.png">
-ドメインを変更することになりました。<br/>
-新しいドメインは n6e.be です。</p>
+    <title type="html"><![CDATA[さくらのVPS x LXC x IPv6]]></title>
+    <link href="http://note.n6e.be//blog/2015/04/08/sakura-vps-lxc-ipv6/"/>
+    <updated>2015-04-08T15:39:00+09:00</updated>
+    <id>http://note.n6e.be//blog/2015/04/08/sakura-vps-lxc-ipv6</id>
+    <content type="html"><![CDATA[<p>こんにちは。<br/>
+さくらのVPSで使えていた<a href="http://research.sakura.ad.jp/6rd-trial/">6rdトライアルが3/31で終わってしまいました</a>。</p>
+
+<p>ところで、だいぶ前からさくらのVPSではネイティブなIPv6アドレスが配布され、利用できていました。(<a href="http://www.sakura.ad.jp/news/sakurainfo/newsentry.php?id=925">「さくらのVPS」大阪リージョン IPv6アドレス提供開始のお知らせ</a>)<br/>
+しかしながら、配布されているアドレスは1個のみで使い勝手がよくなく、それが6rdを最後まで使っていた理由でもありました。</p>
+
+<p>まぁサービスが終わってしまったのなら移行せざるを得ないということで重い腰を上げて作業した次第です。</p>
 
 <!-- more -->
 
 
-<p>ga.vg ドメインは2文字でそんなに高額でもなく気に入っていたんですが、昨年のいつ頃だったかに .vg ドメインの管理団体が破産したとか何とかで変更になり、
-以後の更新料は年間1万円を超えるようになってしまいました。<br/>
-さすがに年1万はな〜ってなって変更することにいたしました。</p>
+<h2>さくらVPSのIPv6</h2>
 
-<p>今度も3文字で比較的短いドメインなのですが、やっぱり2文字がよかったなという思いは残ります。</p>
+<p>前述の通り、現在さくらVPSで使えるIPv6はネイティブ接続になっています。<br/>
+単純にVPSでIPv6アドレスを使うだけなら以下の設定だけで十分です。</p>
 
-<p>さて、今回ドメイン取得にあたり、AmazonのRoute53サービスを利用してみました。<br/>
-ちなみにRoute53はバックエンドレジストラに<a href="http://www.gandi.net">Gandi</a>を利用しているようです。</p>
+<p>``` bash /etc/network/interfaces
+iface eth0 inet6 static</p>
 
-<p>.be ドメインは $9 で取得でき、他のドメイン販売業者と比べても対して差がありません。<br/>
-.jp ドメインも $90 で大きく変わらないのですが、まぁ円安ということもあり、円換算すると少々高くなりますね。</p>
+<pre><code>    address 2403:3a00:202:1202:xxx:xxx:xxx:xxx
+    netmask 64
+    gateway fe80::1
+</code></pre>
 
-<p>取得自体はAWSのマネジメントコンソールから適当にポチポチやってれば買えます。<br/>
-新規ドメインの場合は、自動的にDNSのホスティングもRoute53になります。<br/>
-もちろん外のDNSに変更も可能ですが、APIもあるしDDNSもやりやすいだろうと思ってこのまま運用することにしました。<br/>
-費用としては $0.5/zoneに加えて10億クエリまでは $0.4 で、だいたい $1/month で運用できていますし、気になる額でもありません。<br/>
-<img src="/assets/screenshot/aws-route53-price.png"></p>
+<p>```</p>
 
-<p>DDNSなどに用いるコマンドラインツールは <a href="https://github.com/barnybug/cli53">cli53</a> というPythonツールを使っています。<br/>
-<code>bash command line
-sudo pip install cli53
-</code>
-という具合にpipでインストール。<br/>
-あとは /etc/ppp/ip-up.d/ddns あたりに適当にかいとけばDDNSできます。</p>
+<p>ですが、うちのようにVPSでLXCを構成して、各種サービスはそれぞれのコンテナ内でうごかしているような環境の場合、IPv6でサービスにアクセスするには各コンテナにアドレスを振るか、IPv4のようにNATする必要があります。</p>
 
-<p>``` bash /etc/ppp/ip-up.d/ddns</p>
+<p>6rdトライアルでは/64のネットワークアドレスを使えたのでブリッジに対してアドレスを広告してあげれば済みましたが、現状のIPv6は1個しかアドレスがないのでこれをどうにかしてshareするしかありません。<br/>
+(BSD系のjailではうまくshareできるようですがよく知りません)</p>
 
-<h1>!/bin/sh</h1>
+<h2>IPv6でNAT</h2>
 
-<p>set -e</p>
+<p>IPv6でNATなんていうのは極めてnonsenseで非常にevilですがアドレスが一個しかない以上仕方がありません。<br/>
+さくらの人間は<a href="https://tools.ietf.org/html/rfc6177">RFC6177</a>を読んでいるのでしょうか。<br/>
+ともかく、<a href="http://mirrors.bieringer.de/Linux+IPv6-HOWTO/nat-netfilter6..html">Linux(3.9.0以降, iptables-1.4.18以降)ではIPv6でもNATできる</a>ようなのでやってみることにしました。</p>
 
-<p>export AWS_ACCESS_KEY_ID=XXXXXXXXXXXXXXXXXXXXXXXXXXX
-export AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+<p>とりあえずカーネルとiptablesのバージョンに問題なければIPv4と全く同じようにNATできるとのことです。</p>
 
-<h1>dynamic.n6e.be をTTL 90で登録</h1>
+<p>まずLXCのコンテナと通信するためのbridgeを確認します。</p>
 
-<p>cli53 rrcreate n6e.be dynamic A $PPP_LOCAL &mdash;ttl 90 &mdash;replace
-```
-便利です。</p>
+<pre><code>% brctl show lxcbr0
+bridge name bridge id       STP enabled interfaces
+lxcbr0      8000.fe59f8967f7c   no      vm00eth0
+                                vm01eth0
+                                vm02eth0
+                                vm03eth0
+                                vm04eth0
+% ifconfig lxcbr0
+lxcbr0    Link encap:イーサネット  ハードウェアアドレス fe:59:f8:96:7f:7c 
+          inetアドレス:10.0.0.1 ブロードキャスト:10.0.0.255  マスク:255.255.255.0
+          inet6アドレス: fe80::fc59:f8ff:fe96:7f7c/64 範囲:リンク
+</code></pre>
 
-<p>今後共よろしくお願いいたします。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[NETGEAR GS116E]]></title>
-    <link href="http://note.n6e.be//blog/2014/08/07/netgear-gs116e/"/>
-    <updated>2014-08-07T22:01:00+09:00</updated>
-    <id>http://note.n6e.be//blog/2014/08/07/netgear-gs116e</id>
-    <content type="html"><![CDATA[<p>VLANを切れる安価なスイッチングハブ NETGEAR GS116E を買ってみた。</p>
+<p>vm00内の<code>eth0</code>は…</p>
 
-<p>PPPoEのセグメントとPrivate LANのセグメントで2つのハブを使っていたのだけれど、機材を減らしたいと思いVLAN設定ができる安めのハブを探していたところ、NETGEAR製品くらいしかなさそうだったので16ポートのこいつを選んだ。</p>
+<pre><code>% ifconfig eth0
+eth0      Link encap:イーサネット  ハードウェアアドレス 00:ff:00:00:00:03 
+          inetアドレス:10.0.0.3 ブロードキャスト:10.0.0.255  マスク:255.255.255.0
+          inet6アドレス: fe80::2ff:ff:fe00:3/64 範囲:リンク
+</code></pre>
 
-<!-- more -->
+<p>まぁこんな感じですので、<code>lxcbr0</code> のリンクローカルを使って <code>fe80::2ff:ff:fe00:3</code> へDNATしたいと思います。</p>
 
+<pre><code># ip6tables -t nat -I PREROUTING -p tcp -d 2403:3a00:202:1202:xxx:xxx:xxx:xxx -j DNAT --to-destination fe80::2ff:ff:fe00:3
+</code></pre>
 
-<p>結論から言えば、家庭用としては大変コストパフォーマンスに優れた機材ではある、しかし若干悪いクセがあるように思えるのでちょっと書いてみる。</p>
+<p>とやれば良さそうに思いましたが、うまく行きませんでした。  <br/>
+<em>tcpdump</em>で覗けばわかりますが、<em>neighbor solicitation</em>に失敗しています。<br/>
+はい、リンクローカルはデバイス(<em>scope id</em>)を指定しなければうまく通信できません。<br/>
+<em>ping6</em> でもリンクローカルは <code>-I eth0</code> でインターフェースを指定したり、アドレスに<code>%eth0</code>をつけるなどしないと通りませんね。<br/>
+そんなわけで、</p>
 
-<h3>設定ツールはAdobe AIRだけどWebもある</h3>
+<pre><code># ip6tables -t nat -I PREROUTING -p tcp -d 2403:3a00:202:1202:xxx:xxx:xxx:xxx -j DNAT --to-destination fe80::2ff:ff:fe00:3%lxcbr0
+ip6tables v1.4.21: Bad IP address "fe80::2ff:ff:fe00:3%lxcbr0"
+</code></pre>
 
-<p>悪いとこのひとつは設定ツールがAdobe AIRアプリであり、Windows向けにしかないこと。<br/>
-まぁこれは一度IPアドレスを設定しちゃえば Web UI が使えるようになるので不要ではあるのだが、初期設定時にether portがついたWindowsマシンがないと詰む。</p>
+<p>などとやってみますが、拒否されました。<br/>
+なるほど、iptablesでは<em>scope id</em>を指定できないのですね。<br/>
+というわけで、リンクローカルはあきらめて<a href="https://www.nic.ad.jp/ja/newsletter/No30/022.html">Unique Local IPv6 Unicast Address (ULA)</a>を使います。<br/>
+ともかく使うアドレスは<code>fd00::/8</code>でよさそうです。</p>
 
-<p>Web UIはこんな感じで、できることはAIRのアプリと同じ。<br/>
-<a href="/assets/screenshot/gs116ev2-web-ui.png" target="_blank"><img class="right" src="/assets/screenshot/gs116ev2-web-ui.png" title="WEB UI" ></a></p>
+<p>コンテナからの戻りのrouteも必要ですので<em>masquerade</em>します。</p>
 
-<p>UI的にVLANの設定は若干わかりにくいかも知れない。</p>
+<pre><code># ip addr add fd00::1/8 dev lxcbr0
+# ip6tables -t nat -I PREROUTING -p tcp -d 2403:3a00:202:1202:xxx:xxx:xxx:xxx --dport 80 -j DNAT --to-destination fd00::3
+# ip6tables -t nat -I PREROUTING -p udp -d 2403:3a00:202:1202:xxx:xxx:xxx:xxx --dport 53 -j DNAT --to-destination fd00::3
+# ip6tables -t nat -I POSTROUTING -s fd00::/8 -o eth0 -j MASQUERADE
+</code></pre>
 
-<h3>ポートベースVLANは使うべきではない</h3>
+<p>LXCコンテナでは</p>
 
-<p>基本ポートベースVLANという機能があるが、これは使いものにならない(と思う)。<br/>
-これでVLANを切ってみたらホストによっては
-<blockquote><p>br0: received packet on eth1 with own address as source address</p></blockquote>
-といったようなログが出るようになり、通信がままならなくなった。<br/>
-まぁ素直に802.1QのAdvancedモードを使うように設定すればいいし、これが欠点とはならない。</p>
+<pre><code># ip addr add fd00::3/8 dev eth0
+# ip -6 ro add default via fd00::1 dev eth0
+</code></pre>
 
-<h3>謎のパケット破棄ルールがある?</h3>
+<p>結局の所、ULAをプライベートアドレスに読みかえれば、IPv4と同じオペレーションでNATができるようになるということです。</p>
 
-<p>一番よくない点として、どうも独自の判断でIPパケットを破棄している節がある。<br/>
-確認しているのはPPPoEのセッションパケットで、中身のIP DestinationとSourceが同じアドレスのパケットを捨てていた。</p>
+<h2>フィルタリングファイウォール</h2>
 
-<p>そもそもこんなパケットが外に行こうとすることがおかしいといえばおかしいのだが、例を挙げればYAMAHAのRTシリーズのNATはこういう仕様になっていて、<br/>
-LAN内やルーター自身から、ルーターのWANアドレス宛に通信しようとするとこういうパケットになり、一旦PPPoEのpeer先へパケットを投げる模様。<br/>
-実際に ping の応答に 5msec ほどかかっており、ルーター内部で完結しているとは言いがたいレイテンシになっている。</p>
+<p>IPv6でアクセスできることを確認したらIPv4と同じようにフィルタリングしておきましょう。<br/>
+これもIPv4のiptablesとまったく同じように設定します。</p>
 
-<p>さて、話を戻してWANアドレスにpingしながら、YAMAHAのルーターをつないだGS116Eのポートをミラーリングしてtcpdumpしているとこんな感じのパケットがきているのが見られる。<br/>
-<code>
- PPPoE  [ses 0x7b6d] IP 1xx.1yy.74.199 &gt; 1xx.1yy.74.199: ICMP echo request, id 61399, seq 1, length 64
- PPPoE  [ses 0x7b6d] IP 1xx.1yy.74.199 &gt; 1xx.1yy.74.199: ICMP echo request, id 61399, seq 2, length 64
- PPPoE  [ses 0x7b6d] IP 1xx.1yy.74.199 &gt; 1xx.1yy.74.199: ICMP echo request, id 61399, seq 3, length 64
-</code>
-このパケットはONUが繋がっている本来流れるべきポートへは流れていかないし(これもミラーリングで確認)、戻ってもいないのでGS116E内で破棄されていると考えられる。</p>
+<pre><code># ip6tables -I INPUT -P DROP   # default でDROP
+# ip6tables -I FORWARD -P DROP # default でDROP
+# ip6tables -A FORWARD -p tcp -m multiport --dports 80,443 -j ACCEPT
+# ip6tables -A FORWARD -p udp -m multiport --dports 53,123 -j ACCEPT
+(以下略)
+</code></pre>
 
-<p>こういうへんなNAT仕様のYAMAHAルーターも大概ではあるけれど、L2スイッチごときがL3の条件でパケットを勝手に捨てるのはいかがなものかと思う。(調べたら過去にIPv6パケットを捨ててるとかいう疑惑があった模様)<br/>
-まぁ稀なケースなので我慢することにしたが、いわゆるヘアピンNAT( <a href="http://www.rfc-base.org/txt/rfc-4787.txt">RFC4748</a> )などといわれる機能に頼る環境では注意である。</p>
-
-<h3>総評</h3>
-
-<p>ともあれ、安価でVLAN切れてWeb UIで設定でき、ポートミラーリングでこういったトラブルシューティングができるのはなかなかよいかなと思う。(あくまで家庭用では)</p>
-
-<p>評価: ★★★☆☆</p>
-
-<p></p>
-
-<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B00GQL3U2M" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-
-
-<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B004LV1SL4" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-
-
-<p></p>
+<p>以上です。<br/>
+あとはさくらVPSがせめて/64くれるようになることを祈るだけですね。</p>
 ]]></content>
   </entry>
   

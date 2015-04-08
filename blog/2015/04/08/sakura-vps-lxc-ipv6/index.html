@@ -5,14 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>nasne のファイルシステムを見てみる - The Weight</title>
+  <title>さくらのVPS x LXC x IPv6 - The Weight</title>
   <meta name="author" content="Takuo Kitame">
 
   
-  <meta name="description" content="物理的な分解記事とかよりも面白いと思ったのでちょっとだけnasneの中身をみてました。 まずはパーティションの確認から。 # parted /dev/sdd
-GNU Parted 2.3
-Using /dev/sdd
-Welcome to GNU Parted! Type 'help' to &hellip;">
+  <meta name="description" content="こんにちは。
+さくらのVPSで使えていた6rdトライアルが3/31で終わってしまいました。 ところで、だいぶ前からさくらのVPSではネイティブなIPv6アドレスが配布され、利用できていました。(「さくらのVPS」大阪リージョン IPv6アドレス提供開始のお知らせ)
+しかしながら、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +20,7 @@ Welcome to GNU Parted! Type 'help' to &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://note.n6e.be//blog/2012/07/19/filesystem-of-nasne">
+  <link rel="canonical" href="http://note.n6e.be//blog/2015/04/08/sakura-vps-lxc-ipv6">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="The Weight" type="application/atom+xml">
@@ -88,7 +87,7 @@ Welcome to GNU Parted! Type 'help' to &hellip;">
   
   <header>
     
-      <h2 class="entry-title">nasne のファイルシステムを見てみる</h2>
+      <h2 class="entry-title">さくらのVPS x LXC x IPv6</h2>
     
     
       <p class="meta">
@@ -104,7 +103,7 @@ Welcome to GNU Parted! Type 'help' to &hellip;">
   
 
 
-<time datetime="2012-07-19T22:52:00+09:00" pubdate data-updated="true">Jul 19<span>th</span>, 2012</time>
+<time datetime="2015-04-08T15:39:00+09:00" pubdate data-updated="true">Apr 8<span>th</span>, 2015</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -113,146 +112,119 @@ Welcome to GNU Parted! Type 'help' to &hellip;">
   </header>
 
 
-<div class="entry-content"><p>物理的な分解記事とかよりも面白いと思ったのでちょっとだけnasneの中身をみてました。</p>
+<div class="entry-content"><p>こんにちは。<br/>
+さくらのVPSで使えていた<a href="http://research.sakura.ad.jp/6rd-trial/">6rdトライアルが3/31で終わってしまいました</a>。</p>
+
+<p>ところで、だいぶ前からさくらのVPSではネイティブなIPv6アドレスが配布され、利用できていました。(<a href="http://www.sakura.ad.jp/news/sakurainfo/newsentry.php?id=925">「さくらのVPS」大阪リージョン IPv6アドレス提供開始のお知らせ</a>)<br/>
+しかしながら、配布されているアドレスは1個のみで使い勝手がよくなく、それが6rdを最後まで使っていた理由でもありました。</p>
+
+<p>まぁサービスが終わってしまったのなら移行せざるを得ないということで重い腰を上げて作業した次第です。</p>
 
 <!-- more -->
 
 
-<p>まずはパーティションの確認から。</p>
+<h2>さくらVPSのIPv6</h2>
 
-<pre><code># parted /dev/sdd
-GNU Parted 2.3
-Using /dev/sdd
-Welcome to GNU Parted! Type 'help' to view a list of commands.
-(parted) print
-Model: Hitachi HTS545050A7E380 (scsi)
-Disk /dev/sdd: 500GB
-Sector size (logical/physical): 512B/512B
-Partition Table: msdos
+<p>前述の通り、現在さくらVPSで使えるIPv6はネイティブ接続になっています。<br/>
+単純にVPSでIPv6アドレスを使うだけなら以下の設定だけで十分です。</p>
 
-Number  Start   End     Size    Type     File system  Flags
- 1      1049kB  269MB   268MB   primary  ext3         boot
- 2      269MB   1343MB  1074MB  primary  ext3
- 3      1343MB  500GB   499GB   primary  xfs
+<figure class='code'><figcaption><span>/etc/network/interfaces</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>iface eth0 inet6 static
+</span><span class='line'>        address 2403:3a00:202:1202:xxx:xxx:xxx:xxx
+</span><span class='line'>        netmask 64
+</span><span class='line'>        gateway fe80::1
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ですが、うちのようにVPSでLXCを構成して、各種サービスはそれぞれのコンテナ内でうごかしているような環境の場合、IPv6でサービスにアクセスするには各コンテナにアドレスを振るか、IPv4のようにNATする必要があります。</p>
+
+<p>6rdトライアルでは/64のネットワークアドレスを使えたのでブリッジに対してアドレスを広告してあげれば済みましたが、現状のIPv6は1個しかアドレスがないのでこれをどうにかしてshareするしかありません。<br/>
+(BSD系のjailではうまくshareできるようですがよく知りません)</p>
+
+<h2>IPv6でNAT</h2>
+
+<p>IPv6でNATなんていうのは極めてnonsenseで非常にevilですがアドレスが一個しかない以上仕方がありません。<br/>
+さくらの人間は<a href="https://tools.ietf.org/html/rfc6177">RFC6177</a>を読んでいるのでしょうか。<br/>
+ともかく、<a href="http://mirrors.bieringer.de/Linux+IPv6-HOWTO/nat-netfilter6..html">Linux(3.9.0以降, iptables-1.4.18以降)ではIPv6でもNATできる</a>ようなのでやってみることにしました。</p>
+
+<p>とりあえずカーネルとiptablesのバージョンに問題なければIPv4と全く同じようにNATできるとのことです。</p>
+
+<p>まずLXCのコンテナと通信するためのbridgeを確認します。</p>
+
+<pre><code>% brctl show lxcbr0
+bridge name bridge id       STP enabled interfaces
+lxcbr0      8000.fe59f8967f7c   no      vm00eth0
+                                vm01eth0
+                                vm02eth0
+                                vm03eth0
+                                vm04eth0
+% ifconfig lxcbr0
+lxcbr0    Link encap:イーサネット  ハードウェアアドレス fe:59:f8:96:7f:7c 
+          inetアドレス:10.0.0.1 ブロードキャスト:10.0.0.255  マスク:255.255.255.0
+          inet6アドレス: fe80::fc59:f8ff:fe96:7f7c/64 範囲:リンク
 </code></pre>
 
-<p>ほうほう。Linuxっぽい。xfsはきっと録画した実データ置き場ですね。<br/>
-mount してみます。</p>
+<p>vm00内の<code>eth0</code>は…</p>
 
-<pre><code># mount -o ro /dev/sdd1 /mnt/nasne/1
-# mount -o ro /dev/sdd2 /mnt/nasne/2
-# mount -o ro /dev/sdd3 /mnt/nasne/3
+<pre><code>% ifconfig eth0
+eth0      Link encap:イーサネット  ハードウェアアドレス 00:ff:00:00:00:03 
+          inetアドレス:10.0.0.3 ブロードキャスト:10.0.0.255  マスク:255.255.255.0
+          inet6アドレス: fe80::2ff:ff:fe00:3/64 範囲:リンク
 </code></pre>
 
-<p>間違えて壊したくないので read-only でマウントしてます。</p>
+<p>まぁこんな感じですので、<code>lxcbr0</code> のリンクローカルを使って <code>fe80::2ff:ff:fe00:3</code> へDNATしたいと思います。</p>
 
-<pre><code># cd /mnt/nasne
-# find &gt; /tmp/nasne.fs.txt
+<pre><code># ip6tables -t nat -I PREROUTING -p tcp -d 2403:3a00:202:1202:xxx:xxx:xxx:xxx -j DNAT --to-destination fe80::2ff:ff:fe00:3
 </code></pre>
 
-<p><a href="/assets/nasne.fs.txt">nasne.fs.txt</a><br/>
-telnetd とか samba とか興味深いですね。samba は3.0.37でした。<br/>
-sbin,binなどにあるプログラムの実体はほぼ全てbusyboxです。</p>
+<p>とやれば良さそうに思いましたが、うまく行きませんでした。  <br/>
+<em>tcpdump</em>で覗けばわかりますが、<em>neighbor solicitation</em>に失敗しています。<br/>
+はい、リンクローカルはデバイス(<em>scope id</em>)を指定しなければうまく通信できません。<br/>
+<em>ping6</em> でもリンクローカルは <code>-I eth0</code> でインターフェースを指定したり、アドレスに<code>%eth0</code>をつけるなどしないと通りませんね。<br/>
+そんなわけで、</p>
 
-<p>最初のパーティション(1)にboot関連(多分)のものが入っており、おそらくハードウェア個体に紐付けられてこのnasneでしか起動できないようになってます。<br/>
-ファイルの中身は暗号化されており、わかりません。</p>
-
-<p>この時点ですでに1番組録画してあるのですが、パーティション(3)にある録画データはちゃんと暗号化(きっとハード固有の鍵により)されております。</p>
-
-<p>アーキテクチャを調べてみます。</p>
-
-<pre><code># file 2/lib/libc-2.9.so
-libc-2.9.so: ELF 32-bit LSB shared object, MIPS, MIPS32 rel2 version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.16, with unknown capability 0xf41 = 0x756e6700, with unknown capability 0x70100 = 0x1040000, not stripped
+<pre><code># ip6tables -t nat -I PREROUTING -p tcp -d 2403:3a00:202:1202:xxx:xxx:xxx:xxx -j DNAT --to-destination fe80::2ff:ff:fe00:3%lxcbr0
+ip6tables v1.4.21: Bad IP address "fe80::2ff:ff:fe00:3%lxcbr0"
 </code></pre>
 
-<p>MIPSだそうです。</p>
+<p>などとやってみますが、拒否されました。<br/>
+なるほど、iptablesでは<em>scope id</em>を指定できないのですね。<br/>
+というわけで、リンクローカルはあきらめて<a href="https://www.nic.ad.jp/ja/newsletter/No30/022.html">Unique Local IPv6 Unicast Address (ULA)</a>を使います。<br/>
+ともかく使うアドレスは<code>fd00::/8</code>でよさそうです。</p>
 
-<pre><code># cat 2/etc/issue
-********************************************************************************
-*              Welcome to Viper MIPS Linux :-)                                 *
-********************************************************************************
+<p>コンテナからの戻りのrouteも必要ですので<em>masquerade</em>します。</p>
+
+<pre><code># ip addr add fd00::1/8 dev lxcbr0
+# ip6tables -t nat -I PREROUTING -p tcp -d 2403:3a00:202:1202:xxx:xxx:xxx:xxx --dport 80 -j DNAT --to-destination fd00::3
+# ip6tables -t nat -I PREROUTING -p udp -d 2403:3a00:202:1202:xxx:xxx:xxx:xxx --dport 53 -j DNAT --to-destination fd00::3
+# ip6tables -t nat -I POSTROUTING -s fd00::/8 -o eth0 -j MASQUERADE
 </code></pre>
 
-<p>ほうほう</p>
+<p>LXCコンテナでは</p>
 
-<pre><code># cat 2/etc/passwd
-root::0:0:root:/root:/bin/sh
-www:x:80:80:root:/www:/bin/sh
-nobody:x:99:99:Nobody:/:/sbin/nologin
-bin:x:1:1:bin:/bin:/sbin/nologin
-daemon:x:2:2:daemon:/sbin:/sbin/nologin
+<pre><code># ip addr add fd00::3/8 dev eth0
+# ip -6 ro add default via fd00::1 dev eth0
 </code></pre>
 
-<p>ははあ。rootのパスワードはないんですね。</p>
+<p>結局の所、ULAをプライベートアドレスに読みかえれば、IPv4と同じオペレーションでNATができるようになるということです。</p>
 
-<pre><code># cat 2/etc/init.d/rcS
-#!/bin/sh
-trap "" SIGHUP
-#echo "Mounting proc"
-mount -t proc none /proc
-#echo "Mounting usbfs"
-mount -t usbfs none /proc/bus/usb
-#echo "Mounting sysfs"
-mount -t sysfs none /sys
+<h2>フィルタリングファイウォール</h2>
 
-#echo "Starting uevent daemon"
-/usr/bin/uevent_daemon
+<p>IPv6でアクセスできることを確認したらIPv4と同じようにフィルタリングしておきましょう。<br/>
+これもIPv4のiptablesとまったく同じように設定します。</p>
 
-#echo "Starting Udev"
-start_udev
-
-#echo "Mounting devpts"
-mount -t devpts none /dev/pts
-
-sysctl -p
-
-#export HOSTNAME="nasne"
-#echo "Setting hostname $HOSTNAME"
-#hostname $HOSTNAME
-
-#echo "Bringing up loopback device"
-ifconfig lo 127.0.0.1 netmask 255.0.0.0 up
-route add -net 127.0.0.0 netmask 255.0.0.0 dev lo
-
-#echo "Bringing up Eth0"
-
-# ---- for DTVTuner ----
-/opt/dtvtuner/etc/startdtvtuner
+<pre><code># ip6tables -I INPUT -P DROP   # default でDROP
+# ip6tables -I FORWARD -P DROP # default でDROP
+# ip6tables -A FORWARD -p tcp -m multiport --dports 80,443 -j ACCEPT
+# ip6tables -A FORWARD -p udp -m multiport --dports 53,123 -j ACCEPT
+(以下略)
 </code></pre>
 
-<p>なるほど。<br/>
-ここでinetdとかtelnetdを起動するように変更すれば稼働中のnasneにログインできるかもしれません。</p>
-
-<p>というわけで、別のHDDに換装するにはまるごとddしてコピーし、partedでxfsのパーティションを適当に大きくしたりすればよさそうです。<br/>
-肝心のカーネルイメージが何処にあるのかわかりませんでした。</p>
-
-<p><strong>(2012-07-20追記)</strong></p>
-
-<p>実際に /usr/sbin/inetd を起動するように書いてみたのですが、どうやらinitramfsかそのへんの処理でどこかに存在するイメージの展開で / を再作成しているようで、編集前の状態に戻ってしまいます。</p>
-
-<p>試しに dumpe2fs で / の状態を確認すると、</p>
-
-<pre><code>Filesystem created:       Wed May 16 17:52:14 2012
-Last mount time:          Thu Jan  1 09:00:05 1970
-Last write time:          Thu Jan  1 09:00:05 1970
-</code></pre>
-
-<p>となっており、mkfsはされてない(初期化ではない)が、システムの起動直後にマウントされ、再作成されてるように思えます。<br/>
-そこで、<strong>chattr +i {rootfs}/etc/init.d/rcS</strong> で書き込み禁止属性をつけ、rcSが書き戻されないようにしてから起動して見ましたが… 起動せず。<br/>
-どうやら展開中のエラーで起動処理が止まってるのだと思われます。(<strong>chattr -i</strong> しなおしたらなおりました)</p>
-
-<p>そんなわけで、簡単に好きなプログラムを走らせるようにはできておらず、もうひと工夫が必要そうです。(あるいはexploitを見つけるか)</p>
-
-<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B007V9T9ZK" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-
-
-<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B0034KZXBO" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-
-
-<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B0035V5EA2" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-
-
-
+<p>以上です。<br/>
+あとはさくらVPSがせめて/64くれるようになることを祈るだけですね。</p>
 </div>
 <div class="ads" style="margin-top: 1em; margin-left: 1em;">
 <script type="text/javascript"><!--
@@ -289,12 +261,12 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
   
 
 
-<time datetime="2012-07-19T22:52:00+09:00" pubdate data-updated="true">Jul 19<span>th</span>, 2012</time>
+<time datetime="2015-04-08T15:39:00+09:00" pubdate data-updated="true">Apr 8<span>th</span>, 2015</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/linux/'>Linux</a>, <a class='category' href='/blog/categories/ps3/'>PS3</a>, <a class='category' href='/blog/categories/nasne/'>nasne</a>, <a class='category' href='/blog/categories/trone/'>trone</a>
+    <a class='category' href='/blog/categories/network/'>Network</a>
   
 </span>
 
@@ -303,7 +275,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://note.n6e.be//blog/2012/07/19/filesystem-of-nasne/" data-via="northeye" data-counturl="http://note.n6e.be//blog/2012/07/19/filesystem-of-nasne/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://note.n6e.be//blog/2015/04/08/sakura-vps-lxc-ipv6/" data-via="northeye" data-counturl="http://note.n6e.be//blog/2015/04/08/sakura-vps-lxc-ipv6/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -319,10 +291,8 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/07/17/lxc-on-sakura-vps/" title="Previous Post: さくらのVPSでLXC(Linux Container)を動かす">&laquo; さくらのVPSでLXC(Linux Container)を動かす</a>
+        <a class="basic-alignment left" href="/blog/2015/01/09/domain-name-changed/" title="Previous Post: ドメイン名が変わりました">&laquo; ドメイン名が変わりました</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2012/07/21/replacing-hdd-of-nasne/" title="Next Post: nasne のHDDを時間かけずに換装する">nasne のHDDを時間かけずに換装する &raquo;</a>
       
     </p>
   </footer>
@@ -455,8 +425,8 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://note.n6e.be//blog/2012/07/19/filesystem-of-nasne/';
-        var disqus_url = 'http://note.n6e.be//blog/2012/07/19/filesystem-of-nasne/';
+        var disqus_identifier = 'http://note.n6e.be//blog/2015/04/08/sakura-vps-lxc-ipv6/';
+        var disqus_url = 'http://note.n6e.be//blog/2015/04/08/sakura-vps-lxc-ipv6/';
         var disqus_script = 'embed.js';
       
     (function () {

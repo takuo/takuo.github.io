@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[The Weight @northeye]]></title>
+  <title><![CDATA[The Weight]]></title>
   <link href="http://note.n6e.be//atom.xml" rel="self"/>
   <link href="http://note.n6e.be//"/>
-  <updated>2015-01-09T18:37:40+09:00</updated>
+  <updated>2015-04-08T19:30:53+09:00</updated>
   <id>http://note.n6e.be//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -12,6 +12,127 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[さくらのVPS x LXC x IPv6]]></title>
+    <link href="http://note.n6e.be//blog/2015/04/08/sakura-vps-lxc-ipv6/"/>
+    <updated>2015-04-08T15:39:00+09:00</updated>
+    <id>http://note.n6e.be//blog/2015/04/08/sakura-vps-lxc-ipv6</id>
+    <content type="html"><![CDATA[<p>こんにちは。<br/>
+さくらのVPSで使えていた<a href="http://research.sakura.ad.jp/6rd-trial/">6rdトライアルが3/31で終わってしまいました</a>。</p>
+
+<p>ところで、だいぶ前からさくらのVPSではネイティブなIPv6アドレスが配布され、利用できていました。(<a href="http://www.sakura.ad.jp/news/sakurainfo/newsentry.php?id=925">「さくらのVPS」大阪リージョン IPv6アドレス提供開始のお知らせ</a>)<br/>
+しかしながら、配布されているアドレスは1個のみで使い勝手がよくなく、それが6rdを最後まで使っていた理由でもありました。</p>
+
+<p>まぁサービスが終わってしまったのなら移行せざるを得ないということで重い腰を上げて作業した次第です。</p>
+
+<!-- more -->
+
+
+<h2>さくらVPSのIPv6</h2>
+
+<p>前述の通り、現在さくらVPSで使えるIPv6はネイティブ接続になっています。<br/>
+単純にVPSでIPv6アドレスを使うだけなら以下の設定だけで十分です。</p>
+
+<figure class='code'><figcaption><span>/etc/network/interfaces</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>iface eth0 inet6 static
+</span><span class='line'>        address 2403:3a00:202:1202:xxx:xxx:xxx:xxx
+</span><span class='line'>        netmask 64
+</span><span class='line'>        gateway fe80::1
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ですが、うちのようにVPSでLXCを構成して、各種サービスはそれぞれのコンテナ内でうごかしているような環境の場合、IPv6でサービスにアクセスするには各コンテナにアドレスを振るか、IPv4のようにNATする必要があります。</p>
+
+<p>6rdトライアルでは/64のネットワークアドレスを使えたのでブリッジに対してアドレスを広告してあげれば済みましたが、現状のIPv6は1個しかアドレスがないのでこれをどうにかしてshareするしかありません。<br/>
+(BSD系のjailではうまくshareできるようですがよく知りません)</p>
+
+<h2>IPv6でNAT</h2>
+
+<p>IPv6でNATなんていうのは極めてnonsenseで非常にevilですがアドレスが一個しかない以上仕方がありません。<br/>
+さくらの人間は<a href="https://tools.ietf.org/html/rfc6177">RFC6177</a>を読んでいるのでしょうか。<br/>
+ともかく、<a href="http://mirrors.bieringer.de/Linux+IPv6-HOWTO/nat-netfilter6..html">Linux(3.9.0以降, iptables-1.4.18以降)ではIPv6でもNATできる</a>ようなのでやってみることにしました。</p>
+
+<p>とりあえずカーネルとiptablesのバージョンに問題なければIPv4と全く同じようにNATできるとのことです。</p>
+
+<p>まずLXCのコンテナと通信するためのbridgeを確認します。</p>
+
+<pre><code>% brctl show lxcbr0
+bridge name bridge id       STP enabled interfaces
+lxcbr0      8000.fe59f8967f7c   no      vm00eth0
+                                vm01eth0
+                                vm02eth0
+                                vm03eth0
+                                vm04eth0
+% ifconfig lxcbr0
+lxcbr0    Link encap:イーサネット  ハードウェアアドレス fe:59:f8:96:7f:7c 
+          inetアドレス:10.0.0.1 ブロードキャスト:10.0.0.255  マスク:255.255.255.0
+          inet6アドレス: fe80::fc59:f8ff:fe96:7f7c/64 範囲:リンク
+</code></pre>
+
+<p>vm00内の<code>eth0</code>は…</p>
+
+<pre><code>% ifconfig eth0
+eth0      Link encap:イーサネット  ハードウェアアドレス 00:ff:00:00:00:03 
+          inetアドレス:10.0.0.3 ブロードキャスト:10.0.0.255  マスク:255.255.255.0
+          inet6アドレス: fe80::2ff:ff:fe00:3/64 範囲:リンク
+</code></pre>
+
+<p>まぁこんな感じですので、<code>lxcbr0</code> のリンクローカルを使って <code>fe80::2ff:ff:fe00:3</code> へDNATしたいと思います。</p>
+
+<pre><code># ip6tables -t nat -I PREROUTING -p tcp -d 2403:3a00:202:1202:xxx:xxx:xxx:xxx -j DNAT --to-destination fe80::2ff:ff:fe00:3
+</code></pre>
+
+<p>とやれば良さそうに思いましたが、うまく行きませんでした。  <br/>
+<em>tcpdump</em>で覗けばわかりますが、<em>neighbor solicitation</em>に失敗しています。<br/>
+はい、リンクローカルはデバイス(<em>scope id</em>)を指定しなければうまく通信できません。<br/>
+<em>ping6</em> でもリンクローカルは <code>-I eth0</code> でインターフェースを指定したり、アドレスに<code>%eth0</code>をつけるなどしないと通りませんね。<br/>
+そんなわけで、</p>
+
+<pre><code># ip6tables -t nat -I PREROUTING -p tcp -d 2403:3a00:202:1202:xxx:xxx:xxx:xxx -j DNAT --to-destination fe80::2ff:ff:fe00:3%lxcbr0
+ip6tables v1.4.21: Bad IP address "fe80::2ff:ff:fe00:3%lxcbr0"
+</code></pre>
+
+<p>などとやってみますが、拒否されました。<br/>
+なるほど、iptablesでは<em>scope id</em>を指定できないのですね。<br/>
+というわけで、リンクローカルはあきらめて<a href="https://www.nic.ad.jp/ja/newsletter/No30/022.html">Unique Local IPv6 Unicast Address (ULA)</a>を使います。<br/>
+ともかく使うアドレスは<code>fd00::/8</code>でよさそうです。</p>
+
+<p>コンテナからの戻りのrouteも必要ですので<em>masquerade</em>します。</p>
+
+<pre><code># ip addr add fd00::1/8 dev lxcbr0
+# ip6tables -t nat -I PREROUTING -p tcp -d 2403:3a00:202:1202:xxx:xxx:xxx:xxx --dport 80 -j DNAT --to-destination fd00::3
+# ip6tables -t nat -I PREROUTING -p udp -d 2403:3a00:202:1202:xxx:xxx:xxx:xxx --dport 53 -j DNAT --to-destination fd00::3
+# ip6tables -t nat -I POSTROUTING -s fd00::/8 -o eth0 -j MASQUERADE
+</code></pre>
+
+<p>LXCコンテナでは</p>
+
+<pre><code># ip addr add fd00::3/8 dev eth0
+# ip -6 ro add default via fd00::1 dev eth0
+</code></pre>
+
+<p>結局の所、ULAをプライベートアドレスに読みかえれば、IPv4と同じオペレーションでNATができるようになるということです。</p>
+
+<h2>フィルタリングファイウォール</h2>
+
+<p>IPv6でアクセスできることを確認したらIPv4と同じようにフィルタリングしておきましょう。<br/>
+これもIPv4のiptablesとまったく同じように設定します。</p>
+
+<pre><code># ip6tables -I INPUT -P DROP   # default でDROP
+# ip6tables -I FORWARD -P DROP # default でDROP
+# ip6tables -A FORWARD -p tcp -m multiport --dports 80,443 -j ACCEPT
+# ip6tables -A FORWARD -p udp -m multiport --dports 53,123 -j ACCEPT
+(以下略)
+</code></pre>
+
+<p>以上です。<br/>
+あとはさくらVPSがせめて/64くれるようになることを祈るだけですね。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ドメイン名が変わりました]]></title>
@@ -1356,173 +1477,6 @@ xfsを操作するのでどうしてもLinuxが必要になってしまいます
 
 
 <iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B007XCCTEI" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-
-
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[nasne のHDDを時間かけずに換装する]]></title>
-    <link href="http://note.n6e.be//blog/2012/07/21/replacing-hdd-of-nasne/"/>
-    <updated>2012-07-21T02:00:00+09:00</updated>
-    <id>http://note.n6e.be//blog/2012/07/21/replacing-hdd-of-nasne</id>
-    <content type="html"><![CDATA[<p>HDDをまるごとバックアップして書き戻す作業は大変時間がかかるので、必要な分だけイメージを取得するようにして待ち時間を短縮します。<br/>
-特別な機材は必要ありませんが、USBのHDDがケースがあると便利だと思います。<br/>
-Linuxでの作業になるので多少のLinuxの知識が必要になります。</p>
-
-<!-- more -->
-
-
-<p>前提として作業はLinux上で行い、使うツールは dd, parted, fdisk, xfsprogs などです。<br/>
-nasne の HDD は2.5インチの7mm厚ですが、構造的に換装するHDDは9.5mm厚でも問題ありません。<br/>
-※  注意 : <strong>nasneのHDDにはハードウェア固有の情報が書き込まれており、別の個体では利用できません。</strong></p>
-
-<p>まず nasne から HDD を取り外し、Linux PCに付けます。(USB HDDケースがあると便利)
-nasne の HDD を <strong>/dev/sdd</strong> として認識したとします。<br/>
-xfs の領域である <strong>/dev/sdd3</strong> をtar (rsync -aHxXとかでも可)でバックアップします。</p>
-
-<pre><code># mount -o ro /dev/sdd3 /mnt
-# cd /mnt
-# tar -cpzf /backup/xfs.tgz .
-# cd / &amp;&amp; umount /dev/sdd3
-</code></pre>
-
-<p>パーティション番号2までのサイズ(単位はセクタにする)をメモします。</p>
-
-<pre><code># parted /dev/sdd
-GNU Parted 2.3
-Using /dev/sdd
-Welcome to GNU Parted! Type 'help' to view a list of commands.
-(parted) unit s
-(parted) p
-Model: Hitachi HTS545050A7E380 (scsi)
-Disk /dev/sdd: 62500864s
-Sector size (logical/physical): 512B/512B
-Partition Table: msdos
-
-Number  Start     End        Size       Type     File system  Flags
- 1      2048s     526335s    524288s    primary  ext3         boot
- 2      526336s   2623487s   2097152s   primary  ext3
- 3      2623488s  62500863s  59877376s  primary  xfs
-
-(parted) quit
-</code></pre>
-
-<p>セクタサイズは512Bで、 <strong>/dev/sdd2</strong> のEndが <strong>2623487</strong> であることがわかります。<br/>
-dd で先頭から <strong>/dev/sdd2</strong> の終わりまでのイメージを取得します。<br/>
-※ セクタ番号は0から始まるのでcountは1増やす。</p>
-
-<pre><code># cd / &amp;&amp; umount /mnt
-# dd if=/dev/sdd of=/backup/hdd.img bs=512 count=2623488
-</code></pre>
-
-<p>換装用の新しいディスクを接続します。 <strong>/dev/sde</strong> とします。 (今回は敢えて小さい120GBのHDDを使用してます) <br/>
-ディスクイメージを書き込みます。</p>
-
-<pre><code># dd if=/backup/hdd.img of=/dev/sde
-</code></pre>
-
-<p>または直接 /dev/sdd から /dev/sde に dd してもいいと思います。<br/>
-イメージサイズは1GB程度なので大して時間はかかりません。</p>
-
-<p>/dev/sde3 を消して作り直します。</p>
-
-<pre><code># fdisk /dev/sde
-
-Command (m for help): p
-
-Disk /dev/sde: 120.0 GB, 120034123776 bytes
-255 heads, 63 sectors/track, 14593 cylinders, total 234441648 sectors
-Units = sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
-Disk identifier: 0x000d7605
-
-   Device Boot      Start         End      Blocks   Id  System
-/dev/sde1   *        2048      526335      262144   83  Linux
-/dev/sde2          526336     2623487     1048576   83  Linux
-/dev/sde3         2623488    62500863    29938688   83  Linux
-
-Command (m for help): d
-Partition number (1-4): 3
-
-Command (m for help): p
-
-Disk /dev/sde: 120.0 GB, 120034123776 bytes
-255 heads, 63 sectors/track, 14593 cylinders, total 234441648 sectors
-Units = sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
-Disk identifier: 0x000d7605
-
-   Device Boot      Start         End      Blocks   Id  System
-/dev/sde1   *        2048      526335      262144   83  Linux
-/dev/sde2          526336     2623487     1048576   83  Linux
-
-Command (m for help): n
-Partition type:
-   p   primary (2 primary, 0 extended, 2 free)
-   e   extended
-Select (default p): p
-Partition number (1-4, default 3):
-Using default value 3
-First sector (2623488-234441647, default 2623488):
-Using default value 2623488
-Last sector, +sectors or +size{K,M,G} (2623488-234441647, default 234441647):
-Using default value 234441647
-
-Command (m for help): w
-The partition table has been altered!
-
-Calling ioctl() to re-read partition table.
-Syncing disks.
-</code></pre>
-
-<p>xfsファイルシステムを作り直します。</p>
-
-<pre><code># mkfs.xfs -f /dev/sde3
-meta-data=/dev/sde3              isize=256    agcount=4, agsize=7244318 blks
-         =                       sectsz=512   attr=2, projid32bit=0
-data     =                       bsize=4096   blocks=28977270, imaxpct=25
-         =                       sunit=0      swidth=0 blks
-naming   =version 2              bsize=4096   ascii-ci=0
-log      =internal log           bsize=4096   blocks=14149, version=2
-         =                       sectsz=512   sunit=0 blks, lazy-count=1
-realtime =none                   extsz=4096   blocks=0, rtextents=0
-</code></pre>
-
-<p><strong>/dev/sde3</strong> をマウントしてtarでバックアップしたxfs領域を展開します。<br/>
-(これやらなくても動きましたがやったほうがいい気がします)</p>
-
-<pre><code># mount /dev/sde3 /mnt
-# tar -xzpf /backup/xfs.tgz -C /mnt
-# umount /mnt
-</code></pre>
-
-<p>ディスクを nasne に取り付けて起動します。
-<img src="http://note.n6e.be//assets/screenshot/nasne-hdd-replace.png"></p>
-
-<p>よくわかりませんが、起動時に電源LEDとREC LEDが両方赤点灯でフリーズすることがありました。<br/>
-なんどか同じ手順をやり直していたら起動したりしなかったりしました。<br/>
-サンプルにつかったHDD(HTS541612J9SA00)が古過ぎて調子が悪いのかもしれませんが、原因は定かではありません。</p>
-
-<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B007NTJWB4" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-
-
-<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B007XCCTEI" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-
-
-<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B004QZAPMS" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-
-
-<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B0053VPYHK" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-
-
-<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B007V9T9ZK" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-
-
-<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B0035V5EA2" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
 
 
 
