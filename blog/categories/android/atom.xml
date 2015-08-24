@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | The Weight]]></title>
   <link href="http://note.n6e.be//blog/categories/android/atom.xml" rel="self"/>
   <link href="http://note.n6e.be//"/>
-  <updated>2015-04-08T19:58:33+09:00</updated>
+  <updated>2015-08-25T00:50:48+09:00</updated>
   <id>http://note.n6e.be//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -12,6 +12,42 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Qualcomm IZat のメモリリーク]]></title>
+    <link href="http://note.n6e.be//blog/2015/08/24/qualcomm-izat-memory-leak/"/>
+    <updated>2015-08-24T23:40:00+09:00</updated>
+    <id>http://note.n6e.be//blog/2015/08/24/qualcomm-izat-memory-leak</id>
+    <content type="html"><![CDATA[<p><a href="/assets/screenshot/QualcommIZat.png" target="_blank"><img class="right" src="/assets/screenshot/QualcommIZat.png" width="240" height="230"></a>
+QualcommのSoCにIZatというテクノロジーがあって、これは位置情報の効率化を図るハードウェア支援だそうです。<br/>
+au版のXperia Z3ではこれを有効化できるのですが、どうやらメモリリークが存在するようでした。</p>
+
+<!-- more -->
+
+
+<p>IZatを有効化するとlowi-serverというのが働き出してどんどんメモリを食っていきます。<br/>
+<img src="/assets/screenshot/lowi-server.png" width="640" height="601">
+こんな感じです。<br/>
+6日間で366MBになっています。</p>
+
+<p>この状態だとあらゆるバックグラウンドアクティビティはシステムによってkillされまくり、ウェブブラウザもホームに戻る度にロードし直しで不快極まりないです。<br/>
+通知を握りつぶされることもままあります。</p>
+
+<p>しかもこいつはシステムプロセスなので、root権がなくてはkillすることもできず、こうなってしまったら端末を再起動するしかありません。</p>
+
+<p>ちなみにlogcatしているとなにやら延々とエラーがでていますがよくわかりません。<br/>
+<code>text logcat
+W/LOWI-SERVER(  485): [LOWIController] Error in getting response from cache
+W/LOWI-SERVER(  485): [LOWIScanResultReceiver] No result, due to terminate or no memory
+</code></p>
+
+<p>というわけで、こんなもんは使わないほうが良いです。<br/>
+さっさとOFFにして再起動しましょう。(ちなみにデフォルトOFFです)<br/>
+OFFであれば0.3MB程度しか消費しません。</p>
+
+<p>現場からは以上です。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[CyanogenMod で DTCP-IP やパズドラを動かす]]></title>
@@ -292,250 +328,6 @@ HTL21のUSB蓋は取れやすい(が、アロンアルファで接着しなお�
     <content type="html"><![CDATA[<p>前回のエントリでIS12Sでswapだわーいって嬉々として書いたのだが、vm.swappiness=60だとはっきりいって使いものにならないということをこの1ヶ月ほどで体感してきた。</p>
 
 <p>というわけで、vm.swappiness=20 くらいがよいと思います。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[au IS12Sでスワップを有効にする [要root]]]></title>
-    <link href="http://note.n6e.be//blog/2012/08/07/is12s-enable-swap/"/>
-    <updated>2012-08-07T00:14:00+09:00</updated>
-    <id>http://note.n6e.be//blog/2012/08/07/is12s-enable-swap</id>
-    <content type="html"><![CDATA[<p>IS12S をICS にアップデートしてからというもの、メモリが足りなくていささか不便になってきました。<br/>
-そこでスワップを導入してみることにします。</p>
-
-<!-- more -->
-
-
-<p>そもそも1GBもあるはずなにどうなってるのか調べてみると&hellip;</p>
-
-<pre><code>$ cat /proc/meminfo
-MemTotal:         650404 kB
-MemFree:           20656 kB
-Buffers:             376 kB
-Cached:            71860 kB
-...
-</code></pre>
-
-<p>どうやらカーネルに予約されているのか知りませんが650MB弱しか使えないようですね。</p>
-
-<h3>カーネルの変更は不要、root は必要</h3>
-
-<p>幸いなことに、IS12Sのカーネルはswapがを扱えるようになっていますので、カーネルへの変更は不要です。<br/>
-root(とbusybox)が必要ですので注意。rootの取得方法は下記URLのサイト様を参考にするとよいです。</p>
-
-<p><a href="http://blog.huhka.com/2012/06/rooting-toolkit-for-xperia-acro-hd.html">http://blog.huhka.com/2012/06/rooting-toolkit-for-xperia-acro-hd.html</a>
-<a href="http://blog.huhka.com/2012/07/xperia-acro-hd-kddi-is12sics-root.html">http://blog.huhka.com/2012/07/xperia-acro-hd-kddi-is12sics-root.html</a>
-<a href="http://blog.huhka.com/2012/08/gbis12sicsroot.html">http://blog.huhka.com/2012/08/gbis12sicsroot.html</a></p>
-
-<p>いずれも2.3.7の状態である必要があるので4.0にしちゃった場合はなんとかして2.3.7に戻す必要があります。(ftfがあれば戻せる)</p>
-
-<h3>どこにスワップ領域を確保するか</h3>
-
-<p>さて、スワップを有効にするにはスワップ<strong>パーティション</strong>を作るか、スワップ<strong>ファイル</strong>をつくるかの2通りありますが、SDカードにスワップ<strong>ファイル</strong>を作るのはやめたほうがよさそうです。
-(スワップを有効にしたままSDカードをマウント解除すると挙動がおかしくなるため)</p>
-
-<p>スワップ<strong>ファイル</strong>を作る場合は/sdcard/(内蔵ストレージ)とか/data/ のどっかに作ったほうがよいでしょう。
-しかし、/sdcard/swapfile のように内蔵ストレージに作ると、後述する手順で起動時に有効にすることができないため、再起動のたびに手動で有効にしなくてはならないことを留意してください。</p>
-
-<p>また、SDカード上にスワップ<strong>パーティション</strong>を作る場合もクラス10とか速いSDカードを使ったほうがよいでしょう。</p>
-
-<h3>スワップファイルを作る場合</h3>
-
-<p>adb shell で作業を行います。 su でrootになる必要があります。</p>
-
-<pre><code>$ su
-# dd if=/dev/zero of=/data/local/swapfile bs=$((1024 * 1024)) count=256
-# chmod 644 /data/local/swapfile
-# mkswap /data/local/swapfile
-# swapon /data/local/swapfile
-</code></pre>
-
-<p>これで 256MBのスワップファイルを作り、有効になりました。</p>
-
-<h3>SDカードにスワップパーティションを作る場合</h3>
-
-<p>少々面倒ですが、adb shell だけでもできます。<br/>
-SDカードの中身は全部消えるので注意。</p>
-
-<p>まず SDカードをアンマウント</p>
-
-<pre><code>$ su
-# umount /mnt/ext_card
-</code></pre>
-
-<p>fdisk でパーティションを切ります。 SDカードは /dev/block/mmcblk1 です。</p>
-
-<pre><code># fdisk /dev/block/mmcblk1
-
-The number of cylinders for this disk is set to 3801.
-There is nothing wrong with that, but this is larger than 1024,
-and could in certain setups cause problems with:
-1) software that runs at boot time (e.g., old versions of LILO)
-2) booting and partitioning software from other OSs
-   (e.g., DOS FDISK, OS/2 FDISK)
-
-Command (m for help): p
-
-Disk /dev/block/mmcblk1: 31.3 GB, 31393316864 bytes
-256 heads, 63 sectors/track, 3801 cylinders
-Units = cylinders of 16128 * 512 = 8257536 bytes
-
-              Device Boot      Start         End      Blocks  Id System
-/dev/block/mmcblk1p1   *           1        3801    30651232+  c Win95 FAT32 (LBA)
-
-Command (m for help): d
-Selected partition 1
-
-Command (m for help): n
-Command action
-   e   extended
-   p   primary partition (1-4)
-p
-Partition number (1-4): 1
-First cylinder (1-3801, default 1): Using default value 1
-Last cylinder or +size or +sizeM or +sizeK (1-3801, default 3801): 3768
-
-Command (m for help): n
-Command action
-   e   extended
-   p   primary partition (1-4)
-p
-Partition number (1-4): 2
-First cylinder (3769-3801, default 3769): Using default value 3769
-Last cylinder or +size or +sizeM or +sizeK (3769-3801, default 3801): Using default value 3801
-
-Command (m for help): p
-
-Disk /dev/block/mmcblk1: 31.3 GB, 31393316864 bytes
-256 heads, 63 sectors/track, 3801 cylinders
-Units = cylinders of 16128 * 512 = 8257536 bytes
-
-              Device Boot      Start         End      Blocks  Id System
-/dev/block/mmcblk1p1               1        3768    30385120+ 83 Linux
-/dev/block/mmcblk1p2            3769        3801      266112  83 Linux
-
-Command (m for help): t 
-Partition number (1-4): 1
-Hex code (type L to list codes): c
-Changed system type of partition 1 to c (Win95 FAT32 (LBA))
-
-Command (m for help): a
-Partition number (1-4): 1
-
-Command (m for help): t
-Partition number (1-4): 2
-Hex code (type L to list codes): 82
-Changed system type of partition 2 to 82 (Linux swap)
-
-Command (m for help): p
-
-Disk /dev/block/mmcblk1: 31.3 GB, 31393316864 bytes
-256 heads, 63 sectors/track, 3801 cylinders
-Units = cylinders of 16128 * 512 = 8257536 bytes
-
-              Device Boot      Start         End      Blocks  Id System
-/dev/block/mmcblk1p1   *           1        3768    30385120+  c Win95 FAT32 (LBA)
-/dev/block/mmcblk1p2            3769        3801      266112  82 Linux swap
-
-Command (m for help): w
-The partition table has been altered!
-
-Calling ioctl() to re-read partition table
-
-# busybox mkdosfs /dev/block/mmcblk1p1
-# mkswap /dev/block/mmcblk1p2 
-Setting up swapspace version 1, size = 272494592 bytes
-# swapon /dev/block/mmcblk1p2
-</code></pre>
-
-<p>これでだいたい256MBのスワップパーティションが作れました。
-一番目のパーティションは通常使用するvfatパーティションです。(boot フラグは不要でしょうが、最初からついてたので付けただけです)
-サイズは好きにしたらよいと思いますが、一番目はFAT32にしたほうが無難な気がします。</p>
-
-<p>あとはスワップの頻度を調整します</p>
-
-<pre><code># sysctl -w vm.swappiness=40
-</code></pre>
-
-<p>値は0から100で100が最も頻度が高くなります。だいたい30くらいがいいようですが、様子を見ながら調整するとよいでしょう。<br/>
-カーネルのデフォルトは60です。</p>
-
-<h3>起動時に有効にするために</h3>
-
-<p>IS12S は init.d 的なものがなくユーザー追加のスクリプトを起動時に実行することはできませんが、起動時に <strong>/system/etc/install-recovery.sh</strong> というスクリプトを実行している箇所があるので、これを利用します。<br/>
-<strong>/system/etc/install-recovery.sh</strong> そのものは標準では存在しないので新規に作ることになります。
-スワップファイルの場合、このスクリプトの実行時には /sdcard がマウントされていないので、/sdcard/ にファイルを作った場合は注意です。</p>
-
-<p>``` sh /system/etc/install-recovery.sh</p>
-
-<h1>!/system/bin/sh</h1>
-
-<h1>パーティションの場合</h1>
-
-<p>swapon /dev/block/mmcblk1p2</p>
-
-<h1>ファイルの場合</h1>
-
-<h1>swapon /data/local/swapfile</h1>
-
-<p>sysctl -w vm.swappiness=40</p>
-
-<p>```</p>
-
-<p>こんな感じで <strong>install-recovery.sh</strong> を /sdcard/ に作り、下記のコマンドでコピーします。</p>
-
-<pre><code>$ su
-# cd /system/etc
-# mount -o remount,rw /system ; cp /sdcard/install-recovery.sh . ; chmod 755 install-recovery.sh ; mount -o remount,ro /system
-</code></pre>
-
-<p>一行で実行すればリマウントによる再起動を回避できるかと思われます。</p>
-
-<p>というわけでスワップを有効にできました。</p>
-
-<pre><code>$ su
-# free
-          total         used         free       shared      buffers
-  Mem:       650404       622388        28016            0         3128
- Swap:       266108        32388       233720
-Total:       916512       654776       261736
-# cat /proc/meminfo
-MemTotal:         650404 kB
-MemFree:           29596 kB
-Buffers:            3136 kB
-Cached:           175632 kB
-SwapCached:        13048 kB
-Active:           250536 kB
-Inactive:         264296 kB
-Active(anon):     163560 kB
-Inactive(anon):   174236 kB
-Active(file):      86976 kB
-Inactive(file):    90060 kB
-Unevictable:        1228 kB
-Mlocked:               0 kB
-HighTotal:        523264 kB
-HighFree:           6260 kB
-LowTotal:         127140 kB
-LowFree:           23336 kB
-SwapTotal:        266108 kB
-SwapFree:         233728 kB
-...
-</code></pre>
-
-<p>効果のほどですが、OOMでバックグラウンド処理が途中で殺されることがなくなった気がします。</p>
-
-<p><img class="<a" src="href="https://lh3.googleusercontent.com/-CfWIVT_CFTY/UB_8w-H4_9I/AAAAAAAAKg4/he2aOplKlB4/s288/2012-08-07%252002.18.31.png">https://lh3.googleusercontent.com/-CfWIVT_CFTY/UB_8w-H4_9I/AAAAAAAAKg4/he2aOplKlB4/s288/2012-08-07%252002.18.31.png</a>" title="<a href=&#34;https://lh3.googleusercontent.com/-CfWIVT_CFTY/UB_8w-H4_9I/AAAAAAAAKg4/he2aOplKlB4/s800/2012-08-07%252002.18.31.png&#34;>https://lh3.googleusercontent.com/-CfWIVT_CFTY/UB_8w-H4_9I/AAAAAAAAKg4/he2aOplKlB4/s800/2012-08-07%252002.18.31.png</a> System Tuner" alt="<a href=&#34;https://lh3.googleusercontent.com/-CfWIVT_CFTY/UB_8w-H4_9I/AAAAAAAAKg4/he2aOplKlB4/s800/2012-08-07%252002.18.31.png&#34;>https://lh3.googleusercontent.com/-CfWIVT_CFTY/UB_8w-H4_9I/AAAAAAAAKg4/he2aOplKlB4/s800/2012-08-07%252002.18.31.png</a> System Tuner"><br/>
-結構使ってますが空きメモリにそこそこ余裕が見られます。</p>
-
-<p></p>
-
-<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B0065SI5SK" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-
-
-<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B007WTAJTO" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-
-
-<p></p>
 ]]></content>
   </entry>
   
