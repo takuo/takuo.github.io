@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | The Weight]]></title>
   <link href="http://note.n6e.be//blog/categories/android/atom.xml" rel="self"/>
   <link href="http://note.n6e.be//"/>
-  <updated>2015-08-25T00:50:48+09:00</updated>
+  <updated>2015-08-25T00:53:44+09:00</updated>
   <id>http://note.n6e.be//</id>
   <author>
     <name><![CDATA[Takuo Kitame]]></name>
@@ -44,6 +44,8 @@ W/LOWI-SERVER(  485): [LOWIScanResultReceiver] No result, due to terminate or no
 <p>というわけで、こんなもんは使わないほうが良いです。<br/>
 さっさとOFFにして再起動しましょう。(ちなみにデフォルトOFFです)<br/>
 OFFであれば0.3MB程度しか消費しません。</p>
+
+<p>docomoやソフトバンクのZ3ではそもそも有効化できないので心配いりません。Z4は知りませんが。</p>
 
 <p>現場からは以上です。</p>
 ]]></content>
