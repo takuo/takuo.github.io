@@ -30,5 +30,7 @@ W/LOWI-SERVER(  485): [LOWIScanResultReceiver] No result, due to terminate or no
 さっさとOFFにして再起動しましょう。(ちなみにデフォルトOFFです)  
 OFFであれば0.3MB程度しか消費しません。  
 
+docomoやソフトバンクのZ3ではそもそも有効化できないので心配いりません。Z4は知りませんが。  
+
 現場からは以上です。
 
