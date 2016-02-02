@@ -25,11 +25,13 @@ single: true
     </p>
   </footer>
 </article>
-{% if site.disqus_short_name and page.comments == true %}
-  <section>
-    <h2>Comments</h2>
-    <div id="disqus_thread" aria-live="polite">{% include post/disqus_thread.html %}</div>
-  </section>
+{% if page.comments == true %}
+<div class="g-comments"
+  data-href="{{ site.url }}{{ post.url }}"
+  data-width="600"
+  data-first_party_property="BLOGGER"
+  data-view_type="FILTERED_POSTMOD">
+</div>
 {% endif %}
 </div>
 {% unless page.sidebar == false %}
