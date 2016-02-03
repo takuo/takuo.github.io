@@ -25,11 +25,57 @@ single: true
     </p>
   </footer>
 </article>
-{% if site.disqus_short_name and page.comments == true %}
-  <section>
-    <h2>Comments</h2>
-    <div id="disqus_thread" aria-live="polite">{% include post/disqus_thread.html %}</div>
-  </section>
+{% if page.comments == true %}
+<!-- comment-tabs -->
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+  window.comment_tab_width = $('#comment-tabs').innerWidth();
+});
+</script>
+<div id="comment-tabs">
+<a name="comments"></a>
+  <ul class="controls inline clearfix">
+    <li class="active" id='gplus-control'>
+      <a href="#gplus-tab">
+        <img id="gplus-icon" src="https://raw.githubusercontent.com/CloudHeroDevOps/comments-evolved/master/trunk/assets/images/icons/default/gplus.png"><span id="gplus-label"></span>
+      </a>
+    </li>
+    <li id="facebook-control">
+      <a href="#facebook-tab">
+        <img id="facebook-icon" src="https://raw.githubusercontent.com/CloudHeroDevOps/comments-evolved/master/trunk/assets/images/icons/default/facebook.png"><span id="facebook-label"></span>
+      </a>
+    </li>
+  </ul>
+  <!-- gplus-tab -->
+  <div id="gplus-tab" class="embed-container content-tab clearfix">
+  <script type="text/javascript">
+    jQuery(document).ready(function($) {
+      $('#gplus-tab').html('<div class="g-comments" data-width="'+window.comment_tab_width+'" data-href="{{ site.url }}{{ page.url }}" data-first_party_property="BLOGGER" data-view_type="FILTERED_POSTMOD">Loading Google+ Comments ...</div>');
+    });
+  </script>
+  <script async type="text/javascript" src="//apis.google.com/js/plusone.js?callback=gpcb"></script>
+    <noscript>Please enable JavaScript to view the <a href="https://plus.google.com/">comments powered by Google+.</a>
+    </noscript>
+  </div>
+  <!-- //gplus-tab -->
+  <!-- facebook-tab -->
+  <div id="facebook-tab" class="embed-container content-tab clearfix">
+  <div id="fb-root"></div>
+  <div id="fb-comments">Loading Facebook Comments ...</div>
+  <script type="text/javascript">
+    jQuery(document).ready(function($) {
+      $('#fb-comments').html('<div class="fb-comments" data-width="'+window.comment_tab_width+'" data-href="{{ site.url }}{{ page.url }}" data-num-posts="20" data-colorscheme="light" data-mobile="auto"></div>');
+    });
+  </script>
+  <script async type="text/javascript" src="//connect.facebook.net/ja_JP/all.js#xfbml=1">FB.init();</script>
+  <noscript>Please enable JavaScript to view the <a href="https://www.facebook.com/">comments powered by Facebook.</a></noscript>
+  </div>
+  <!-- //facebook-tab -->
+</div>
+<script>
+$( "#comment-tabs" ).tabs();
+</script>
+<!-- //comment-tabs -->
 {% endif %}
 </div>
 {% unless page.sidebar == false %}
