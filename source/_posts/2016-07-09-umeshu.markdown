@@ -1,0 +1,57 @@
+---
+layout: post
+title: "梅酒 DAY 1"
+date: 2016-07-09 00:36
+comments: true
+categories: [ 'Life' ]
+---
+{% img right https://farm8.staticflickr.com/7608/28091290421_ff14bbd7b5_n.jpg %}
+僕はお酒をろくに飲めませんが、梅酒は好きなので梅酒を作ることにしました。  
+
+梅酒に使う青梅、それも南高梅という種類の青梅の収穫時期は 5月から6月中旬だそうです。  
+つまり、もうすでに時期が終わっているんですが、東北の実家の方ならば何かしら手に入るかもということでかけあってみたところ、  
+やや黄色がかってはいますが、2kgほど青梅を譲り受けることができましたのでチャレンジしていきたいと思います。  
+<!-- more -->
+
+最初なので、手軽に始められる道具を選びます。  
+梅1kgに氷砂糖1kg、ホワイトリカー1.8リットル(一升)というのが王道だそうです。  
+
+ところで、Amazonではこのような漬け瓶と酒がセットのものが販売されており、これは楽そうだということで発注しました。  
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B00C8RA2Y2" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+ホワイトリカー1.8Lと4.5Lの瓶がセットになっています。評判も良さそうです。  
+{% img https://farm8.staticflickr.com/7353/28065467982_6112ec631f_n.jpg https://www.flickr.com/photos/xnortheye/28065467982/in/album-72157662393858384/ %}  
+このようにラベルも貼ってあって便利。
+
+
+とはいえ梅が2kgあるのでもう一瓶やっておくかと思い、こちらは瓶と酒を別々に購入しました。  
+選んだのは、こちら。  
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B0026ZP2RS" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B01DIIPHYO" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+あと氷砂糖と使うかわからないけどレードル。  
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B0012Z3DDI" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=takuojp02-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B002DWA7LU" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+梅は適当に洗って十分に水気を拭き取り、ヘタを竹串で取っておきます。  
+本物の青梅の場合は水にしばらくつけてアク取りをするそうなんですが、今回のようなちょっと熟れた梅の場合は不要とのことです。  
+あと、ヘタを取るついでに竹串で梅に穴を空ける流派もあるそうですが、濁ってしまうという話も聞きますし、今回は空けずにやります。  
+
+
+{% img https://farm8.staticflickr.com/7511/28093023471_4259a8bd06_n.jpg https://www.flickr.com/photos/xnortheye/28093023471/in/album-72157662393858384/ %}  
+↑は届いてから一日後の梅。もはや黄色いですね。  
+
+次に瓶の消毒なのですが、前述の酒セットの瓶では不要とのことです。  
+が、もうひと瓶あるので、こちらは洗剤で洗ったあと乾燥させ、梅を入れる前に焼酎を少々いれて回すなどして消毒しました。  
+まぁ、調べたところによると35度の酒を使う場合はあんまり神経質にならなくても良いらしいです。  
+カビの原因は往々にして20度前後の酒を使っているからだ、と。
+
+あとは梅と氷砂糖を少量ずつ交互に瓶に入れていくんですが、酒がセットになった瓶の欠点がここで出てきました。  
+最初から酒が入っているので梅や砂糖を入れるときにポチャポチャと酒が跳ねる。瓶から酒が跳ねでないようにするのにわりと神経使いました。  
+まぁ次からセットで買うことも無かろうよ。  
+{% img https://farm8.staticflickr.com/7432/27554020244_06a8654177_n.jpg https://www.flickr.com/photos/xnortheye/27554020244/in/album-72157662393858384/ %}  
+
+さて、砂糖の量は1kgだとかなり甘いらしいので、今回は 800gと700gで調整しています。  
+あとは毎日瓶を回すなどして糖分が均一になるように維持すれば良いとのことです。  
+
+漬ける期間の目安は3ヶ月～1年らしいのでまだまだ先ですが楽しみであります。  
+{% img https://farm8.staticflickr.com/7769/28095408531_335438b20a_n.jpg https://www.flickr.com/photos/xnortheye/28095408531/in/album-72157662393858384/ %}
