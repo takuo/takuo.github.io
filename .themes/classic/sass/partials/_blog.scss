@@ -18,7 +18,7 @@ article {
         &:hover { text-decoration: underline; } }
     }
     p {
-      font-size: .9em;
+      font-size: 1.0em;
       color: $text-color-light;
       margin: 0;
       &.meta {
@@ -53,6 +53,7 @@ article {
       font-size: .9em;
     }
    }
+  .entry-content ul { margin-left: 1.5em; }
   img, video, .flash-video {
     @extend .flex-content;
     @extend .basic-alignment;
@@ -100,13 +101,14 @@ article + article {
 }
 #content .blog-index {
   padding: { top: 0; bottom: 0; }
-  article { padding-top: 2em; }
+  article { padding-top: 2em; clear: both; }
   article header { background: none; padding-bottom: 0; }
   article h1 {
     font-size: 2.2em;
     a { color: inherit; &:hover { color: $link-color-hover; } }
   }
   article h2 {
+    clear: both;
     font-size: 1.7em;
     a { color: inherit; &:hover { color: $link-color-hover; } }
   }
