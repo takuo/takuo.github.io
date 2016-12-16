@@ -39,17 +39,17 @@ categories: [ "Car Life" ]
 このくらいですかね。  
 ぱっと思いつくあたりで、国産は
 
- * HONDA VEZEL
- * SUBARU XV
- * NISSAN JUKE
- * TOYOTA C-HR
+ * [HONDA VEZEL](http://www.honda.co.jp/VEZEL/)
+ * [SUBARU XV](http://www.subaru.jp/xv/xv/)
+ * [NISSAN JUKE](http://www2.nissan.co.jp/JUKE/)
+ * [TOYOTA C-HR](http://toyota.jp/c-hr/)
 
 くらいでしょうか。  
 輸入車だと
 
- * VW GOLF R
- * MINI CROSS OVER
- * FIAT 500X
+ * [VW GOLF R](http://www.volkswagen.co.jp/ja/models/golfr.html)
+ * [MINI CROSSOVER ALL4](https://www.mini.jp/ja_JP/home/range/mini-crossover/mini-cooper-d-all4-crossover.html)
+ * [FIAT 500X Cross Plus](http://www.fiat-auto.co.jp/500x/)
 
 あたりですかねえ、JEEPとかもあるけどちょっとデザイン的に難しい。  
 欧州車では他にもルノー、プジョー、シトロエンも気になる車種はありますが、AWDではないので除外。  
@@ -59,7 +59,7 @@ GOLFとMINIは大幅に予算オーバーするので除外。
 C-HRとJUKEはラゲッジスペースに期待できないので除外。  
 ついでにC-HRはまだ発売しておらず、予約状況から納車は春頃になるかもという噂もあります。  
 
-### HONDA VEZERL
+### HONDA VEZEL
 
 {% img right https://c1.staticflickr.com/1/256/31302934190_dfeb8ba6cd_n.jpg %}
 VEZELは本当にいいですね。安いし売れてる理由もよく分かる。気になるのはHONDA SENSINGの性能。  

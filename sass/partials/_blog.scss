@@ -35,6 +35,7 @@ article {
   }
   h2 {
     padding-top: 0.8em;
+    clear: both;
     background: $img-border top left repeat-x;
   }
   .entry-content & h2:first-child, header + h2 { padding-top: 0; }
@@ -107,6 +108,7 @@ article + article {
     a { color: inherit; &:hover { color: $link-color-hover; } }
   }
   article h2 {
+    clear: both;
     font-size: 1.7em;
     a { color: inherit; &:hover { color: $link-color-hover; } }
   }
